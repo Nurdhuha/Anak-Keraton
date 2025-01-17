@@ -1,4 +1,3 @@
-# pages/menu_input_data.py
 import streamlit as st
 import json
 from datetime import datetime
@@ -16,6 +15,35 @@ if "user_data" not in st.session_state:
     st.switch_page("streamlit_app.py")
     st.stop()
 
+# Fungsi untuk menyimpan data ke JSON
+def save_to_json(data_pasien):
+    try:
+        # Pastikan direktori data ada
+        data_file_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Baca data yang sudah ada atau buat list baru jika file belum ada
+        if data_file_path.exists():
+            try:
+                with open(data_file_path, 'r') as f:
+                    existing_data = json.load(f)
+                    if not isinstance(existing_data, list):
+                        existing_data = []
+            except json.JSONDecodeError:
+                existing_data = []
+        else:
+            existing_data = []
+        
+        # Tambahkan data baru
+        existing_data.append(data_pasien)
+        
+        # Simpan semua data ke file
+        with open(data_file_path, 'w') as f:
+            json.dump(existing_data, f, indent=4)
+        return True
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat menyimpan data: {str(e)}")
+        return False
+
 # Inisialisasi state untuk menampilkan tombol rekomendasi
 if 'data_saved' not in st.session_state:
     st.session_state.data_saved = False
@@ -26,7 +54,7 @@ st.title(f"Selamat Datang, {nama_pasien}!")
 st.subheader("Form Input Data Pasien")
 
 # Buat form untuk input data
-with st.form("form_input_data"):
+with st.form("form_input_data", clear_on_submit=False):
     # Data Demografi
     st.markdown("### Data Demografi")
     col1, col2 = st.columns(2)
@@ -39,7 +67,7 @@ with st.form("form_input_data"):
         alamat = st.text_area("Alamat")
         no_telepon = st.text_input("Nomor Telepon")
 
-    # Data Klinis
+    # Data Antropometri
     st.markdown("### Data Antropometri")
     col3, col4 = st.columns(2)
 
@@ -80,74 +108,54 @@ with st.form("form_input_data"):
     submitted = st.form_submit_button("Simpan Data")
 
     if submitted:
-        # Buat dictionary data pasien
-        data_pasien = {
-            "nama": nama_pasien,
-            "tanggal_input": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "demografi": {
-                "usia": usia,
-                "jenis_kelamin": jenis_kelamin,
-                "alamat": alamat,
-                "no_telepon": no_telepon
-            },
-            "data_klinis": {
-                "berat_badan": berat_badan,
-                "tinggi_badan": tinggi_badan,
-                "tingkat_aktivitas": tingkat_aktivitas,
-                "kondisi_kesehatan": kondisi_kesehatan
-            },
-            "preferensi_makanan": {
-                "pantangan": pantangan_makanan,
-                "preferensi_diet": preferensi_diet,
-                "catatan_tambahan": catatan_tambahan
+        # Validasi data minimal
+        if not usia or not jenis_kelamin or not berat_badan or not tinggi_badan:
+            st.error("Mohon lengkapi data usia, jenis kelamin, berat badan, dan tinggi badan!")
+        else:
+            # Buat dictionary data pasien
+            data_pasien = {
+                "nama": nama_pasien,
+                "tanggal_input": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "demografi": {
+                    "usia": usia,
+                    "jenis_kelamin": jenis_kelamin,
+                    "alamat": alamat,
+                    "no_telepon": no_telepon
+                },
+                "data_klinis": {
+                    "berat_badan": berat_badan,
+                    "tinggi_badan": tinggi_badan,
+                    "tingkat_aktivitas": tingkat_aktivitas,
+                    "kondisi_kesehatan": kondisi_kesehatan
+                },
+                "preferensi_makanan": {
+                    "pantangan": pantangan_makanan,
+                    "preferensi_diet": preferensi_diet,
+                    "catatan_tambahan": catatan_tambahan
+                }
             }
-        }
 
-        # Simpan ke file JSON
-        try:
-            data_file_path.parent.mkdir(parents=True, exist_ok=True)  # Pastikan direktori ada
-            
-            # Baca data yang sudah ada atau inisialisasi list kosong
-            existing_data = []
-            if data_file_path.exists():
-                with data_file_path.open("r") as f:
-                    try:
-                        existing_data = json.load(f)
-                    except json.JSONDecodeError:
-                        existing_data = []
-            
-            # Tambahkan data baru
-            if isinstance(existing_data, list):
-                existing_data.append(data_pasien)
-            else:
-                existing_data = [data_pasien]
-            
-            # Tulis kembali semua data
-            with data_file_path.open("w") as f:
-                json.dump(existing_data, f, indent=4)
-            
-            st.success("Data berhasil disimpan!")
-            st.session_state.data_saved = True
+            # Simpan data
+            if save_to_json(data_pasien):
+                st.success("Data berhasil disimpan!")
+                st.session_state.data_saved = True
 
-            # Tampilkan BMI
-            if berat_badan > 0 and tinggi_badan > 0:
-                imt = berat_badan / ((tinggi_badan/100) ** 2)
-                st.info(f"IMT Anda: {imt:.1f}")
+                # Tampilkan IMT
+                if berat_badan > 0 and tinggi_badan > 0:
+                    imt = berat_badan / ((tinggi_badan/100) ** 2)
+                    st.info(f"IMT Anda: {imt:.1f}")
 
-                # Kategorisasi IMT
-                if imt < 18.5:
-                    st.warning("Kategori: Berat Badan Kurang")
-                elif 18.5 <= imt < 23:
-                    st.success("Kategori: Berat Badan Normal")
-                elif 23 <= imt < 25:
-                    st.warning("Kategori: Berat Badan Berlebih, Beresiko Obesitas")
-                elif 25 <= imt < 30:
-                    st.warning("Kategori: Obesitas Tingkat 1")
-                else:
-                    st.error("Kategori: Obesitas Tingkat 2")
-
-        except Exception as e:
-            st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
+                    # Kategorisasi IMT
+                    if imt < 18.5:
+                        st.warning("Kategori: Berat Badan Kurang")
+                    elif 18.5 <= imt < 23:
+                        st.success("Kategori: Berat Badan Normal")
+                    elif 23 <= imt < 25:
+                        st.warning("Kategori: Berat Badan Berlebih, Beresiko Obesitas")
+                    elif 25 <= imt < 30:
+                        st.warning("Kategori: Obesitas Tingkat 1")
+                    else:
+                        st.error("Kategori: Obesitas Tingkat 2")
 
 # Tampilkan tombol rekomendasi jika data telah disimpan
 if st.session_state.data_saved:
