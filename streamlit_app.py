@@ -7,7 +7,6 @@ from pathlib import Path
 
 st.set_page_config(page_title="Diet Recommendation Website", page_icon="🍎")
 
-st.set_page_config(initial_sidebar_state="collapsed")
 DATA_FILE = Path("data/datapasien.json")
 DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
