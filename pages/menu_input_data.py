@@ -4,17 +4,36 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+# Sembunyikan hamburger menu dan footer
+st.markdown("""
+    <style>
+        [data-testid="collapsedControl"] {
+            display: none
+        }
+        footer {
+            visibility: hidden;
+        }
+        #MainMenu {
+            visibility: hidden;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
 # Path ke file JSON untuk menyimpan data pasien
-data_file_path = Path("data/data_detail.json")
+data_file_path = Path("data/data_detail_pasien.json")
 
 # Fungsi untuk memuat data pengguna dari sesi
 if "user_data" not in st.session_state:
     st.error("Silakan lakukan login terlebih dahulu!")
     st.switch_page("streamlit_app.py")
     st.stop()
+
+# Inisialisasi state untuk menampilkan tombol rekomendasi
+if 'data_saved' not in st.session_state:
+    st.session_state.data_saved = False
 
 # Tampilkan sambutan
 nama_pasien = st.session_state["user_data"]["username"]
@@ -102,10 +121,28 @@ with st.form("form_input_data"):
         # Simpan ke file JSON
         try:
             data_file_path.parent.mkdir(parents=True, exist_ok=True)  # Pastikan direktori ada
-            with data_file_path.open("a") as f:
-                json.dump(data_pasien, f)
-                f.write('\n')  # Tambahkan newline untuk format JSONL
+            
+            # Baca data yang sudah ada atau inisialisasi list kosong
+            existing_data = []
+            if data_file_path.exists():
+                with data_file_path.open("r") as f:
+                    try:
+                        existing_data = json.load(f)
+                    except json.JSONDecodeError:
+                        existing_data = []
+            
+            # Tambahkan data baru
+            if isinstance(existing_data, list):
+                existing_data.append(data_pasien)
+            else:
+                existing_data = [data_pasien]
+            
+            # Tulis kembali semua data
+            with data_file_path.open("w") as f:
+                json.dump(existing_data, f, indent=4)
+            
             st.success("Data berhasil disimpan!")
+            st.session_state.data_saved = True
 
             # Tampilkan BMI
             if berat_badan > 0 and tinggi_badan > 0:
@@ -124,6 +161,11 @@ with st.form("form_input_data"):
 
         except Exception as e:
             st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
+
+# Tampilkan tombol rekomendasi jika data telah disimpan
+if st.session_state.data_saved:
+    if st.button("Lihat Rekomendasi Pola Diet", type="primary"):
+        st.info("Fitur rekomendasi pola diet sedang dalam pengembangan. Silakan tunggu update selanjutnya.")
 
 # Tambahkan tombol logout
 if st.sidebar.button("Logout"):
