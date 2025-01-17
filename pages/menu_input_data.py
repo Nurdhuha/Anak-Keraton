@@ -9,10 +9,8 @@ st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", p
 # Konfigurasi MongoDB
 def get_database():
     try:
-        # Ganti connection string sesuai dengan MongoDB Anda
-        connection_string = "mongodb://localhost:27017/"
-        client = MongoClient(connection_string, tlsCAFile=certifi.where())
-        return client['Database_Dhuha']  # Nama database Anda
+        client = MongoClient('mongodb://localhost:27017/')
+        return client['Database_Dhuha']
     except Exception as e:
         st.error(f"Gagal terhubung ke database: {str(e)}")
         return None
