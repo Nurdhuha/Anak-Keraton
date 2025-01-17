@@ -4,7 +4,7 @@ import streamlit as st
 from pathlib import Path
 
 
-
+st.set_page_config(layout="wide")
 st.set_page_config(page_title="Diet Recommendation Website", page_icon="🍎")
 
 DATA_FILE = Path("data/datapasien.json")
