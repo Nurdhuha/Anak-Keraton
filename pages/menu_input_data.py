@@ -2,6 +2,7 @@ import streamlit as st
 import json
 from datetime import datetime
 from pathlib import Path
+import os
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
@@ -19,26 +20,26 @@ if "user_data" not in st.session_state:
 def save_to_json(data_pasien):
     try:
         # Pastikan direktori data ada
-        data_file_path.parent.mkdir(parents=True, exist_ok=True)
+        os.makedirs(data_file_path.parent, exist_ok=True)
         
-        # Baca data yang sudah ada atau buat list baru jika file belum ada
+        # Baca data yang sudah ada atau inisialisasi list baru
+        existing_data = []
         if data_file_path.exists():
             try:
-                with open(data_file_path, 'r') as f:
+                with open(data_file_path, 'r', encoding='utf-8') as f:
                     existing_data = json.load(f)
                     if not isinstance(existing_data, list):
                         existing_data = []
             except json.JSONDecodeError:
+                # Jika file kosong atau corrupt, mulai dengan list kosong
                 existing_data = []
-        else:
-            existing_data = []
         
         # Tambahkan data baru
         existing_data.append(data_pasien)
         
-        # Simpan semua data ke file
-        with open(data_file_path, 'w') as f:
-            json.dump(existing_data, f, indent=4)
+        # Simpan semua data ke file dengan encoding UTF-8
+        with open(data_file_path, 'w', encoding='utf-8') as f:
+            json.dump(existing_data, f, indent=4, ensure_ascii=False)
         return True
     except Exception as e:
         st.error(f"Terjadi kesalahan saat menyimpan data: {str(e)}")
@@ -55,6 +56,7 @@ st.subheader("Form Input Data Pasien")
 
 # Buat form untuk input data
 with st.form("form_input_data", clear_on_submit=False):
+    # [Kode form input tetap sama seperti sebelumnya]
     # Data Demografi
     st.markdown("### Data Demografi")
     col1, col2 = st.columns(2)
@@ -123,8 +125,8 @@ with st.form("form_input_data", clear_on_submit=False):
                     "no_telepon": no_telepon
                 },
                 "data_klinis": {
-                    "berat_badan": berat_badan,
-                    "tinggi_badan": tinggi_badan,
+                    "berat_badan": float(berat_badan),  # Pastikan tipe data numerik
+                    "tinggi_badan": float(tinggi_badan),
                     "tingkat_aktivitas": tingkat_aktivitas,
                     "kondisi_kesehatan": kondisi_kesehatan
                 },
