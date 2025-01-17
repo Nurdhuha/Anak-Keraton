@@ -1,11 +1,29 @@
 import streamlit as st
 import json
 from datetime import datetime
+from pathlib import Path
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
-# Cek status login dari parameter URL
+# Path ke file JSON untuk menyimpan data pasien
+DATA_FILE = Path("data/data_pasien_detail.json")
+
+# Pastikan folder Database ada
+DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+# Fungsi untuk menyimpan data pasien ke file JSON
+def save_patient_data(data):
+    try:
+        with open(DATA_FILE, "a") as f:
+            json.dump(data, f)
+            f.write('\n')  # Tambahkan newline untuk JSONL format
+        return True
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
+        return False
+
+# Ambil nama pasien dari URL parameter
 params = st.experimental_get_query_params()
 if 'login_success' not in params or 'nama' not in params:
     st.error("Silakan login terlebih dahulu!")
@@ -94,11 +112,8 @@ with st.form("form_input_data"):
             }
         }
 
-        # Simpan ke file JSON
-        try:
-            with open("Database/data_pasien_detail.json", "a") as f:
-                json.dump(data_pasien, f)
-                f.write('\n')  # Tambahkan newline untuk JSONL format
+        # Simpan data pasien
+        if save_patient_data(data_pasien):
             st.success("Data berhasil disimpan!")
             
             # Tampilkan BMI
@@ -114,6 +129,3 @@ with st.form("form_input_data"):
                 st.warning("Kategori: Berat Badan Berlebih")
             else:
                 st.error("Kategori: Obesitas")
-                
-        except Exception as e:
-            st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
