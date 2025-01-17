@@ -2,23 +2,30 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 from pathlib import Path
+import os
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
-# Path ke file CSV
-csv_path = Path("data/datapasien.csv")
+# Path ke file CSV - gunakan path absolut untuk memastikan lokasi yang benar
+BASE_DIR = Path(__file__).parent.parent  # naik satu level dari pages
+CSV_PATH = BASE_DIR / "data" / "datapasien.csv"
 
-# Fungsi untuk memuat data pengguna dari sesi
-if "user_data" not in st.session_state:
-    st.error("Silakan lakukan login terlebih dahulu!")
-    st.switch_page("streamlit_app.py")
-    st.stop()
+# Debug info
+st.sidebar.write("Debug Info:")
+st.sidebar.write(f"Base Directory: {BASE_DIR}")
+st.sidebar.write(f"CSV Path: {CSV_PATH}")
 
-# Fungsi untuk menyimpan data ke CSV
 def save_to_csv(data_pasien):
     try:
-        # Flattenkan data untuk format CSV
+        # Debug: print current working directory
+        st.sidebar.write(f"Current Directory: {os.getcwd()}")
+        
+        # Pastikan direktori data ada
+        os.makedirs(CSV_PATH.parent, exist_ok=True)
+        st.sidebar.write(f"Data directory created/exists: {CSV_PATH.parent}")
+        
+        # Flattenkan data untuk CSV
         flat_data = {
             'nama': data_pasien['nama'],
             'tanggal_input': data_pasien['tanggal_input'],
@@ -35,25 +42,51 @@ def save_to_csv(data_pasien):
             'catatan_tambahan': data_pasien['preferensi_makanan']['catatan_tambahan']
         }
         
+        st.sidebar.write("Data flattened successfully")
+        
         # Buat DataFrame baru
         new_df = pd.DataFrame([flat_data])
+        st.sidebar.write("New DataFrame created")
         
-        # Jika file sudah ada, append data
-        if csv_path.exists():
-            df = pd.read_csv(csv_path)
-            df = pd.concat([df, new_df], ignore_index=True)
-        else:
-            df = new_df
+        try:
+            # Jika file sudah ada, baca dan append
+            if CSV_PATH.exists():
+                st.sidebar.write("Reading existing CSV file")
+                df = pd.read_csv(CSV_PATH)
+                df = pd.concat([df, new_df], ignore_index=True)
+                st.sidebar.write("Data appended to existing CSV")
+            else:
+                st.sidebar.write("Creating new CSV file")
+                df = new_df
             
-        # Pastikan direktori ada
-        csv_path.parent.mkdir(parents=True, exist_ok=True)
-        
-        # Simpan ke CSV
-        df.to_csv(csv_path, index=False)
-        return True
+            # Simpan ke CSV
+            df.to_csv(CSV_PATH, index=False)
+            st.sidebar.write(f"Data saved to {CSV_PATH}")
+            
+            # Verifikasi file telah dibuat
+            if CSV_PATH.exists():
+                st.sidebar.write(f"File size: {CSV_PATH.stat().st_size} bytes")
+                # Baca beberapa baris terakhir untuk verifikasi
+                verify_df = pd.read_csv(CSV_PATH)
+                st.sidebar.write(f"Total rows in CSV: {len(verify_df)}")
+            else:
+                st.sidebar.write("Warning: File was not created!")
+                
+            return True
+            
+        except Exception as e:
+            st.sidebar.error(f"Error during CSV operations: {str(e)}")
+            raise e
+            
     except Exception as e:
-        st.error(f"Terjadi kesalahan saat menyimpan data: {str(e)}")
+        st.sidebar.error(f"Error in save_to_csv: {str(e)}")
         return False
+
+# Fungsi untuk memuat data pengguna dari sesi
+if "user_data" not in st.session_state:
+    st.error("Silakan lakukan login terlebih dahulu!")
+    st.switch_page("streamlit_app.py")
+    st.stop()
 
 # Inisialisasi state
 if 'data_saved' not in st.session_state:
