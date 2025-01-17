@@ -135,15 +135,17 @@ with st.form("form_input_data"):
                 imt = berat_badan / ((tinggi_badan/100) ** 2)
                 st.info(f"IMT Anda: {imt:.1f}")
 
-                # Kategorisasi BMI
+                # Kategorisasi IMT
                 if imt < 18.5:
                     st.warning("Kategori: Berat Badan Kurang")
-                elif 18.5 <= imt < 25:
+                elif 18.5 <= imt < 23:
                     st.success("Kategori: Berat Badan Normal")
+                elif 23 <= imt < 25:
+                    st.warning("Kategori: Berat Badan Berlebih, Beresiko Obesitas")
                 elif 25 <= imt < 30:
-                    st.warning("Kategori: Berat Badan Berlebih")
+                    st.warning("Kategori: Obesitas Tingkat 1")
                 else:
-                    st.error("Kategori: Obesitas")
+                    st.error("Kategori: Obesitas Tingkat 2")
 
         except Exception as e:
             st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
