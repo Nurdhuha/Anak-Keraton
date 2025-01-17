@@ -1,12 +1,18 @@
+# streamlit_app.py
 import json
 import streamlit as st
 from pathlib import Path
 
-st.set_page_config(page_title="Sign Up - Rekomendasi Diet Diabetes", page_icon=":lock:")
-# Path to the JSON file for storing user data
+# Konfigurasi halaman
+st.set_page_config(page_title="Diet Recommendation Website", page_icon="🍎")
+
+# Path untuk file data
 DATA_FILE = Path("data/datapasien.json")
 
-# Function to load user data
+# Pastikan direktori data ada
+DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+# Function untuk memuat data pengguna
 def load_user_data():
     if DATA_FILE.exists():
         with open(DATA_FILE, "r") as file:
@@ -17,26 +23,26 @@ def load_user_data():
                 return []
     return []
 
-# Function to save user data
+# Function untuk menyimpan data pengguna
 def save_user_data(data):
     with open(DATA_FILE, "w") as file:
         json.dump(data, file, indent=4)
 
-# Function to find user by username
+# Function untuk mencari pengguna berdasarkan username
 def find_user(username, user_data):
     for user in user_data:
         if user["username"] == username:
             return user
     return None
 
-# Function to handle user actions
+# Function untuk menangani aksi pengguna
 def handle_user_action():
     st.subheader("Masukkan Informasi Akun Anda")
     username = st.text_input("Masukkan username")
     password = st.text_input("Masukkan password", type="password")
-
+    
     col1, col2 = st.columns([1, 1])
-
+    
     with col1:
         if st.button("Sign Up"):
             if username and password:
@@ -46,10 +52,10 @@ def handle_user_action():
                 else:
                     user_data.append({"username": username, "password": password})
                     save_user_data(user_data)
-                    st.success("Sign Up sukses.")
+                    st.success("Sign Up sukses. Silakan login.")
             else:
                 st.error("Silakan masukkan username dan password.")
-
+    
     with col2:
         if st.button("Login"):
             if username and password:
@@ -61,16 +67,20 @@ def handle_user_action():
                     st.error("Password salah. Silakan coba lagi.")
                 else:
                     st.success("Login berhasil!")
-                    st.session_state.logged_in = True
-                    st.session_state.username = username
+                    # Simpan data user ke session state
+                    st.session_state["user_data"] = {
+                        "username": username,
+                        "password": password
+                    }
+                    # Pindah ke halaman input data
                     st.switch_page("pages/menu_input_data.py")
             else:
                 st.error("Silakan masukkan username dan password.")
 
-# Main function to display the menu
-def main_menu():
+# Main function
+def main():
     st.title("Diet Recommendation Website")
     handle_user_action()
 
 if __name__ == "__main__":
-    main_menu()
+    main()
