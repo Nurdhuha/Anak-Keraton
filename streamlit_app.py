@@ -24,7 +24,7 @@ def handle_user_action():
     username = st.text_input("Masukkan username")
     password = st.text_input("Masukkan password", type="password")
 
-    col1, col2 = st.columns([1, 1])
+    col1, col2 = st.columns([0.5,0.5])
 
     with col1:
         if st.button("Sign Up"):
