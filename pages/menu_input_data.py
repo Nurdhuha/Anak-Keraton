@@ -24,7 +24,7 @@ def save_patient_data(data):
         return False
 
 # Ambil nama pasien dari URL parameter
-params = st.experimental_get_query_params()
+params = st.query_params()
 if 'login_success' not in params or 'nama' not in params:
     st.error("Silakan login terlebih dahulu!")
     st.stop()
