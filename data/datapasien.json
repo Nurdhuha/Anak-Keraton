@@ -1,10 +1,10 @@
-{
-    {
+[
+  {
     "username": "nurdhuha",
     "password": "12345"
-},
-    {
+  },
+  {
     "username": "kinanti",
     "password": "12345"
-}
-}
+  }
+]
