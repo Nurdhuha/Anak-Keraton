@@ -2,7 +2,7 @@ import json
 import streamlit as st
 from pathlib import Path
 
-st.set_page_config(page_title="Sign Up - Rekomendasi Diet Diabetes", page_icon=":lock:")
+st.set_page_config(page_title="Verifikasi - Rekomendasi Diet Diabetes", page_icon=":lock:")
 # Path to the JSON file for storing user data
 DATA_FILE = Path("./data/datapasien.json")
 
@@ -20,11 +20,11 @@ def save_user_data(data):
 
 # Function to handle user actions
 def handle_user_action():
-    st.subheader("Masukkan Informasi Akun Anda")
+    st.subheader("Silahkan Verifikasi Akun Anda")
     username = st.text_input("Masukkan username")
     password = st.text_input("Masukkan password", type="password")
 
-    col1, col2 = st.columns([0.5,0.5])
+    col1, col2 = st.columns([0.1,0.1])
 
     with col1:
         if st.button("Sign Up"):
@@ -51,7 +51,7 @@ def handle_user_action():
                     st.success("Login berhasil!")
                     st.session_state.logged_in = True
                     st.session_state.username = username
-                    st.switch_page("menu_input_data")
+                    st.switch_page("pages/menu_input_data.py")
             else:
                 st.error("Silakan masukkan username dan password.")
 
