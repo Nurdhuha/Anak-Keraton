@@ -33,7 +33,7 @@ def sign_up():
                 user_data[username] = password
                 save_user_data(user_data)
                 st.success("Sign Up sukses.")
-                st.switch_page("menu_input_data")
+                st.switch_page("pages/menu_input_data")
         else:
             st.error("Please provide both username and password.")
 
