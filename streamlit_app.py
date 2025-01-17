@@ -52,7 +52,6 @@ def handle_user_action():
                     st.success("Login berhasil!")
                     st.session_state.logged_in = True
                     st.session_state.username = username
-                    st.success("Login Berhasil.")
                     st.switch_page("pages/menu_input_data.py")
             else:
                 st.error("Silakan masukkan username dan password.")
