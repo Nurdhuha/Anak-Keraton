@@ -3,6 +3,21 @@ import json
 import streamlit as st
 from pathlib import Path
 
+st.markdown("""
+    <style>
+        [data-testid="collapsedControl"] {
+            display: none
+        }
+        footer {
+            visibility: hidden;
+        }
+        #MainMenu {
+            visibility: hidden;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # Konfigurasi halaman
 st.set_page_config(page_title="Diet Recommendation Website", page_icon="🍎")
 
