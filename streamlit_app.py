@@ -4,7 +4,7 @@ from pathlib import Path
 
 st.set_page_config(page_title="Sign Up - Rekomendasi Diet Diabetes", page_icon=":lock:")
 # Path to the JSON file for storing user data
-DATA_FILE = Path("./data/datapasien.json")
+DATA_FILE = Path("data/datapasien.json")
 
 # Function to load user data
 def load_user_data():
