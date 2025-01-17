@@ -6,13 +6,25 @@ import certifi
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
-# Konfigurasi MongoDB
 def get_database():
     try:
-        client = MongoClient('mongodb://localhost:27017/')
-        return client['Database_Dhuha']
+        # Ganti <db_password> dengan password Anda
+        connection_string = "mongodb+srv://nurdhuhaam:Nurdhuha123@cluster0.ec5z7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        
+        client = MongoClient(connection_string, tlsCAFile=certifi.where())
+        
+        # Test koneksi
+        try:
+            client.server_info()
+            st.sidebar.success("Berhasil terhubung ke database!")
+            return client['Database_Dhuha']  # Nama database Anda
+        except Exception as e:
+            st.error("Gagal terhubung ke MongoDB Atlas. Periksa koneksi internet dan kredensial.")
+            st.error(f"Detail error: {str(e)}")
+            return None
+            
     except Exception as e:
-        st.error(f"Gagal terhubung ke database: {str(e)}")
+        st.error(f"Gagal membuat koneksi database: {str(e)}")
         return None
 
 # Fungsi untuk menyimpan data ke MongoDB
