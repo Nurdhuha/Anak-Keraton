@@ -1,85 +1,42 @@
 import streamlit as st 
-import pandas as pd
 from datetime import datetime
-from pathlib import Path
-import os
+from pymongo import MongoClient
+import certifi
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
-# Path ke file CSV - gunakan path absolut untuk memastikan lokasi yang benar
-BASE_DIR = Path(__file__).parent.parent  # naik satu level dari pages
-CSV_PATH = BASE_DIR / "data" / "datapasien.csv"
-
-# Debug info
-st.sidebar.write("Debug Info:")
-st.sidebar.write(f"Base Directory: {BASE_DIR}")
-st.sidebar.write(f"CSV Path: {CSV_PATH}")
-
-def save_to_csv(data_pasien):
+# Konfigurasi MongoDB
+def get_database():
     try:
-        # Debug: print current working directory
-        st.sidebar.write(f"Current Directory: {os.getcwd()}")
-        
-        # Pastikan direktori data ada
-        os.makedirs(CSV_PATH.parent, exist_ok=True)
-        st.sidebar.write(f"Data directory created/exists: {CSV_PATH.parent}")
-        
-        # Flattenkan data untuk CSV
-        flat_data = {
-            'nama': data_pasien['nama'],
-            'tanggal_input': data_pasien['tanggal_input'],
-            'usia': data_pasien['demografi']['usia'],
-            'jenis_kelamin': data_pasien['demografi']['jenis_kelamin'],
-            'alamat': data_pasien['demografi']['alamat'],
-            'no_telepon': data_pasien['demografi']['no_telepon'],
-            'berat_badan': data_pasien['data_klinis']['berat_badan'],
-            'tinggi_badan': data_pasien['data_klinis']['tinggi_badan'],
-            'tingkat_aktivitas': data_pasien['data_klinis']['tingkat_aktivitas'],
-            'kondisi_kesehatan': ';'.join(data_pasien['data_klinis']['kondisi_kesehatan']),
-            'pantangan_makanan': ';'.join(data_pasien['preferensi_makanan']['pantangan']),
-            'preferensi_diet': ';'.join(data_pasien['preferensi_makanan']['preferensi_diet']),
-            'catatan_tambahan': data_pasien['preferensi_makanan']['catatan_tambahan']
-        }
-        
-        st.sidebar.write("Data flattened successfully")
-        
-        # Buat DataFrame baru
-        new_df = pd.DataFrame([flat_data])
-        st.sidebar.write("New DataFrame created")
-        
-        try:
-            # Jika file sudah ada, baca dan append
-            if CSV_PATH.exists():
-                st.sidebar.write("Reading existing CSV file")
-                df = pd.read_csv(CSV_PATH)
-                df = pd.concat([df, new_df], ignore_index=True)
-                st.sidebar.write("Data appended to existing CSV")
-            else:
-                st.sidebar.write("Creating new CSV file")
-                df = new_df
-            
-            # Simpan ke CSV
-            df.to_csv(CSV_PATH, index=False)
-            st.sidebar.write(f"Data saved to {CSV_PATH}")
-            
-            # Verifikasi file telah dibuat
-            if CSV_PATH.exists():
-                st.sidebar.write(f"File size: {CSV_PATH.stat().st_size} bytes")
-                # Baca beberapa baris terakhir untuk verifikasi
-                verify_df = pd.read_csv(CSV_PATH)
-                st.sidebar.write(f"Total rows in CSV: {len(verify_df)}")
-            else:
-                st.sidebar.write("Warning: File was not created!")
-                
-            return True
-            
-        except Exception as e:
-            st.sidebar.error(f"Error during CSV operations: {str(e)}")
-            raise e
-            
+        # Ganti connection string sesuai dengan MongoDB Anda
+        connection_string = "mongodb://localhost:27017/"
+        client = MongoClient(connection_string, tlsCAFile=certifi.where())
+        return client['Database_Dhuha']  # Nama database Anda
     except Exception as e:
-        st.sidebar.error(f"Error in save_to_csv: {str(e)}")
+        st.error(f"Gagal terhubung ke database: {str(e)}")
+        return None
+
+# Fungsi untuk menyimpan data ke MongoDB
+def save_to_mongodb(data_pasien):
+    try:
+        db = get_database()
+        if db is None:
+            return False
+        
+        # Pilih koleksi data_pasien
+        collection = db['data_pasien']
+        
+        # Insert data
+        result = collection.insert_one(data_pasien)
+        
+        # Verifikasi penyimpanan
+        if result.inserted_id:
+            st.sidebar.write(f"Data tersimpan dengan ID: {result.inserted_id}")
+            return True
+        return False
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat menyimpan data: {str(e)}")
         return False
 
 # Fungsi untuk memuat data pengguna dari sesi
@@ -159,7 +116,7 @@ with st.form("form_input_data", clear_on_submit=False):
             # Buat dictionary data pasien
             data_pasien = {
                 "nama": nama_pasien,
-                "tanggal_input": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "tanggal_input": datetime.now(),  # MongoDB dapat menyimpan datetime object
                 "demografi": {
                     "usia": usia,
                     "jenis_kelamin": jenis_kelamin,
@@ -179,9 +136,9 @@ with st.form("form_input_data", clear_on_submit=False):
                 }
             }
 
-            # Simpan data
-            if save_to_csv(data_pasien):
-                st.success("Data berhasil disimpan!")
+            # Simpan data ke MongoDB
+            if save_to_mongodb(data_pasien):
+                st.success("Data berhasil disimpan ke MongoDB!")
                 st.session_state.data_saved = True
 
                 # Tampilkan IMT
