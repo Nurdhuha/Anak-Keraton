@@ -1,4 +1,10 @@
 {
-    "nurdhuha": "12345",
-    "kinanti": "12345"
+    {
+    "username": "nurdhuha",
+    "password": "12345"
+},
+    {
+    "username": "kinanti"
+    "password": "12345"
+}
 }
