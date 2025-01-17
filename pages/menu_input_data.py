@@ -1,3 +1,4 @@
+# pages/menu_input_data.py
 import streamlit as st
 import json
 from datetime import datetime
@@ -11,7 +12,8 @@ data_file_path = Path("data/data_detail.json")
 
 # Fungsi untuk memuat data pengguna dari sesi
 if "user_data" not in st.session_state:
-    st.error("Silakan lakukan sign up terlebih dahulu!")
+    st.error("Silakan lakukan login terlebih dahulu!")
+    st.switch_page("streamlit_app.py")
     st.stop()
 
 # Tampilkan sambutan
@@ -106,18 +108,26 @@ with st.form("form_input_data"):
             st.success("Data berhasil disimpan!")
 
             # Tampilkan BMI
-            bmi = berat_badan / ((tinggi_badan/100) ** 2)
-            st.info(f"BMI Anda: {bmi:.1f}")
+            if berat_badan > 0 and tinggi_badan > 0:
+                bmi = berat_badan / ((tinggi_badan/100) ** 2)
+                st.info(f"BMI Anda: {bmi:.1f}")
 
-            # Kategorisasi BMI
-            if bmi < 18.5:
-                st.warning("Kategori: Berat Badan Kurang")
-            elif 18.5 <= bmi < 25:
-                st.success("Kategori: Berat Badan Normal")
-            elif 25 <= bmi < 30:
-                st.warning("Kategori: Berat Badan Berlebih")
-            else:
-                st.error("Kategori: Obesitas")
+                # Kategorisasi BMI
+                if bmi < 18.5:
+                    st.warning("Kategori: Berat Badan Kurang")
+                elif 18.5 <= bmi < 25:
+                    st.success("Kategori: Berat Badan Normal")
+                elif 25 <= bmi < 30:
+                    st.warning("Kategori: Berat Badan Berlebih")
+                else:
+                    st.error("Kategori: Obesitas")
 
         except Exception as e:
             st.error(f"Terjadi kesalahan saat menyimpan data: {e}")
+
+# Tambahkan tombol logout
+if st.sidebar.button("Logout"):
+    # Hapus data user dari session state
+    del st.session_state["user_data"]
+    # Kembali ke halaman login
+    st.switch_page("streamlit_app.py")
