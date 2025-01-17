@@ -3,7 +3,7 @@ import json
 import streamlit as st
 from pathlib import Path
 
-
+st.set_page_config(initial_sidebar_state="collapsed")
 
 st.set_page_config(page_title="Diet Recommendation Website", page_icon="🍎")
 
