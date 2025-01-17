@@ -7,7 +7,7 @@ from pathlib import Path
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
 # Path ke file JSON untuk menyimpan data pasien
-DATA_FILE = Path("data/data_pasien_detail.json")
+DATA_FILE = Path("data/data_detail.json")
 
 # Pastikan folder Database ada
 DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
