@@ -7,7 +7,7 @@ from pathlib import Path
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
-st.set_page_config(initial_sidebar_state="collapsed")
+
 # Path ke file JSON untuk menyimpan data pasien
 data_file_path = Path("data/data_detail_pasien.json")
 
