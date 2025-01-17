@@ -40,7 +40,7 @@ with st.form("form_input_data"):
         no_telepon = st.text_input("Nomor Telepon")
 
     # Data Klinis
-    st.markdown("### Data Klinis")
+    st.markdown("### Data Antropometri")
     col3, col4 = st.columns(2)
 
     with col3:
@@ -131,15 +131,15 @@ with st.form("form_input_data"):
 
             # Tampilkan BMI
             if berat_badan > 0 and tinggi_badan > 0:
-                bmi = berat_badan / ((tinggi_badan/100) ** 2)
-                st.info(f"BMI Anda: {bmi:.1f}")
+                imt = berat_badan / ((tinggi_badan/100) ** 2)
+                st.info(f"IMT Anda: {imt:.1f}")
 
                 # Kategorisasi BMI
-                if bmi < 18.5:
+                if imt < 18.5:
                     st.warning("Kategori: Berat Badan Kurang")
-                elif 18.5 <= bmi < 25:
+                elif 18.5 <= imt < 25:
                     st.success("Kategori: Berat Badan Normal")
-                elif 25 <= bmi < 30:
+                elif 25 <= imt < 30:
                     st.warning("Kategori: Berat Badan Berlebih")
                 else:
                     st.error("Kategori: Obesitas")
