@@ -37,7 +37,7 @@ def find_user(username, user_data):
 
 # Function untuk menangani aksi pengguna
 def handle_user_action():
-    st.subheader("Masukkan Informasi Akun Anda")
+    st.subheader("Silahkan Verifikasi Akun Anda")
     username = st.text_input("Masukkan username")
     password = st.text_input("Masukkan password", type="password")
     
