@@ -4,21 +4,6 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-# Sembunyikan hamburger menu dan footer
-st.markdown("""
-    <style>
-        [data-testid="collapsedControl"] {
-            display: none
-        }
-        footer {
-            visibility: hidden;
-        }
-        #MainMenu {
-            visibility: hidden;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # Konfigurasi halaman
 st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
 
