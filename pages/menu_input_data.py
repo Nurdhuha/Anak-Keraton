@@ -133,16 +133,18 @@ with st.form("form_input_data", clear_on_submit=False):
                     "alamat": alamat,
                     "no_telepon": no_telepon
                 },
-                "data_klinis": {
+                "data_antropometri": {
                     "berat_badan": float(berat_badan),
                     "tinggi_badan": float(tinggi_badan),
-                    "tingkat_aktivitas": tingkat_aktivitas,
-                    "kondisi_kesehatan": kondisi_kesehatan
                 },
                 "preferensi_makanan": {
                     "pantangan": pantangan_makanan,
                     "preferensi_diet": preferensi_diet,
-                    "catatan_tambahan": catatan_tambahan
+                },
+                    "data_lainnya": {
+                    "tingkat_aktivitas": tingkat_aktivitas,
+                    "kondisi_kesehatan": kondisi_kesehatan,
+                    "catatan_tambahan": catatan_tambahan   
                 }
             }
 
