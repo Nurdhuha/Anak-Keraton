@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 import json
 from sklearn.naive_bayes import GaussianNB
+from pymongo import MongoClient
+import certifi
 
 # Load CSV data
 def load_csv_data():
@@ -16,7 +18,18 @@ def load_json_data():
     with open('data/datapanganlokal.json') as json_file:
         pangan_lokal = json.load(json_file)
     return pangan_lokal
-    
+
+# Get database connection
+def get_database():
+    try:
+        connection_string = "mongodb+srv://nurdhuhaam:Nurdhuha123@cluster0.ec5z7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        client = MongoClient(connection_string, tlsCAFile=certifi.where())
+        client.server_info()
+        return client['Database_Dhuha']
+    except Exception as e:
+        st.error(f"Gagal membuat koneksi database: {str(e)}")
+        return None
+
 def get_user_data(name):
     try:
         db = get_database()
@@ -28,7 +41,7 @@ def get_user_data(name):
     except Exception as e:
         st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
         return None
-        
+
 # Train Naive Bayes model
 def train_naive_bayes(data):
     X = data[['berat', 'kalori', 'protein', 'karbohidrat']].values
