@@ -1,1 +1,72 @@
-
+[
+  {
+    "golongan": "I",
+    "waktu_makan": "pagi",
+    "menu": "baso jamur",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "bihun", "berat_g": 10 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "protein hewani", "bahan": "tepung terigu", "berat_g": 40 },
+      { "nama": "sayuran", "bahan": "jamur kuping", "berat_g": 100 }
+    ],
+    "total_kalori_kkal": 300
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "selingan I",
+    "menu": "pepaya",
+    "komponen": [
+      { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
+    ],
+    "total_kalori_kkal": 25
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "siang",
+    "menu": "sup ayam dan tahu goreng",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
+      { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+        { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 10 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 262.5
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "selingan II",
+    "menu": "nagasari ubi ungu isi pisang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "ubi ungu", "berat_g": 67.5 },
+      { "nama": "buah", "bahan": "pisang", "berat_g": 50 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
+    ],
+    "total_kalori_kkal": 162.5
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 425
+  },
+    {
+    "golongan": "I",
+    "waktu_makan": "malam",
+    "menu": "buah melon",
+    "komponen": [
+      { "nama": "buah", "bahan": "melon", "berat_g": 190 }
+    ],
+    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilai
+  }
+]
