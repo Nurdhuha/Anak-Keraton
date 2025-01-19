@@ -16,7 +16,19 @@ def load_json_data():
     with open('data/datapanganlokal.json') as json_file:
         pangan_lokal = json.load(json_file)
     return pangan_lokal
-
+    
+def get_user_data(name):
+    try:
+        db = get_database()
+        if db is None:
+            return None
+        collection = db['data_pasien']
+        user_data = collection.find_one({"nama": name})
+        return user_data
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
+        return None
+        
 # Train Naive Bayes model
 def train_naive_bayes(data):
     X = data[['berat', 'kalori', 'protein', 'karbohidrat']].values
