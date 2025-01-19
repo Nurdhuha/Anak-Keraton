@@ -104,8 +104,8 @@ def display_diet_recommendations(diet_group, local_foods):
         st.error("Kolom 'GOLONGAN' tidak ditemukan di data pedoman porsi diet.")
 
     st.subheader("Rekomendasi Menu")
-    if 'GOLONGAN' in rekomendasi_menu.columns:
-        st.dataframe(rekomendasi_menu[rekomendasi_menu['GOLONGAN'] == diet_group])
+    if 'golongan' in rekomendasi_menu.columns:
+        st.dataframe(rekomendasi_menu[rekomendasi_menu['golongan'] == diet_group])
     else:
         st.error("Kolom 'GOLONGAN' tidak ditemukan di data rekomendasi menu.")
 
