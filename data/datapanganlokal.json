@@ -1,6 +1,227 @@
 [
   {
-    "Jawa Timur" : {
+    "Jawa Timur": {
+      "Sumber Karbohidrat": [
+        {"bahan": "beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "jagung", "berat": 120, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "singkong", "berat": 120, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "daging", "berat": 170, "kalori": 75, "protein": 7, "lemak": 5},
+        {"bahan": "telur ayam", "berat": 55, "kalori": 75, "protein": 7, "lemak": 5}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "tahu", "berat": 110, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "tempe kedelai", "berat": 50, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "daun singkong", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 10}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "pepaya", "berat": 110, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Jawa Barat": {
+      "Sumber Karbohidrat": [
+        {"bahan": "bihun", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "ubi", "berat": 135, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung terigu", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "ayam tanpa kulit", "berat": 40, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "ikan segar", "berat": 40, "kalori": 50, "protein": 7, "lemak": 2}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang hijau", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "kacang kedelai", "berat": 25, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "bayam", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "pisang", "berat": 50, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Jawa Tengah": {
+      "Sumber Karbohidrat": [
+        {"bahan": "nasi", "berat": 100, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "talas", "berat": 125, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "udang", "berat": 35, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "ikan asin", "berat": 15, "kalori": 50, "protein": 7, "lemak": 2}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang merah", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "kacang tanah", "berat": 15, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "kangkung", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "melon", "berat": 190, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Sumatera Utara": {
+      "Sumber Karbohidrat": [
+        {"bahan": "singkong", "berat": 120, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "kentang", "berat": 210, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung hunkwee", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "babat", "berat": 40, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "ikan teri", "berat": 15, "kalori": 50, "protein": 7, "lemak": 2}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "tempe kedelai", "berat": 50, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "kacang hijau", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "wortel", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "semangka", "berat": 180, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Bali": {
+      "Sumber Karbohidrat": [
+        {"bahan": "beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "ubi", "berat": 135, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung terigu", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "ikan segar", "berat": 40, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "hati ayam", "berat": 30, "kalori": 75, "protein": 7, "lemak": 5}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang kedelai", "berat": 25, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "tempe kedelai", "berat": 50, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "sawi", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "gula", "berat": 13, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Aceh": {
+      "Sumber Karbohidrat": [
+        {"bahan": "bihun", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "talas", "berat": 125, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "hati sapi", "berat": 35, "kalori": 75, "protein": 7, "lemak": 5},
+        {"bahan": "putih telur ayam", "berat": 65, "kalori": 50, "protein": 7, "lemak": 2}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang merah", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "tahu", "berat": 110, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "genjer", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "madu", "berat": 15, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Yogyakarta": {
+      "Sumber Karbohidrat": [
+        {"bahan": "nasi", "berat": 100, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "singkong", "berat": 120, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "jagung", "berat": 120, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "ayam dengan kulit", "berat": 35, "kalori": 150, "protein": 7, "lemak": 13},
+        {"bahan": "bebek", "berat": 45, "kalori": 150, "protein": 7, "lemak": 13}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "tempe kedelai", "berat": 50, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "kacang hijau", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "labu air", "berat": 100, "kalori": 0, "protein": 0, "karbohidrat": 0}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "kedondong", "berat": 120, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Jakarta": {
+      "Sumber Karbohidrat": [
+        {"bahan": "beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "kentang", "berat": 210, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung hunkwee", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "ikan segar", "berat": 40, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "bakso", "berat": 170, "kalori": 75, "protein": 7, "lemak": 5}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang kedelai", "berat": 25, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "tempe kedelai", "berat": 50, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "kecipir", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "pisang", "berat": 50, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
+    }
+  },
+  {
+    "Banten": {
+      "Sumber Karbohidrat": [
+        {"bahan": "beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "tepung beras", "berat": 50, "kalori": 175, "protein": 4, "karbohidrat": 40},
+        {"bahan": "ubi", "berat": 135, "kalori": 175, "protein": 4, "karbohidrat": 40}
+      ],
+      "Sumber Protein Hewani": [
+        {"bahan": "ikan teri", "berat": 15, "kalori": 50, "protein": 7, "lemak": 2},
+        {"bahan": "hati sapi", "berat": 35, "kalori": 75, "protein": 7, "lemak": 5}
+      ],
+      "Sumber Protein Nabati": [
+        {"bahan": "kacang hijau", "berat": 20, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7},
+        {"bahan": "kacang tanah", "berat": 15, "kalori": 75, "protein": 5, "lemak": 3, "karbohidrat": 7}
+      ],
+      "Sumber Sayur": [
+        {"bahan": "pare", "berat": 100, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Buah dan Gula": [
+        {"bahan": "melon", "berat": 190, "kalori": 25, "protein": 1, "karbohidrat": 5}
+      ],
+      "Sumber Susu": [],
+      "Sumber Lemak": []
     }
   }
 ]
