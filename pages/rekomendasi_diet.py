@@ -41,12 +41,13 @@ def get_user_data(name):
     except Exception as e:
         st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
         return None
-        
+
 def calculate_bmr(weight, height, gender):
     if gender == "Laki-laki":
         return 30 * weight
     else:
         return 25 * weight
+
 def calculate_energy(age, bmr, activity_level):
     activity_factor = {
         "Sangat Rendah": 0.1,
@@ -84,7 +85,6 @@ def get_diet_group(energy):
     else:
         return "VIII"
 
-
 # Train Naive Bayes model
 def train_naive_bayes(data):
     X = data[['berat', 'kalori', 'protein', 'karbohidrat']].values
@@ -98,10 +98,16 @@ def display_diet_recommendations(diet_group, local_foods):
     _, porsi_diet, rekomendasi_menu = load_csv_data()
     
     st.subheader("Pedoman Porsi Diet")
-    st.dataframe(porsi_diet[['GOLONGAN', diet_group]])
+    if 'GOLONGAN' in porsi_diet.columns:
+        st.dataframe(porsi_diet[['GOLONGAN', diet_group]])
+    else:
+        st.error("Kolom 'GOLONGAN' tidak ditemukan di data pedoman porsi diet.")
 
     st.subheader("Rekomendasi Menu")
-    st.dataframe(rekomendasi_menu[rekomendasi_menu['GOLONGAN'] == diet_group])
+    if 'GOLONGAN' in rekomendasi_menu.columns:
+        st.dataframe(rekomendasi_menu[rekomendasi_menu['GOLONGAN'] == diet_group])
+    else:
+        st.error("Kolom 'GOLONGAN' tidak ditemukan di data rekomendasi menu.")
 
     st.subheader("Bahan Pangan Lokal")
     for province, foods in local_foods.items():
