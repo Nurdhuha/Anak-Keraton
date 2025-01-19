@@ -52,6 +52,24 @@ def calculate_energy(age, bmr, activity_level):
 
     return (bmr * (1 + activity_factor)) - (bmr * age_factor)
 
+def get_diet_group(energy):
+    if energy < 1200:
+        return "I"
+    elif 1200 <= energy <= 1400:
+        return "II"
+    elif 1401 <= energy <= 1600:
+        return "III"
+    elif 1601 <= energy <= 1800:
+        return "IV"
+    elif 1801 <= energy <= 2000:
+        return "V"
+    elif 2001 <= energy <= 2200:
+        return "VI"
+    elif 2201 <= energy <= 2400:
+        return "VII"
+    else:
+        return "VIII"
+
 if "user_data" not in st.session_state:
     st.error("Silakan lakukan login terlebih dahulu!")
     st.switch_page("streamlit_app.py")
@@ -78,7 +96,23 @@ if user_data:
 
     bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
     kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
+    diet_group = get_diet_group(kebutuhan_kalori)
 
     st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
+    st.markdown(f"### Kelompok Diet Anda: {diet_group}")
+
+    st.markdown("""
+    ### Tabel Kelompok Diet Diabetes
+    | Kelompok | Energi (kkal) |
+    |----------|---------------|
+    | I        | < 1200        |
+    | II       | 1201-1400     |
+    | III      | 1401-1600     |
+    | IV       | 1601-1800     |
+    | V        | 1801-2000     |
+    | VI       | 2001-2200     |
+    | VII      | 2201-2400     |
+    | VIII     | > 2401        |
+    """)
 else:
     st.error("Data pengguna tidak ditemukan.")
