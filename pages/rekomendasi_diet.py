@@ -103,7 +103,7 @@ def display_diet_recommendations(diet_group, local_foods):
     if diet_group == "I":
         rekomendasi_menu = load_rekomendasi_menu()
         st.subheader("Rekomendasi Menu")
-        if any(item['golongan'] == diet_group for item in rekomendasi_menu):
+        if any(item["golongan"] == diet_group for item in rekomendasi_menu):
             df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
             st.dataframe(df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']])
         else:
