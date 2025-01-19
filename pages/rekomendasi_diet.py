@@ -10,14 +10,19 @@ import certifi
 def load_csv_data():
     bahan_pangan = pd.read_csv('data/BAHAN PANGAN.csv', skiprows=1)
     porsi_diet = pd.read_csv('data/PEDOMAN PORSI DIET.csv', skiprows=1)
-    rekomendasi_menu = pd.read_csv('data/REKOMENDASI MENU.csv', skiprows=1)
-    return bahan_pangan, porsi_diet, rekomendasi_menu
+    return bahan_pangan, porsi_diet
 
 # Load JSON data for local foods
 def load_json_data():
     with open('data/datapanganlokal.json') as json_file:
         pangan_lokal = json.load(json_file)
     return pangan_lokal
+
+# Load JSON data for diet recommendations
+def load_rekomendasi_menu():
+    with open('data/rekomendasi_menu.json') as json_file:
+        rekomendasi_menu = json.load(json_file)
+    return rekomendasi_menu
 
 # Get database connection
 def get_database():
@@ -95,19 +100,16 @@ def train_naive_bayes(data):
 
 # Display diet recommendations
 def display_diet_recommendations(diet_group, local_foods):
-    _, porsi_diet, rekomendasi_menu = load_csv_data()
-    
-    st.subheader("Pedoman Porsi Diet")
-    if 'GOLONGAN' in porsi_diet.columns:
-        st.dataframe(porsi_diet[['GOLONGAN', diet_group]])
+    if diet_group == "I":
+        rekomendasi_menu = load_rekomendasi_menu()
+        st.subheader("Rekomendasi Menu")
+        if any(item['golongan'] == diet_group for item in rekomendasi_menu):
+            df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
+            st.dataframe(df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']])
+        else:
+            st.error("Kolom 'golongan' tidak ditemukan di data rekomendasi menu.")
     else:
-        st.error("Kolom 'GOLONGAN' tidak ditemukan di data pedoman porsi diet.")
-
-    st.subheader("Rekomendasi Menu")
-    if 'golongan' in rekomendasi_menu.columns:
-        st.dataframe(rekomendasi_menu[rekomendasi_menu['golongan'] == diet_group])
-    else:
-        st.error("Kolom 'GOLONGAN' tidak ditemukan di data rekomendasi menu.")
+        st.error("Menu diet masih dikembangkan")
 
     st.subheader("Bahan Pangan Lokal")
     for province, foods in local_foods.items():
