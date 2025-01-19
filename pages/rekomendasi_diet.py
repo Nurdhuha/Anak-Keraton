@@ -69,6 +69,21 @@ def get_diet_group(energy):
         return "VII"
     else:
         return "VIII"
+        
+def load_csv_data():
+    bahan_pangan = pd.read_csv('data/BAHAN PANGAN.csv', skiprows=1)
+    porsi_diet = pd.read_csv('data/PEDOMAN PORSI DIET.csv', skiprows=1)
+    rekomendasi_menu = pd.read_csv('data/REKOMENDASI MENU.csv', skiprows=1)
+    return bahan_pangan, porsi_diet, rekomendasi_menu
+
+def display_diet_recommendations(diet_group):
+    _, porsi_diet, rekomendasi_menu = load_csv_data()
+    
+    st.subheader("Pedoman Porsi Diet")
+    st.dataframe(porsi_diet[['GOLONGAN', diet_group]])
+
+    st.subheader("Rekomendasi Menu")
+    st.dataframe(rekomendasi_menu[rekomendasi_menu['GOLONGAN'] == diet_group])
 
 if "user_data" not in st.session_state:
     st.error("Silakan lakukan login terlebih dahulu!")
@@ -100,5 +115,7 @@ if user_data:
 
     st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
     st.markdown(f"### Kelompok Diet Anda: {diet_group}")
+
+    display_diet_recommendations(diet_group)
 else:
     st.error("Data pengguna tidak ditemukan.")
