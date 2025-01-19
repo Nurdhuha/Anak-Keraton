@@ -100,19 +100,5 @@ if user_data:
 
     st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
     st.markdown(f"### Kelompok Diet Anda: {diet_group}")
-
-    st.markdown("""
-    ### Tabel Kelompok Diet Diabetes
-    | Kelompok | Energi (kkal) |
-    |----------|---------------|
-    | I        | < 1200        |
-    | II       | 1201-1400     |
-    | III      | 1401-1600     |
-    | IV       | 1601-1800     |
-    | V        | 1801-2000     |
-    | VI       | 2001-2200     |
-    | VII      | 2201-2400     |
-    | VIII     | > 2401        |
-    """)
 else:
     st.error("Data pengguna tidak ditemukan.")
