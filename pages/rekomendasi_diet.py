@@ -41,6 +41,13 @@ def get_user_data(name):
     except Exception as e:
         st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
         return None
+        
+def calculate_bmr(weight, height, gender):
+    if gender == "Laki-laki":
+        return 30 * weight
+    else:
+        return 25 * weight
+
 
 # Train Naive Bayes model
 def train_naive_bayes(data):
