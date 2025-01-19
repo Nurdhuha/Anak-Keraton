@@ -82,7 +82,7 @@ if check_user_data(nama_pasien):
     st.success("Anda sudah memasukkan data sebelumnya.")
     
     if st.button("Lihat Rekomendasi Pola Diet", type="primary"):
-        st.switch_page("diet_recommendation")
+        st.switch_page("pages/rekomendasi_diet.py")
     
     if st.button("Hapus Data"):
         if delete_user_data(nama_pasien):
