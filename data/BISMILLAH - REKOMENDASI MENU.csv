@@ -1,0 +1,235 @@
+GOLONGAN I,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,baso jamur,karbo,bihun ,10,300
+,,,tepung terigu,40,
+,,protein hewani,daging sapi  ,170,
+,,sayuran ,jamur kuping,100,
+selingan I,pepaya,buah,pepaya,110,25
+siang ,sup ayam dan tahu goreng,karbo,nasi,50,"262,5"
+,,protein hewani,ayam tanpa kulit,40,
+,,protein nabati,tahu ,55,
+,,,kacang merah,10,
+,,sayuran ,wortel,50,
+,,,buncis,50,
+,,lemak,minyak,"2,5",
+selingan II,nagasari ubi ungu isi pisang,karbo,ubi ungu,"67,5","162,5"
+,,buah,pisang,50,
+,,gula,gula,13,
+,,lemak,santan,20,
+malam,"Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang ",karbo,nasi,100,425
+,,protein hewani,telur,55,
+,,protein nabati,tahu ,110,
+,,sayuran,kacang panjang,100,
+,,lemak,minyak,5,
+,buah melon,buah,melon,190,
+,,,,,
+,,,,,
+GOLONGAN II,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,"Nasi putih, daging lapis merah,tumis labu air",karbo,nasi,50,"212,5"
+,,,,,
+,,protein hewani,daging sapi,170,
+,,sayuran ,labu air,100,
+,,lemak,minyak,5,
+selingan I,puding melon,buah,melon,380,50
+siang ,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbo,nasi,100,450
+,,protein hewani,ayam dengan kulit,35,
+,,protein nabati,tahu ,110,
+,,sayuran ,labu siam,100,
+,,lemak,minyak,"2,5",
+selingan II,singkong goreng isi unti,karbo,singkong,"67,5","187,5"
+,,gula,gula,13,
+,,lemak,kelapa,15,
+malam,"Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",karbo,nasi,100,400
+,,protein hewani,telur,55,
+,,protein nabati,tahu ,110,
+,,sayuran,kacang panjang,100,
+,,lemak,minyak,"2,5",
+,buah melon,buah,melon,190,
+,,,,,
+GOLONGAN III,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,"Nasi putih, daging lapis merah,tumis tahu dan labu air",karbo,nasi,50,250
+,,,,,
+,,protein hewani,daging sapi,170,
+,,sayuran ,labu air,100,
+,,p nabati,tahu,55,
+,,lemak,minyak,5,
+Selingan I,bakpau talas,karbo,talas,31,"112,5"
+,,,tepung terigu,13,
+,,gula,gula,13,
+makan siang,"Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",kh,nasi,100,475
+,,p hewani,ayam dengan kulit,40,
+,,p nabati,kacang merah,20,
+,,sayuran,sawi ,100,
+,,lemak,minyak,5,
+selingan II,kue lapis ubi kuning ,kh,tepung beras,25,275
+,,,ubi,"67,5",
+,,gula,gula,13,
+,,lemak,santan,"2,5",
+,jus semangka,buah,semangka,180,
+makan malam,"Nasi putih , beef teriyaki, sayur pare, wortel, dan tahu",kh,nasi,100,375
+,,p hewani,daging sapi,170,
+,,p nabati,tahu,110,
+,,sayuran,pare,50,
+,,,wortel,50,
+,,lemak,minyak,"2,5",
+,,,,,
+,,,,,
+GOLONGAN IV,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,"Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel",kh,nasi,150,"412,5"
+,,p hewani,baso,170,
+,,p nabati,tempe ,25,
+,,sayuran,kacang panjang,50,
+,,,wortel,50,
+,,lemak,minyak,5,
+selingan I,buah pisang,buah,pisang,100,50
+makan siang,"nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",kh,nasi,100,349
+,,p hewani,telur,45,
+,,p nabati,tempe ,25,
+,,sayuran,gambas,50,
+,,,wortel,100,
+,,lemak,minyak,5,
+selingan II,donat kentang,kh,tepung terigu,100,326
+,,,kentang,21,
+,,gula,gula,13,
+,,lemak,mentega,2,
+,,p hewani,telur,10,
+makan malam,"Nasi putih , beef teriyaki, sayur sop  dan tahu goreng",kh,nasi,100,555
+,,,kentang,210,
+,,p hewani,daging sapi,170,
+,,p nabati,tahu,110,
+,,sayuran,buncis,50,
+,,,wortel,50,
+,,lemak,minyak,3,
+,,,,,
+,,,,,
+GOLONGAN V,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi ,nasi sambel goreng kentang,kh,nasi,100,425
+,,,kentang,105,
+,,p hewani,ayam tanpa kulit,40,
+,,p nabati,tahu,55,
+,,sayuran,wortel,100,
+,,lemak,minyak,5,
+selingan I,milkshake semangka,buah,semangka,180,150
+,,lemak,susu,200,
+makan siang,"nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",kh,nasi,150,"436,5"
+,,p hewani,telur,45,
+,,p nabati,tempe ,25,
+,,sayuran,gambas,50,
+,,,wortel,100,
+,,lemak,minyak,5,
+selingan II,kue lumpur singkong ,kh,tepung terigu,25,255
+,,,singkong,60,
+,,p hewani,telur,10,
+,,gula,gula,13,
+,,lemak,mentega,2,
+,buah pisang,buah,pisang,50,
+makan malam,"Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",kh,nasi,150,555
+,,p hewani,baso,170,
+,,,ayam dengan kulit,35,
+,,p nabati,tahu,110,
+,,sayuran,wortel,50,
+,,,kecipir,50,
+,,lemak,minyak,3,
+,pepaya,buah,pepaya,110,
+,,,,,
+,,,,,
+GOLONGAN VI,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,"Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",kh,nasi,150,"562,5"
+,,p hewani,ayam dengan kulit,40,
+,,p nabati,kacang merah,20,
+,,sayuran,sawi ,100,
+,,lemak,minyak,5,
+selingan I,bolu kukus lapis talas,kh,tepung terigu,50,285
+,,,talas,62,
+,,p hewani,telur,10,
+,,lemak,mentega,5,
+,,gula,gula,13,
+,buah pepaya,buah,pepaya,110,
+makan siang,"Nasi putih, telur bumbu kuning, tumis tahu dan pare",karbo,nasi,150,"512,5"
+,,protein hewani,telur,55,
+,,protein nabati,tahu ,110,
+,,sayuran,pare,100,
+,,lemak,minyak,5,
+,buah melon,buah,melon,190,
+selingan II,nagasari ubi ungu isi pisang,karbo,ubi ungu,135,300
+,,buah,pisang,100,
+,,gula,gula,13,
+,,lemak,santan,40,
+malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbo,nasi,150,"537,5"
+,,protein hewani,ayam dengan kulit,35,
+,,protein nabati,tahu ,110,
+,,sayuran ,labu siam,100,
+,,lemak,minyak,"2,5",
+,,,,,
+,,,,,
+GOLONGAN VII,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbo,nasi,150,"537,5"
+,,protein hewani,ayam dengan kulit,35,
+,,protein nabati,tahu ,110,
+,,sayuran ,labu siam,100,
+,,lemak,minyak,"2,5",
+selingan I,kue lapis ubi kuning dan jus semangka,kh,tepung beras,50,"337,5"
+,,,ubi,"67,5",
+,,gula,gula,13,
+,,lemak,santan,5,
+,,buah,semangka,180,
+siang,baso jamur,karbo,bihun ,100,490
+,,,tepung terigu,40,
+,,protein hewani,daging sapi  ,170,
+,,p nabati,tahu,110,
+,,sayuran ,jamur kuping,100,
+,,,sawi,100,
+selingan II,donat kentang,kh,tepung terigu,100,451
+,,,kentang,21,
+,,gula,gula,13,
+,,lemak,mentega,2,
+,,susu,susu,200,
+,,p hewani,telur,10,
+makan malam,"Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",kh,nasi,150,555
+,,p hewani,baso,170,
+,,,ayam dengan kulit,35,
+,,p nabati,tahu,110,
+,,sayuran,wortel,50,
+,,,kecipir,50,
+,,lemak,minyak,3,
+,pepaya,buah,pepaya,110,
+,,,,,
+,,,,,
+GOLONGAN VIII,,,,,
+waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+pagi,"Nasi putih, daging lapis merah,tumis labu air dan tempe",karbo,nasi,200,550
+,,,,,
+,,protein hewani,daging sapi,170,
+,,protein nabati,tempe,50,
+,,sayuran ,labu air,100,
+,,lemak,minyak,5,
+selingan I,kue lumpur singkong ,,tepung terigu,25,255
+,,,singkong,60,
+,,,telur,10,
+,,,gula,13,
+,,,mentega,2,
+,buah pisang,buah,pisang,50,
+siang,nasi sambel goreng kentang,kh,nasi,200,675
+,,,kentang,105,
+,,p hewani,ayam tanpa kulit,40,
+,,p nabati,tahu,55,
+,,,tempe,50,
+,,sayuran,wortel,100,
+,,lemak,minyak,5,
+selingan II,singkong goreng isi unti,karbo,singkong,270,500
+,,gula,gula,13,
+,,lemak,kelapa,30,
+siang ,sup ayam dan tahu dan telur goreng,karbo,nasi,200,625
+,,protein hewani,ayam tanpa kulit,40,
+,,,telur,55,
+,,protein nabati,tahu ,55,
+,,,kacang merah,10,
+,,sayuran ,wortel,50,
+,,,buncis,50,
+,,lemak,minyak,5,
