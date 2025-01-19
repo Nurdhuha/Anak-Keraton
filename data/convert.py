@@ -42,7 +42,7 @@ def insert_into_mongodb(data, collection_name):
     connection_string = "mongodb+srv://nurdhuhaam:Nurdhuha123@cluster0.ec5z7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     client = MongoClient(connection_string, tlsCAFile=certifi.where())
     db = client['Database_Dhuha']
-    collection = db[collection_name]
+    collection = db[rekomendasi_menu]
     collection.insert_many(data)
 
 # Main function to load, convert and insert data
