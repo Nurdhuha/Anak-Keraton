@@ -1,6 +1,7 @@
 import streamlit as st
 from pymongo import MongoClient
 import certifi
+import pandas as pd
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Rekomendasi Pola Diet", page_icon="🍽️")
