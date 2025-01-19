@@ -1,234 +1,204 @@
-GOLONGAN I,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,baso jamur,karbohidrat,bihun ,10,300
-,,,tepung terigu,40,
-,,protein hewani,daging sapi  ,170,
-,,sayuran ,jamur kuping,100,
-selingan I,pepaya,buah,pepaya,110,25
-siang ,sup ayam dan tahu goreng,karbohidrat,nasi,50,"262,5"
-,,protein hewani,ayam tanpa kulit,40,
-,,protein nabati,tahu ,55,
-,,,kacang merah,10,
-,,sayuran ,wortel,50,
-,,,buncis,50,
-,,lemak,minyak,"2,5",
-selingan II,nagasari ubi ungu isi pisang,karbohidrat,ubi ungu,"67,5","162,5"
-,,buah,pisang,50,
-,,gula,gula,13,
-,,lemak,santan,20,
-malam,"Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang ",karbohidrat,nasi,100,425
-,,protein hewani,telur,55,
-,,protein nabati,tahu ,110,
-,,sayuran,kacang panjang,100,
-,,lemak,minyak,5,
-,buah melon,buah,melon,190,
-,,,,,
-,,,,,
-GOLONGAN II,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,"Nasi putih, daging lapis merah,tumis labu air",karbohidrat,nasi,50,"212,5"
-,,,,,
-,,protein hewani,daging sapi,170,
-,,sayuran ,labu air,100,
-,,lemak,minyak,5,
-selingan I,puding melon,buah,melon,380,50
-siang ,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,100,450
-,,protein hewani,ayam dengan kulit,35,
-,,protein nabati,tahu ,110,
-,,sayuran ,labu siam,100,
-,,lemak,minyak,"2,5",
-selingan II,singkong goreng isi unti,karbohidrat,singkong,"67,5","187,5"
-,,gula,gula,13,
-,,lemak,kelapa,15,
-malam,"Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",karbohidrat,nasi,100,400
-,,protein hewani,telur,55,
-,,protein nabati,tahu ,110,
-,,sayuran,kacang panjang,100,
-,,lemak,minyak,"2,5",
-,buah melon,buah,melon,190,
-,,,,,
-GOLONGAN III,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,"Nasi putih, daging lapis merah,tumis tahu dan labu air",karbohidrat,nasi,50,250
-,,protein hewani,daging sapi,170,
-,,sayuran ,labu air,100,
-,,protein nabati,tahu,55,
-,,lemak,minyak,5,
-selingan I,bakpau talas,karbohidrat,talas,31,"112,5"
-,,,tepung terigu,13,
-,,gula,gula,13,
-siang,"Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",karbohidrat,nasi,100,475
-,,protein hewani,ayam dengan kulit,40,
-,,protein nabati,kacang merah,20,
-,,sayuran,sawi ,100,
-,,lemak,minyak,5,
-selingan II,kue lapis ubi kuning ,karbohidrat,tepung beras,25,275
-,,,ubi,"67,5",
-,,gula,gula,13,
-,,lemak,santan,"2,5",
-,jus semangka,buah,semangka,180,
-malam,"Nasi putih , beef teriyaki, sayur pare, wortel, dan tahu",karbohidrat,nasi,100,375
-,,protein hewani,daging sapi,170,
-,,protein nabati,tahu,110,
-,,sayuran,pare,50,
-,,,wortel,50,
-,,lemak,minyak,"2,5",
-,,,,,
-,,,,,
-GOLONGAN IV,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,"Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel",karbohidrat,nasi,150,"412,5"
-,,protein hewani,baso,170,
-,,protein nabati,tempe ,25,
-,,sayuran,kacang panjang,50,
-,,,wortel,50,
-,,lemak,minyak,5,
-selingan I,buah pisang,buah,pisang,100,50
-siang,"nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",karbohidrat,nasi,100,349
-,,protein hewani,telur,45,
-,,protein nabati,tempe ,25,
-,,sayuran,gambas,50,
-,,,wortel,100,
-,,lemak,minyak,5,
-selingan II,donat kentang,karbohidrat,tepung terigu,100,326
-,,,kentang,21,
-,,gula,gula,13,
-,,lemak,mentega,2,
-,,protein hewani,telur,10,
-malam,"Nasi putih , beef teriyaki, sayur sop  dan tahu goreng",karbohidrat,nasi,100,555
-,,,kentang,210,
-,,protein hewani,daging sapi,170,
-,,protein nabati,tahu,110,
-,,sayuran,buncis,50,
-,,,wortel,50,
-,,lemak,minyak,3,
-,,,,,
-,,,,,
-GOLONGAN V,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi ,nasi sambel goreng kentang,karbohidrat,nasi,100,425
-,,,kentang,105,
-,,protein hewani,ayam tanpa kulit,40,
-,,protein nabati,tahu,55,
-,,sayuran,wortel,100,
-,,lemak,minyak,5,
-selingan I,milkshake semangka,buah,semangka,180,150
-,,lemak,susu,200,
-siang,"nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",karbohidrat,nasi,150,"436,5"
-,,protein hewani,telur,45,
-,,protein nabati,tempe ,25,
-,,sayuran,gambas,50,
-,,,wortel,100,
-,,lemak,minyak,5,
-selingan II,kue lumpur singkong ,karbohidrat,tepung terigu,25,255
-,,,singkong,60,
-,,protein hewani,telur,10,
-,,gula,gula,13,
-,,lemak,mentega,2,
-,buah pisang,buah,pisang,50,
-malam,"Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",karbohidrat,nasi,150,555
-,,protein hewani,baso,170,
-,,,ayam dengan kulit,35,
-,,protein nabati,tahu,110,
-,,sayuran,wortel,50,
-,,,kecipir,50,
-,,lemak,minyak,3,
-,pepaya,buah,pepaya,110,
-,,,,,
-,,,,,
-GOLONGAN VI,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,"Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",karbohidrat,nasi,150,"562,5"
-,,protein hewani,ayam dengan kulit,40,
-,,protein nabati,kacang merah,20,
-,,sayuran,sawi ,100,
-,,lemak,minyak,5,
-selingan I,bolu kukus lapis talas,karbohidrat,tepung terigu,50,285
-,,,talas,62,
-,,protein hewani,telur,10,
-,,lemak,mentega,5,
-,,gula,gula,13,
-,buah pepaya,buah,pepaya,110,
-siang,"Nasi putih, telur bumbu kuning, tumis tahu dan pare",karbohidrat,nasi,150,"512,5"
-,,protein hewani,telur,55,
-,,protein nabati,tahu ,110,
-,,sayuran,pare,100,
-,,lemak,minyak,5,
-,buah melon,buah,melon,190,
-selingan II,nagasari ubi ungu isi pisang,karbohidrat,ubi ungu,135,300
-,,buah,pisang,100,
-,,gula,gula,13,
-,,lemak,santan,40,
-malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,150,"537,5"
-,,protein hewani,ayam dengan kulit,35,
-,,protein nabati,tahu ,110,
-,,sayuran ,labu siam,100,
-,,lemak,minyak,"2,5",
-,,,,,
-,,,,,
-GOLONGAN VII,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,150,"537,5"
-,,protein hewani,ayam dengan kulit,35,
-,,protein nabati,tahu ,110,
-,,sayuran ,labu siam,100,
-,,lemak,minyak,"2,5",
-selingan I,kue lapis ubi kuning dan jus semangka,karbohidrat,tepung beras,50,"337,5"
-,,,ubi,"67,5",
-,,gula,gula,13,
-,,lemak,santan,5,
-,,buah,semangka,180,
-siang,baso jamur,karbohidrat,bihun ,100,490
-,,,tepung terigu,40,
-,,protein hewani,daging sapi  ,170,
-,,protein nabati,tahu,110,
-,,sayuran ,jamur kuping,100,
-,,,sawi,100,
-selingan II,donat kentang,karbohidrat,tepung terigu,100,451
-,,,kentang,21,
-,,gula,gula,13,
-,,lemak,mentega,2,
-,,susu,susu,200,
-,,protein hewani,telur,10,
-malam,"Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",karbohidrat,nasi,150,555
-,,protein hewani,baso,170,
-,,,ayam dengan kulit,35,
-,,protein nabati,tahu,110,
-,,sayuran,wortel,50,
-,,,kecipir,50,
-,,lemak,minyak,3,
-,pepaya,buah,pepaya,110,
-,,,,,
-,,,,,
-GOLONGAN VIII,,,,,
-waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
-pagi,"Nasi putih, daging lapis merah,tumis labu air dan tempe",karbohidrat,nasi,200,550
-,,,,,
-,,protein hewani,daging sapi,170,
-,,protein nabati,tempe,50,
-,,sayuran ,labu air,100,
-,,lemak,minyak,5,
-selingan I,kue lumpur singkong ,karbohidrat,tepung terigu,25,255
-,,,singkong,60,
-,,protein hewani,telur,10,
-,,gula,gula,13,
-,,lemak,mentega,2,
-,buah pisang,buah,pisang,50,
-siang,nasi sambel goreng kentang,karbohidrat,nasi,200,675
-,,,kentang,105,
-,,protein hewani,ayam tanpa kulit,40,
-,,protein nabati,tahu,55,
-,,,tempe,50,
-,,sayuran,wortel,100,
-,,lemak,minyak,5,
-selingan II,singkong goreng isi unti,karbohidrat,singkong,270,500
-,,gula,gula,13,
-,,lemak,kelapa,30,
-malam,sup ayam dan tahu dan telur goreng,karbohidrat,nasi,200,625
-,,protein hewani,ayam tanpa kulit,40,
-,,,telur,55,
-,,protein nabati,tahu ,55,
-,,,kacang merah,10,
-,,sayuran ,wortel,50,
-,,,buncis,50,
-,,lemak,minyak,5,
+GOLONGAN,waktu makan,menu,komponen,bahan,berat (g),total kalori (kkal)
+I,pagi,baso jamur,karbohidrat,bihun,10,300
+I,pagi,baso jamur,karbohidrat,tepung terigu,40,
+I,pagi,baso jamur,protein hewani,daging sapi,170,
+I,pagi,baso jamur,sayuran,jamur kuping,100,
+I,selingan I,pepaya,buah,pepaya,110,25
+I,siang,sup ayam dan tahu goreng,karbohidrat,nasi,50,262.5
+I,siang,sup ayam dan tahu goreng,protein hewani,ayam tanpa kulit,40,
+I,siang,sup ayam dan tahu goreng,protein nabati,tahu,55,
+I,siang,sup ayam dan tahu goreng,protein nabati,kacang merah,10,
+I,siang,sup ayam dan tahu goreng,sayuran,wortel,50,
+I,siang,sup ayam dan tahu goreng,sayuran,buncis,50,
+I,siang,sup ayam dan tahu goreng,lemak,minyak,2.5,
+I,selingan II,nagasari ubi ungu isi pisang,karbohidrat,ubi ungu,67.5,162.5
+I,selingan II,nagasari ubi ungu isi pisang,buah,pisang,50,
+I,selingan II,nagasari ubi ungu isi pisang,gula,gula,13,
+I,selingan II,nagasari ubi ungu isi pisang,lemak,santan,20,
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,karbohidrat,nasi,100,425
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,protein hewani,telur,55,
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,protein nabati,tahu,110,
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,sayuran,kacang panjang,100,
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,lemak,minyak,5,
+I,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,buah,melon,190,
+II,pagi,Nasi putih, daging lapis merah, tumis labu air,karbohidrat,nasi,50,212.5
+II,pagi,Nasi putih, daging lapis merah, tumis labu air,protein hewani,daging sapi,170,
+II,pagi,Nasi putih, daging lapis merah, tumis labu air,sayuran,labu air,100,
+II,pagi,Nasi putih, daging lapis merah, tumis labu air,lemak,minyak,5,
+II,selingan I,puding melon,buah,melon,380,50
+II,siang,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,100,450
+II,siang,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein hewani,ayam dengan kulit,35,
+II,siang,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein nabati,tahu,110,
+II,siang,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,sayuran,labu siam,100,
+II,siang,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,lemak,minyak,2.5,
+II,selingan II,singkong goreng isi unti,karbohidrat,singkong,67.5,187.5
+II,selingan II,singkong goreng isi unti,gula,gula,13,
+II,selingan II,singkong goreng isi unti,lemak,kelapa,15,
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,karbohidrat,nasi,100,400
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,protein hewani,telur,55,
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,protein nabati,tahu,110,
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,sayuran,kacang panjang,100,
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,lemak,minyak,2.5,
+II,malam,Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang,buah,melon,190,
+III,pagi,Nasi putih, daging lapis merah, tumis tahu dan labu air,karbohidrat,nasi,50,250
+III,pagi,Nasi putih, daging lapis merah, tumis tahu dan labu air,protein hewani,daging sapi,170,
+III,pagi,Nasi putih, daging lapis merah, tumis tahu dan labu air,sayuran,labu air,100,
+III,pagi,Nasi putih, daging lapis merah, tumis tahu dan labu air,protein nabati,tahu,55,
+III,pagi,Nasi putih, daging lapis merah, tumis tahu dan labu air,lemak,minyak,5,
+III,selingan I,bakpau talas,karbohidrat,talas,31,112.5
+III,selingan I,bakpau talas,karbohidrat,tepung terigu,13,
+III,selingan I,bakpau talas,gula,gula,13,
+III,siang,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,karbohidrat,nasi,100,475
+III,siang,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,protein hewani,ayam dengan kulit,40,
+III,siang,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,protein nabati,kacang merah,20,
+III,siang,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,sayuran,sawi,100,
+III,siang,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,lemak,minyak,5,
+III,selingan II,kue lapis ubi kuning,karbohidrat,tepung beras,25,275
+III,selingan II,kue lapis ubi kuning,karbohidrat,ubi,67.5,
+III,selingan II,kue lapis ubi kuning,gula,gula,13,
+III,selingan II,kue lapis ubi kuning,lemak,santan,2.5,
+III,selingan II,jus semangka,buah,semangka,180,
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,karbohidrat,nasi,100,375
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,protein hewani,daging sapi,170,
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,protein nabati,tahu,110,
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,sayuran,pare,50,
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,sayuran,wortel,50,
+III,malam,Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu,lemak,minyak,2.5,
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,karbohidrat,nasi,150,412.5
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,protein hewani,baso,170,
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,protein nabati,tempe,25,
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,sayuran,kacang panjang,50,
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,sayuran,wortel,50,
+IV,pagi,Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel,lemak,minyak,5,
+IV,selingan I,buah pisang,buah,pisang,100,50
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,karbohidrat,nasi,100,349
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,protein hewani,telur,45,
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,protein nabati,tempe,25,
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,sayuran,gambas,50,
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,sayuran,wortel,100,
+IV,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,lemak,minyak,5,
+IV,selingan II,donat kentang,karbohidrat,tepung terigu,100,326
+IV,selingan II,donat kentang,karbohidrat,kentang,21,
+IV,selingan II,donat kentang,gula,gula,13,
+IV,selingan II,donat kentang,lemak,mentega,2,
+IV,selingan II,donat kentang,protein hewani,telur,10,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,karbohidrat,nasi,100,555
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,karbohidrat,kentang,210,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,protein hewani,daging sapi,170,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,protein nabati,tahu,110,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,sayuran,buncis,50,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,sayuran,wortel,50,
+IV,malam,Nasi putih, beef teriyaki, sayur sop dan tahu goreng,lemak,minyak,3,
+V,pagi,Nasi sambel goreng kentang,karbohidrat,nasi,100,425
+V,pagi,Nasi sambel goreng kentang,karbohidrat,kentang,105,
+V,pagi,Nasi sambel goreng kentang,protein hewani,ayam tanpa kulit,40,
+V,pagi,Nasi sambel goreng kentang,protein nabati,tahu,55,
+V,pagi,Nasi sambel goreng kentang,sayuran,wortel,100,
+V,pagi,Nasi sambel goreng kentang,lemak,minyak,5,
+V,selingan I,milkshake semangka,buah,semangka,180,150
+V,selingan I,milkshake semangka,lemak,susu,200,
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,karbohidrat,nasi,150,436.5
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,protein hewani,telur,45,
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,protein nabati,tempe,25,
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,sayuran,gambas,50,
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,sayuran,wortel,100,
+V,siang,Nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas,lemak,minyak,5,
+V,selingan II,kue lumpur singkong,karbohidrat,tepung terigu,25,255
+V,selingan II,kue lumpur singkong,karbohidrat,singkong,60,
+V,selingan II,kue lumpur singkong,protein hewani,telur,10,
+V,selingan II,kue lumpur singkong,gula,gula,13,
+V,selingan II,kue lumpur singkong,lemak,mentega,2,
+V,selingan II,kue lumpur singkong,buah,pisang,50,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),karbohidrat,nasi,150,555
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein hewani,baso,170,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein hewani,ayam dengan kulit,35,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein nabati,tahu,110,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),sayuran,wortel,50,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),sayuran,kecipir,50,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),lemak,minyak,3,
+V,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),buah,pepaya,110,
+VI,pagi,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,karbohidrat,nasi,150,562.5
+VI,pagi,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,protein hewani,ayam dengan kulit,40,
+VI,pagi,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,protein nabati,kacang merah,20,
+VI,pagi,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,sayuran,sawi,100,
+VI,pagi,Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah,lemak,minyak,5,
+VI,selingan I,bolu kukus lapis talas,karbohidrat,tepung terigu,50,285
+VI,selingan I,bolu kukus lapis talas,karbohidrat,talas,62,
+VI,selingan I,bolu kukus lapis talas,protein hewani,telur,10,
+VI,selingan I,bolu kukus lapis talas,lemak,mentega,5,
+VI,selingan I,bolu kukus lapis talas,gula,gula,13,
+VI,selingan I,bolu kukus lapis talas,buah,pepaya,110,
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,karbohidrat,nasi,150,512.5
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,protein hewani,telur,55,
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,protein nabati,tahu,110,
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,sayuran,pare,100,
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,lemak,minyak,5,
+VI,siang,Nasi putih, telur bumbu kuning, tumis tahu dan pare,buah,melon,190,
+VI,selingan II,nagasari ubi ungu isi pisang,karbohidrat,ubi ungu,135,300
+VI,selingan II,nagasari ubi ungu isi pisang,buah,pisang,100,
+VI,selingan II,nagasari ubi ungu isi pisang,gula,gula,13,
+VI,selingan II,nagasari ubi ungu isi pisang,lemak,santan,40,
+VI,malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,150,537.5
+VI,malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein hewani,ayam dengan kulit,35,
+VI,malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein nabati,tahu,110,
+VI,malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,sayuran,labu siam,100,
+VI,malam,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,lemak,minyak,2.5,
+VII,pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,karbohidrat,nasi,150,537.5
+VII,pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein hewani,ayam dengan kulit,35
+VII,pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,protein nabati,tahu,110
+VII,pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,sayuran,labu siam,100
+VII,pagi,ayam teriyaki dengan bola-bola tahu dan tumis labu siam,lemak,minyak,2.5
+VII,selingan I,kue lapis ubi kuning dan jus semangka,karbohidrat,tepung beras,50,337.5
+VII,selingan I,kue lapis ubi kuning dan jus semangka,karbohidrat,ubi,67.5
+VII,selingan I,kue lapis ubi kuning dan jus semangka,gula,gula,13
+VII,selingan I,kue lapis ubi kuning dan jus semangka,lemak,santan,5
+VII,selingan I,kue lapis ubi kuning dan jus semangka,buah,semangka,180
+VII,siang,baso jamur,karbohidrat,bihun,100,490
+VII,siang,baso jamur,karbohidrat,tepung terigu,40
+VII,siang,baso jamur,protein hewani,daging sapi,170
+VII,siang,baso jamur,protein nabati,tahu,110
+VII,siang,baso jamur,sayuran,jamur kuping,100
+VII,siang,baso jamur,sayuran,sawi,100
+VII,selingan II,donat kentang,karbohidrat,tepung terigu,100,451
+VII,selingan II,donat kentang,karbohidrat,kentang,21
+VII,selingan II,donat kentang,gula,gula,13
+VII,selingan II,donat kentang,lemak,mentega,2
+VII,selingan II,donat kentang,susu,susu,200
+VII,selingan II,donat kentang,protein hewani,telur,10
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),karbohidrat,nasi,150,555
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein hewani,baso,170
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein hewani,ayam dengan kulit,35
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),protein nabati,tahu,110
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),sayuran,wortel,50
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),sayuran,kecipir,50
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),lemak,minyak,3
+VII,malam,Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu),buah,pepaya,110
+VIII,pagi,Nasi putih, daging lapis merah, tumis labu air dan tempe,karbohidrat,nasi,200,550
+VIII,pagi,Nasi putih, daging lapis merah, tumis labu air dan tempe,protein hewani,daging sapi,170
+VIII,pagi,Nasi putih, daging lapis merah, tumis labu air dan tempe,protein nabati,tempe,50
+VIII,pagi,Nasi putih, daging lapis merah, tumis labu air dan tempe,sayuran,labu air,100
+VIII,pagi,Nasi putih, daging lapis merah, tumis labu air dan tempe,lemak,minyak,5
+VIII,selingan I,kue lumpur singkong,karbohidrat,tepung terigu,25,255
+VIII,selingan I,kue lumpur singkong,karbohidrat,singkong,60
+VIII,selingan I,kue lumpur singkong,protein hewani,telur,10
+VIII,selingan I,kue lumpur singkong,gula,gula,13
+VIII,selingan I,kue lumpur singkong,lemak,mentega,2
+VIII,selingan I,kue lumpur singkong,buah,pisang,50
+VIII,siang,nasi sambel goreng kentang,karbohidrat,nasi,200,675
+VIII,siang,nasi sambel goreng kentang,karbohidrat,kentang,105
+VIII,siang,nasi sambel goreng kentang,protein hewani,ayam tanpa kulit,40
+VIII,siang,nasi sambel goreng kentang,protein nabati,tahu,55
+VIII,siang,nasi sambel goreng kentang,protein nabati,tempe,50
+VIII,siang,nasi sambel goreng kentang,sayuran,wortel,100
+VIII,siang,nasi sambel goreng kentang,lemak,minyak,5
+VIII,selingan II,singkong goreng isi unti,karbohidrat,singkong,270,500
+VIII,selingan II,singkong goreng isi unti,gula,gula,13
+VIII,selingan II,singkong goreng isi unti,lemak,kelapa,30
+VIII,malam,sup ayam dan tahu dan telur goreng,karbohidrat,nasi,200,625
+VIII,malam,sup ayam dan tahu dan telur goreng,protein hewani,ayam tanpa kulit,40
+VIII,malam,sup ayam dan tahu dan telur goreng,protein hewani,telur,55
+VIII,malam,sup ayam dan tahu dan telur goreng,protein nabati,tahu,55
+VIII,malam,sup ayam dan tahu dan telur goreng,protein nabati,kacang merah,10
+VIII,malam,sup ayam dan tahu dan telur goreng,sayuran,wortel,50
+VIII,malam,sup ayam dan tahu dan telur goreng,sayuran,buncis,50
+VIII,malam,sup ayam dan tahu dan telur goreng,lemak,minyak,5
