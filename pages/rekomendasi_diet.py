@@ -1,4 +1,3 @@
-# Import additional libraries needed for interactive tables
 import streamlit as st
 import pandas as pd
 import json
@@ -7,22 +6,25 @@ from pymongo import MongoClient
 import certifi
 
 # Load CSV data
-def load_csv_data():
-    bahan_pangan = pd.read_csv('data/BAHAN PANGAN.csv', skiprows=1)
-    porsi_diet = pd.read_csv('data/PEDOMAN PORSI DIET.csv', skiprows=1)
-    return bahan_pangan, porsi_diet
+def load_csv_data(file_path):
+    return pd.read_csv(file_path, skiprows=1)
 
-# Load JSON data for local foods
-def load_json_data():
-    with open('data/datapanganlokal.json') as json_file:
-        pangan_lokal = json.load(json_file)
-    return pangan_lokal
+# Load JSON data
+def load_json_data(file_path):
+    with open(file_path) as json_file:
+        return json.load(json_file)
 
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
         rekomendasi_menu = json.load(json_file)
     return rekomendasi_menu
+
+# Load JSON data for diet portions
+def load_porsi_diet():
+    with open('data/pedoman_porsi_diet.json') as json_file:
+        porsi_diet = json.load(json_file)
+    return porsi_diet
 
 # Get database connection
 def get_database():
@@ -99,25 +101,18 @@ def train_naive_bayes(data):
     return model
 
 # Display diet recommendations
-def display_diet_recommendations(diet_group, local_foods):
-    if diet_group == "I":
-        rekomendasi_menu = load_rekomendasi_menu()
-        st.subheader("Rekomendasi Menu")
-        if any(item["golongan"] == diet_group for item in rekomendasi_menu):
-            df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
-            st.dataframe(df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']])
-        else:
-            st.error("Kolom 'golongan' tidak ditemukan di data rekomendasi menu.")
+def display_diet_recommendations(diet_group, porsi_diet):
+    rekomendasi_menu = load_rekomendasi_menu()
+    st.subheader("Rekomendasi Menu")
+    if any(item["golongan"] == diet_group for item in rekomendasi_menu):
+        df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
+        st.dataframe(df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']])
     else:
-        st.error("Menu diet masih dikembangkan")
+        st.error("Kolom 'golongan' tidak ditemukan di data rekomendasi menu.")
 
-    st.subheader("Bahan Pangan Lokal")
-    for province, foods in local_foods.items():
-        st.markdown(f"### {province}")
-        for category, items in foods.items():
-            st.markdown(f"**{category}**")
-            for item in items:
-                st.write(item)
+    st.subheader("Panduan Porsi Diet")
+    df_porsi = pd.DataFrame([item for item in porsi_diet if item['golongan'] == diet_group])
+    st.dataframe(df_porsi)
 
 # Main function to run the app
 def main():
@@ -152,8 +147,8 @@ def main():
         st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
         st.markdown(f"### Kelompok Diet Anda: {diet_group}")
 
-        local_foods = load_json_data()
-        display_diet_recommendations(diet_group, local_foods)
+        porsi_diet = load_porsi_diet()
+        display_diet_recommendations(diet_group, porsi_diet)
     else:
         st.error("Data pengguna tidak ditemukan.")
 
