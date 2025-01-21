@@ -67,8 +67,7 @@
     "komponen": [
       { "nama": "buah", "bahan": "melon", "berat_g": 190 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilai
-  },
+    "total_kalori_kkal": null
   {
     "golongan": "II",
     "waktu_makan": "pagi",
@@ -134,7 +133,7 @@
     "komponen": [
       { "nama": "buah", "bahan": "melon", "berat_g": 190 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilai
+    "total_kalori_kkal": null
   },
   {
     "golongan": "III",
@@ -179,7 +178,7 @@
     "komponen": [
       { "nama": "buah", "bahan": "semangka", "berat_g": 180 }
     ],
-    "total_kalori_kkal": null // Bisa juga diisi 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null
   },
   {
     "golongan": "III",
@@ -318,7 +317,7 @@
     "komponen": [
       { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null 
   },
   {
     "golongan": "V",
@@ -342,13 +341,10 @@
     "komponen": [
       { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null 
   },
-  Berikut konversi tabel rekomendasi menu untuk golongan VI diabetes ke format JSON:
 
-JSON
 
-[
   {
     "golongan": "VI",
     "waktu_makan": "pagi",
@@ -382,7 +378,7 @@ JSON
     "komponen": [
       { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null 
   },
   {
     "golongan": "VI",
@@ -404,7 +400,7 @@ JSON
     "komponen": [
       { "nama": "buah", "bahan": "melon", "berat_g": 190 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null
   },
   {
     "golongan": "VI",
@@ -507,7 +503,7 @@ JSON
     "komponen": [
       { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null 
   },
   {
     "golongan": "VIII",
@@ -542,7 +538,7 @@ JSON
     "komponen": [
       { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
     ],
-    "total_kalori_kkal": null // atau 0 jika memang tidak ada nilainya
+    "total_kalori_kkal": null
   },
   {
     "golongan": "VIII",
