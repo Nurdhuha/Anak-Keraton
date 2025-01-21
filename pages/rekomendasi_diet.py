@@ -116,7 +116,6 @@ def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet
     return model
 
 # Display diet recommendations
-# Display diet recommendations
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -124,8 +123,8 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     # Filter menu berdasarkan pantangan makanan, preferensi diet, dan kondisi kesehatan
     filtered_menu = [item for item in rekomendasi_menu if item['golongan'] == diet_group and 
                      item['menu'] not in pantangan_makanan and 
-                     item['diet'] in preferensi_diet and 
-                     item['kondisi_kesehatan'] in kondisi_kesehatan]
+                     ('diet' not in item or item['diet'] in preferensi_diet) and 
+                     ('kondisi_kesehatan' not in item or item['kondisi_kesehatan'] in kondisi_kesehatan)]
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
