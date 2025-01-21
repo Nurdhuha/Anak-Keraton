@@ -93,11 +93,23 @@ def get_diet_group(energy):
         return "VIII"
 
 # Train Naive Bayes model
-def train_naive_bayes(data):
+def train_naive_bayes(data, food_preferences):
     X = data[['berat', 'kalori', 'protein', 'karbohidrat']].values
     y = data['kategori'].values
     model = GaussianNB()
     model.fit(X, y)
+    
+    # Integrate food preferences
+    if food_preferences:
+        for preference in food_preferences:
+            preference_data = [
+                preference['berat'],
+                preference['kalori'],
+                preference['protein'],
+                preference['karbohidrat']
+            ]
+            model.partial_fit([preference_data], [preference['kategori']])
+    
     return model
 
 # Display diet recommendations
@@ -132,6 +144,7 @@ def main():
         usia = user_data["demografi"]["usia"]
         jenis_kelamin = user_data["demografi"]["jenis_kelamin"]
         tingkat_aktivitas = user_data["data_aktivitas_kesehatan"]["tingkat_aktivitas"]
+        food_preferences = user_data.get("preferensi_makanan", {})
 
         imt = berat_badan / ((tinggi_badan / 100) ** 2)
 
