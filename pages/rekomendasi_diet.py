@@ -91,10 +91,10 @@ def get_diet_group(energy):
         return "VII"
     else:
         return "VIII"
-
 # Train Naive Bayes model
-def train_naive_bayes(data, food_preferences):
-    X = data[['berat', 'kalori', 'protein', 'karbohidrat']].values
+def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
+    # Tambahkan fitur baru ke dalam data pelatihan
+    X = data[['berat', 'kalori', 'protein', 'karbohidrat', 'pantangan_makanan', 'preferensi_diet', 'kondisi_kesehatan']].values
     y = data['kategori'].values
     model = GaussianNB()
     model.fit(X, y)
@@ -106,24 +106,35 @@ def train_naive_bayes(data, food_preferences):
                 preference['berat'],
                 preference['kalori'],
                 preference['protein'],
-                preference['karbohidrat']
+                preference['karbohidrat'],
+                pantangan_makanan,
+                preferensi_diet,
+                kondisi_kesehatan
             ]
             model.partial_fit([preference_data], [preference['kategori']])
     
     return model
 
 # Display diet recommendations
-def display_diet_recommendations(diet_group, porsi_diet):
+# Display diet recommendations
+def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
-    if any(item["golongan"] == diet_group for item in rekomendasi_menu):
-        df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
+    
+    # Filter menu berdasarkan pantangan makanan, preferensi diet, dan kondisi kesehatan
+    filtered_menu = [item for item in rekomendasi_menu if item['golongan'] == diet_group and 
+                     item['menu'] not in pantangan_makanan and 
+                     item['diet'] in preferensi_diet and 
+                     item['kondisi_kesehatan'] in kondisi_kesehatan]
+    
+    if filtered_menu:
+        df_rekomendasi = pd.DataFrame(filtered_menu)
         df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']]
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
         df_rekomendasi.loc['Total'] = ['-', '-', total_kalori]
         st.dataframe(df_rekomendasi)
     else:
-        st.error("Kolom 'golongan' tidak ditemukan di data rekomendasi menu.")
+        st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['golongan'] == diet_group])
@@ -152,6 +163,9 @@ def main():
         jenis_kelamin = user_data["demografi"]["jenis_kelamin"]
         tingkat_aktivitas = user_data["data_aktivitas_kesehatan"]["tingkat_aktivitas"]
         food_preferences = user_data.get("preferensi_makanan", {})
+        pantangan_makanan = user_data["preferensi_makanan"]["pantangan"]
+        preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
+        kondisi_kesehatan = user_data["data_aktivitas_kesehatan"]["kondisi_kesehatan"]
 
         imt = berat_badan / ((tinggi_badan / 100) ** 2)
 
@@ -168,7 +182,7 @@ def main():
         st.markdown(f"### Kelompok Diet Anda: {diet_group}")
 
         porsi_diet = load_porsi_diet()
-        display_diet_recommendations(diet_group, porsi_diet)
+        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan)
     else:
         st.error("Data pengguna tidak ditemukan.")
 
