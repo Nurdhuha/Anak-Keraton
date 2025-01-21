@@ -118,13 +118,20 @@ def display_diet_recommendations(diet_group, porsi_diet):
     st.subheader("Rekomendasi Menu")
     if any(item["golongan"] == diet_group for item in rekomendasi_menu):
         df_rekomendasi = pd.DataFrame([item for item in rekomendasi_menu if item['golongan'] == diet_group])
-        st.dataframe(df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']])
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']]
+        total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
+        df_rekomendasi.loc['Total'] = ['-', '-', total_kalori]
+        st.dataframe(df_rekomendasi)
     else:
         st.error("Kolom 'golongan' tidak ditemukan di data rekomendasi menu.")
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['golongan'] == diet_group])
-    st.dataframe(df_porsi)
+    if not df_porsi.empty:
+        df_porsi = df_porsi.drop(columns=['golongan'])
+        st.dataframe(df_porsi)
+    else:
+        st.error("Kolom 'golongan' tidak ditemukan di data panduan porsi diet.")
 
 # Main function to run the app
 def main():
