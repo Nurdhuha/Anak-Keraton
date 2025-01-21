@@ -1,1 +1,49 @@
+[
+  { "golongan": "I", "waktu_makan": "pagi", "karbo": 0.5, "p_hewani": 1, "p_nabati": null, "sayuran_a": "S", "minyak": 1 },
+  { "golongan": "I", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "I", "waktu_makan": "siang", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 1 },
+  { "golongan": "I", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "I", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
 
+  { "golongan": "II", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": null, "sayuran_a": "S", "minyak": 1 },
+  { "golongan": "II", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "II", "waktu_makan": "siang", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
+  { "golongan": "II", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "II", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "III", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 1 },
+  { "golongan": "III", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "III", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
+  { "golongan": "III", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "III", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "IV", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 1 },
+  { "golongan": "IV", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "IV", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
+  { "golongan": "IV", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "IV", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "V", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
+  { "golongan": "V", "waktu_makan": "selingan I", "buah": 1, "susu": 1 },
+  { "golongan": "V", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
+  { "golongan": "V", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "V", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "VI", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
+  { "golongan": "VI", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "VI", "waktu_makan": "siang", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
+  { "golongan": "VI", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "VI", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "VII", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
+  { "golongan": "VII", "waktu_makan": "selingan I", "buah": 1, "susu": null },
+  { "golongan": "VII", "waktu_makan": "siang", "karbo": 3, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
+  { "golongan": "VII", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "VII", "waktu_makan": "malam", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
+
+  { "golongan": "VIII", "waktu_makan": "pagi", "karbo": 2, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
+  { "golongan": "VIII", "waktu_makan": "selingan I", "buah": 1, "susu": 1 },
+  { "golongan": "VIII", "waktu_makan": "siang", "karbo": 3, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
+  { "golongan": "VIII", "waktu_makan": "selingan II", "buah": 1, "susu": null },
+  { "golongan": "VIII", "waktu_makan": "malam", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null }
+]
