@@ -121,7 +121,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     st.subheader("Rekomendasi Menu")
     
     # Filter menu berdasarkan pantangan makanan, preferensi diet, dan kondisi kesehatan
-    filtered_menu = [item for item in rekomendasi_menu if item['golongan'] == diet_group and 
+    filtered_menu = [item for item in rekomendasi_menu if item['Golongan'] == diet_group and 
                      item['menu'] not in pantangan_makanan and 
                      ('diet' not in item or item['diet'] in preferensi_diet) and 
                      ('kondisi_kesehatan' not in item or item['kondisi_kesehatan'] in kondisi_kesehatan)]
@@ -136,9 +136,9 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
     st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['golongan'] == diet_group])
+    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group])
     if not df_porsi.empty:
-        df_porsi = df_porsi.drop(columns=["Golongan"])
+        df_porsi = df_porsi.drop(columns=['Golongan'])
         st.dataframe(df_porsi)
     else:
         st.error("Kolom 'golongan' tidak ditemukan di data panduan porsi diet.")
