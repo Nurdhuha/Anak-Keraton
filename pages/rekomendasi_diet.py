@@ -129,7 +129,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']]
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']].fillna("-")
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
         df_rekomendasi.loc['Total'] = ['-', '-', total_kalori]
         st.dataframe(df_rekomendasi)
@@ -137,7 +137,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
     st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group])
+    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
     if not df_porsi.empty:
         df_porsi = df_porsi.drop(columns=['Golongan'])
         st.dataframe(df_porsi)
