@@ -138,7 +138,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['golongan'] == diet_group])
     if not df_porsi.empty:
-        df_porsi = df_porsi.drop(columns=['Golongan'])
+        df_porsi = df_porsi.drop(columns=["Golongan"])
         st.dataframe(df_porsi)
     else:
         st.error("Kolom 'golongan' tidak ditemukan di data panduan porsi diet.")
