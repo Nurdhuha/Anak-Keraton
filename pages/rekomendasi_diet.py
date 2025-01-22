@@ -129,7 +129,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'total_kalori_kkal']].fillna("-")
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu_makan', 'total_kalori_kkal']].fillna("-")
         df_rekomendasi['total_kalori_kkal'] = pd.to_numeric(df_rekomendasi['total_kalori_kkal'], errors='coerce').fillna(0)
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
         df_rekomendasi.loc['Total'] = ['-', total_kalori]
