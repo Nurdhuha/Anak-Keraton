@@ -78,7 +78,24 @@ def display_user_data(username):
         
         if user_data:
             st.subheader("Data Pasien")
-            st.json(user_data)
+            st.write(f"**Nama:** {user_data['nama']}")
+            st.write(f"**Tanggal Input:** {user_data['tanggal_input']}")
+            st.write("### Data Demografi")
+            st.write(f"**Usia:** {user_data['demografi']['usia']} tahun")
+            st.write(f"**Jenis Kelamin:** {user_data['demografi']['jenis_kelamin']}")
+            st.write(f"**Alamat:** {user_data['demografi']['alamat']}")
+            st.write(f"**Nomor Telepon:** {user_data['demografi']['no_telepon']}")
+            st.write("### Data Antropometri")
+            st.write(f"**Berat Badan:** {user_data['data_antropometri']['berat_badan']} kg")
+            st.write(f"**Tinggi Badan:** {user_data['data_antropometri']['tinggi_badan']} cm")
+            st.write("### Preferensi Makanan")
+            st.write(f"**Pantangan Makanan:** {', '.join(user_data['preferensi_makanan']['pantangan'])}")
+            st.write(f"**Preferensi Diet:** {', '.join(user_data['preferensi_makanan']['preferensi_diet'])}")
+            st.write("### Data Aktivitas dan Kesehatan")
+            st.write(f"**Tingkat Aktivitas:** {user_data['data_aktivitas_kesehatan']['tingkat_aktivitas']}")
+            st.write(f"**Kondisi Kesehatan:** {', '.join(user_data['data_aktivitas_kesehatan']['kondisi_kesehatan'])}")
+            st.write("### Catatan Tambahan")
+            st.write(user_data['catatan_tambahan'])
         else:
             st.error("Data pengguna tidak ditemukan.")
     except Exception as e:
