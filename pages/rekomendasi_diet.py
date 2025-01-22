@@ -117,6 +117,7 @@ def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet
     return model
 
 # Display diet recommendations
+# Display diet recommendations
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -129,10 +130,10 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']].fillna("-")
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'total_kalori_kkal']].fillna("-")
         df_rekomendasi['total_kalori_kkal'] = pd.to_numeric(df_rekomendasi['total_kalori_kkal'], errors='coerce').fillna(0)
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
-        df_rekomendasi.loc['Total'] = ['-', '-', total_kalori]
+        df_rekomendasi.loc['Total'] = ['-', total_kalori]
         st.dataframe(df_rekomendasi)
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
@@ -140,6 +141,8 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
     if not df_porsi.empty:
+        columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
+        df_porsi = df_porsi[columns_order]
         df_porsi = df_porsi.drop(columns=['Golongan'])
         st.dataframe(df_porsi)
     else:
