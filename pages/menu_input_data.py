@@ -67,6 +67,23 @@ def delete_user_data(username):
         st.error(f"Terjadi kesalahan saat menghapus data: {str(e)}")
         return False
 
+def display_user_data(username):
+    try:
+        db = get_database()
+        if db is None:
+            return
+        
+        collection = db['data_pasien']
+        user_data = collection.find_one({"nama": username})
+        
+        if user_data:
+            st.subheader("Data Pasien")
+            st.json(user_data)
+        else:
+            st.error("Data pengguna tidak ditemukan.")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
+
 if "user_data" not in st.session_state:
     st.error("Silakan lakukan login terlebih dahulu!")
     st.switch_page("streamlit_app.py")
@@ -89,6 +106,9 @@ if check_user_data(nama_pasien):
             st.success("Data berhasil dihapus.")
         else:
             st.error("Gagal menghapus data.")
+    
+    if st.button("Lihat Data Pasien"):
+        display_user_data(nama_pasien)
 else:
     st.subheader("Form Input Data Pasien")
 
