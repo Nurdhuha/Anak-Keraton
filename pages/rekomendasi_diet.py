@@ -91,6 +91,7 @@ def get_diet_group(energy):
         return "VII"
     else:
         return "VIII"
+
 # Train Naive Bayes model
 def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     # Tambahkan fitur baru ke dalam data pelatihan
