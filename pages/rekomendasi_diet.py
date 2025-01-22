@@ -133,7 +133,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         df_rekomendasi['total_kalori_kkal'] = pd.to_numeric(df_rekomendasi['total_kalori_kkal'], errors='coerce').fillna(0)
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
         df_rekomendasi.loc['Total'] = ['-', total_kalori]
-        st.dataframe(df_rekomendasi.reset_index(drop=True))
+        st.dataframe(df_rekomendasi)
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
@@ -144,7 +144,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         df_porsi = df_porsi[columns_order]
         if 'Golongan' in df_porsi.columns:
             df_porsi = df_porsi.drop(columns=["Golongan"])
-        st.dataframe(df_porsi.reset_index(drop=True))
+        st.dataframe(df_porsi)
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
 
