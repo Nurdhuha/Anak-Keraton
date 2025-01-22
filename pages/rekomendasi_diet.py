@@ -117,7 +117,6 @@ def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet
     return model
 
 # Display diet recommendations
-# Display diet recommendations
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -143,10 +142,11 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     if not df_porsi.empty:
         columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
         df_porsi = df_porsi[columns_order]
-        df_porsi = df_porsi.drop(columns=['Golongan'])
+        if 'Golongan' in df_porsi.columns:
+            df_porsi = df_porsi.drop(columns=["Golongan"])
         st.dataframe(df_porsi)
     else:
-        st.error("Kolom 'golongan' tidak ditemukan di data panduan porsi diet.")
+        st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
 
 # Main function to run the app
 def main():
