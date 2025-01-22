@@ -148,17 +148,6 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
 
-    st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
-    if not df_porsi.empty:
-        columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
-        df_porsi = df_porsi[columns_order]
-        if 'Golongan' in df_porsi.columns:
-            df_porsi = df_porsi.drop(columns=["Golongan"])
-        st.dataframe(df_porsi)
-    else:
-        st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
-
 # Main function to run the app
 def main():
     st.title("Rekomendasi Pola Diet")
