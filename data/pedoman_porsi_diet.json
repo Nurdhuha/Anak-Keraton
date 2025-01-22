@@ -1,49 +1,49 @@
 [
-  { "golongan": "I", "waktu_makan": "pagi", "karbo": 0.5, "p_hewani": 1, "p_nabati": null, "sayuran_a": "S", "minyak": 1 },
-  { "golongan": "I", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "I", "waktu_makan": "siang", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 1 },
-  { "golongan": "I", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "I", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "II", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": null, "sayuran_a": "S", "minyak": 1 },
-  { "golongan": "II", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "II", "waktu_makan": "siang", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
-  { "golongan": "II", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "II", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "III", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 1 },
-  { "golongan": "III", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "III", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
-  { "golongan": "III", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "III", "waktu_makan": "malam", "karbo": 1, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "IV", "waktu_makan": "pagi", "karbo": 1, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 1 },
-  { "golongan": "IV", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "IV", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
-  { "golongan": "IV", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "IV", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "V", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
-  { "golongan": "V", "waktu_makan": "selingan I", "buah": 1, "susu": 1 },
-  { "golongan": "V", "waktu_makan": "siang", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 2 },
-  { "golongan": "V", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "V", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "VI", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
-  { "golongan": "VI", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "VI", "waktu_makan": "siang", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
-  { "golongan": "VI", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "VI", "waktu_makan": "malam", "karbo": 2, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "VII", "waktu_makan": "pagi", "karbo": 1.5, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
-  { "golongan": "VII", "waktu_makan": "selingan I", "buah": 1, "susu": null },
-  { "golongan": "VII", "waktu_makan": "siang", "karbo": 3, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
-  { "golongan": "VII", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "VII", "waktu_makan": "malam", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null },
-
-  { "golongan": "VIII", "waktu_makan": "pagi", "karbo": 2, "p_hewani": 1, "p_nabati": 0.5, "sayuran_a": "S", "minyak": 2 },
-  { "golongan": "VIII", "waktu_makan": "selingan I", "buah": 1, "susu": 1 },
-  { "golongan": "VIII", "waktu_makan": "siang", "karbo": 3, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": 3 },
-  { "golongan": "VIII", "waktu_makan": "selingan II", "buah": 1, "susu": null },
-  { "golongan": "VIII", "waktu_makan": "malam", "karbo": 2.5, "p_hewani": 1, "p_nabati": 1, "sayuran_a": "S", "sayuran_b": 1, "buah": 1, "minyak": null }
+    { "Golongan": "I", "Waktu Makan": "pagi", "Karbohidrat": 0.5, "Protein Hewani": 1, "Protein Nabati": "-", "Sayuran A": "S", "Minyak": 1 },
+    { "Golongan": "I", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "I", "Waktu Makan": "siang", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 1 },
+    { "Golongan": "I", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "I", "Waktu Makan": "malam", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "II", "Waktu Makan": "pagi", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": "-", "Sayuran A": "S", "Minyak": 1 },
+    { "Golongan": "II", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "II", "Waktu Makan": "siang", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 2 },
+    { "Golongan": "II", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "II", "Waktu Makan": "malam", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "III", "Waktu Makan": "pagi", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 1 },
+    { "Golongan": "III", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "III", "Waktu Makan": "siang", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 2 },
+    { "Golongan": "III", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "III", "Waktu Makan": "malam", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "IV", "Waktu Makan": "pagi", "Karbohidrat": 1, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 1 },
+    { "Golongan": "IV", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "IV", "Waktu Makan": "siang", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 2 },
+    { "Golongan": "IV", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "IV", "Waktu Makan": "malam", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "V", "Waktu Makan": "pagi", "Karbohidrat": 1.5, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 2 },
+    { "Golongan": "V", "Waktu Makan": "selingan I", "Buah": 1, "Susu": 1 },
+    { "Golongan": "V", "Waktu Makan": "siang", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 2 },
+    { "Golongan": "V", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "V", "Waktu Makan": "malam", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "VI", "Waktu Makan": "pagi", "Karbohidrat": 1.5, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 2 },
+    { "Golongan": "VI", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "VI", "Waktu Makan": "siang", "Karbohidrat": 2.5, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 3 },
+    { "Golongan": "VI", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "VI", "Waktu Makan": "malam", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "VII", "Waktu Makan": "pagi", "Karbohidrat": 1.5, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 2 },
+    { "Golongan": "VII", "Waktu Makan": "selingan I", "Buah": 1, "Susu": "-" },
+    { "Golongan": "VII", "Waktu Makan": "siang", "Karbohidrat": 3, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 3 },
+    { "Golongan": "VII", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "VII", "Waktu Makan": "malam", "Karbohidrat": 2.5, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" },
+  
+    { "Golongan": "VIII", "Waktu Makan": "pagi", "Karbohidrat": 2, "Protein Hewani": 1, "Protein Nabati": 0.5, "Sayuran A": "S", "Minyak": 2 },
+    { "Golongan": "VIII", "Waktu Makan": "selingan I", "Buah": 1, "Susu": 1 },
+    { "Golongan": "VIII", "Waktu Makan": "siang", "Karbohidrat": 3, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": 3 },
+    { "Golongan": "VIII", "Waktu Makan": "selingan II", "Buah": 1, "Susu": "-" },
+    { "Golongan": "VIII", "Waktu Makan": "malam", "Karbohidrat": 2.5, "Protein Hewani": 1, "Protein Nabati": 1, "Sayuran A": "S", "Sayuran B": 1, "Buah": 1, "Minyak": "-" }
 ]
