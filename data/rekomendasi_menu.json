@@ -168,7 +168,7 @@
         { "nama": "karbohidrat", "bahan": "tepung beras", "berat_g": 25 },
           { "nama": "karbohidrat", "bahan": "ubi", "berat_g": 67.5 },
         { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "santan", "berat_g": 2.5 }
+        { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
       ],
       "total_kalori_kkal": 275
     },
