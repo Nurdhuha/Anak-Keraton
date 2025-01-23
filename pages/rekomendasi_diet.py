@@ -130,26 +130,16 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal', 'total_karbohidrat_g', 'total_protein_g', 'total_lemak_g']].fillna(0)
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']].fillna("-")
         df_rekomendasi['total_kalori_kkal'] = pd.to_numeric(df_rekomendasi['total_kalori_kkal'], errors='coerce').fillna(0)
-        df_rekomendasi['total_karbohidrat_g'] = pd.to_numeric(df_rekomendasi['total_karbohidrat_g'], errors='coerce').fillna(0)
-        df_rekomendasi['total_protein_g'] = pd.to_numeric(df_rekomendasi['total_protein_g'], errors='coerce').fillna(0)
-        df_rekomendasi['total_lemak_g'] = pd.to_numeric(df_rekomendasi['total_lemak_g'], errors='coerce').fillna(0)
-        
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
-        total_karbohidrat = df_rekomendasi['total_karbohidrat_g'].sum()
-        total_protein = df_rekomendasi['total_protein_g'].sum()
-        total_lemak = df_rekomendasi['total_lemak_g'].sum()
-        
-        total_row = pd.DataFrame([['-', 'Total', total_kalori, total_karbohidrat, total_protein, total_lemak]], 
-                                 columns=['waktu_makan', 'menu', 'total_kalori_kkal', 'total_karbohidrat_g', 'total_protein_g', 'total_lemak_g'])
-        
-        df_rekomendasi = pd.concat([df_rekomendasi, total_row], ignore_index=True)
+        df_rekomendasi.loc['Total'] = ['-','-', total_kalori]
         st.dataframe(df_rekomendasi)
-
+    else:
+        st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
     st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna(0)
+    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
     if not df_porsi.empty:
         columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
         df_porsi = df_porsi[columns_order]
@@ -158,6 +148,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         st.dataframe(df_porsi)
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
+
 # Main function to run the app
 def main():
     st.title("Rekomendasi Pola Diet")
