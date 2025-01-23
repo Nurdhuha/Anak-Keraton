@@ -74,9 +74,10 @@ def get_alternative_menu(original_menu, pantangan, all_menus):
     """
     Find alternative menu with similar nutritional value but without restricted ingredients
     """
-    target_calories = original_menu.get('total_kalori_kkal', 0)
-    target_carbs = original_menu.get('total_karbohidrat_g', 0)
-    target_protein = original_menu.get('total_protein_g', 0)
+    # Get nutritional values with default 0 for None values
+    target_calories = float(original_menu.get('total_kalori_kkal') or 0)
+    target_carbs = float(original_menu.get('total_karbohidrat_g') or 0)
+    target_protein = float(original_menu.get('total_protein_g') or 0)
     
     suitable_menus = []
     
@@ -85,15 +86,25 @@ def get_alternative_menu(original_menu, pantangan, all_menus):
         if has_restricted_ingredients(menu, pantangan):
             continue
             
-        # Calculate nutritional similarity
-        cal_diff = abs(menu.get('total_kalori_kkal', 0) - target_calories)
-        carb_diff = abs(menu.get('total_karbohidrat_g', 0) - target_carbs)
-        protein_diff = abs(menu.get('total_protein_g', 0) - target_protein)
+        # Calculate nutritional similarity with safe conversion
+        cal_diff = abs(float(menu.get('total_kalori_kkal') or 0) - target_calories)
+        carb_diff = abs(float(menu.get('total_karbohidrat_g') or 0) - target_carbs)
+        protein_diff = abs(float(menu.get('total_protein_g') or 0) - target_protein)
         
         # Add to suitable menus if within acceptable range (e.g., ±20%)
-        if (cal_diff <= target_calories * 0.2 and
-            carb_diff <= target_carbs * 0.2 and
-            protein_diff <= target_protein * 0.2):
+        # Avoid division by zero
+        if target_calories > 0:
+            cal_threshold = target_calories * 0.2
+        else:
+            cal_threshold = 50  # default threshold
+
+        if target_carbs > 0:
+            carb_threshold = target_carbs * 0.2
+        else:
+            carb_threshold = 10  # default threshold
+
+        if (cal_diff <= cal_threshold and
+            carb_diff <= carb_threshold):
             suitable_menus.append((menu, cal_diff + carb_diff + protein_diff))
     
     # Sort by similarity and return the most similar menu
@@ -244,19 +255,19 @@ def display_recommendations(recommendations):
     df_rekomendasi = pd.DataFrame([{
         'Waktu Makan': menu['waktu_makan'],
         'Menu': menu['menu'],
-        'Kalori (kkal)': menu.get('total_kalori_kkal', 0),
-        'Karbohidrat (g)': menu.get('total_karbohidrat_g', 0),
-        'Protein (g)': menu.get('total_protein_g', 0),
-        'Lemak (g)': menu.get('total_lemak_g', 0)
+        'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
+        'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
+        'Protein (g)': float(menu.get('total_protein_g') or 0),
+        'Lemak (g)': float(menu.get('total_lemak_g') or 0)
     } for menu in recommendations])
     
     st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
     
-    # Display total nutritional value
-    total_calories = sum(menu.get('total_kalori_kkal', 0) for menu in recommendations)
-    total_carbs = sum(menu.get('total_karbohidrat_g', 0) for menu in recommendations)
-    total_protein = sum(menu.get('total_protein_g', 0) for menu in recommendations)
-    total_fat = sum(menu.get('total_lemak_g', 0) for menu in recommendations)
+    # Display total nutritional value with safe conversion
+    total_calories = sum(float(menu.get('total_kalori_kkal') or 0) for menu in recommendations)
+    total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommendations)
+    total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommendations)
+    total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommendations)
     
     st.write("Total Nilai Gizi:")
     st.write(f"Total Kalori: {total_calories:.1f} kkal")
