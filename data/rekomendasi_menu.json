@@ -657,7 +657,7 @@
       { "nama": "sayuran", "bahan": "labu air", "berat_g": 100 },
       { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
     ],
-    "total_kalori_kkal": 550
+    "total_kalori_kkal": 550,
     "total_karbohidrat_g": 87,
     "total_protein_g": 20,
     "total_lemak_g": 17
