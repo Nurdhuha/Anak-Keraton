@@ -233,6 +233,19 @@ def get_menu_suggestions(menu, pantangan, preferensi_diet):
     
     return suggestions
 
+def display_menu_by_diet_group(menu_data, diet_group):
+    st.subheader(f"Rekomendasi Menu untuk Golongan Diet {diet_group}")
+    df_menu = pd.DataFrame([{
+        'Waktu Makan': menu['waktu_makan'],
+        'Menu': menu['menu'],
+        'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
+        'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
+        'Protein (g)': float(menu.get('total_protein_g') or 0),
+        'Lemak (g)': float(menu.get('total_lemak_g') or 0)
+    } for menu in menu_data if menu['golongan'] == diet_group])
+    
+    st.dataframe(df_menu.set_index('Waktu Makan'))
+
 def generate_menu_recommendations(user_data):
     menu_data = load_menu_data()
     classifier, imputer = train_menu_classifier()
@@ -253,6 +266,9 @@ def generate_menu_recommendations(user_data):
     bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
     kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
     diet_group = get_diet_group(kebutuhan_kalori)
+    
+    # Display menu by diet group
+    display_menu_by_diet_group(menu_data, diet_group)
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
     preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
