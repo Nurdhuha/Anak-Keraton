@@ -44,7 +44,7 @@ def get_user_data(name):
         st.error(f"Terjadi kesalahan saat mengambil data: {str(e)}")
         return None
 
-def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data)
+def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data):
     
     # Tampilkan rekomendasi menu menggunakan Naive Bayes
     recommendations = generate_menu_recommendations(user_data)
