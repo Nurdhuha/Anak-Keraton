@@ -373,26 +373,18 @@ def display_recommendations(recommendations):
     st.subheader("Rekomendasi Menu Berdasarkan Pantangan dan Prefernsi Diet")
     
     if recommended_menus:
-        # Remove duplicate menus while preserving order
-        seen_menus = set()
-        unique_menus = []
-        for menu in recommended_menus:
-            if menu['menu'] not in seen_menus:
-                seen_menus.add(menu['menu'])
-                unique_menus.append(menu)
-        
         df_rekomendasi = pd.DataFrame([{
+            'Waktu Makan': menu['waktu_makan'],
             'Menu': menu['menu'],
             'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
             'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
             'Protein (g)': float(menu.get('total_protein_g') or 0),
             'Lemak (g)': float(menu.get('total_lemak_g') or 0)
-        } for menu in unique_menus])
-
-        # Recalculate total calories for unique menus
-        total_calories = sum(float(menu.get('total_kalori_kkal') or 0) for menu in unique_menus)
+        } for menu in recommended_menus])
         
-        # Show calorie status
+        st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
+        
+        # Show calorie status with more detailed information
         st.write("### Status Kalori")
         st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
         
@@ -415,24 +407,19 @@ def display_recommendations(recommendations):
             Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target maksimal)
             """)
         
-        # Display menu suggestions for unique menus
-        unique_suggestions = {}
-        for suggestion in menu_suggestions:
-            if suggestion['menu'] not in unique_suggestions:
-                unique_suggestions[suggestion['menu']] = suggestion['suggestions']
-        
-        if unique_suggestions:
+        # Display menu suggestions
+        if menu_suggestions:
             st.subheader("Saran Modifikasi Menu")
-            for menu, suggestions in unique_suggestions.items():
-                st.write(f"Menu: {menu}")
-                for saran in suggestions:
+            for suggestion in menu_suggestions:
+                st.write(f"Menu: {suggestion['menu']}")
+                for saran in suggestion['suggestions']:
                     st.write(f"- {saran}")
                     
-        # Display total nutritional value for unique menus
+        # Display total nutritional value
         st.subheader("Total Nilai Gizi:")
-        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in unique_menus)
-        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in unique_menus)
-        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in unique_menus)
+        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
+        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
+        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
         
         st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
         st.write(f"Total Protein: {total_protein:.1f} g")
