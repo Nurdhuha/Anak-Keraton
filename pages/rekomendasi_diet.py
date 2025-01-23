@@ -6,6 +6,7 @@ from pymongo import MongoClient
 import certifi
 
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
+
 # Load CSV data
 def load_csv_data(file_path):
     return pd.read_csv(file_path, skiprows=1)
@@ -145,27 +146,41 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
 
         # Add a single button to view ingredients
         if st.button("Lihat Detail Bahan"):
-            st.subheader("Detail Bahan")
-            komponen_list = []
-            for item in filtered_menu:
-                for komponen in item['komponen']:
-                    komponen['menu'] = item['menu']
-                    komponen_list.append(komponen)
-            df_komponen = pd.DataFrame(komponen_list)
-            st.dataframe(df_komponen)
+            st.subheader("Detail Bahan per Menu")
+            
+            # Create organized table
+            all_components = []
+            for menu in filtered_menu:
+                menu_name = menu['menu']
+                waktu = menu['waktu_makan']
+                for comp in menu['komponen']:
+                    all_components.append({
+                        'Waktu Makan': waktu,
+                        'Menu': menu_name,
+                        'Kategori Bahan': comp['nama'],
+                        'Bahan': comp['bahan'],
+                        'Berat (g)': comp['berat_g']
+                    })
+            
+            if all_components:
+                df_komponen = pd.DataFrame(all_components)
+                # Sort by Waktu Makan and Menu
+                df_komponen = df_komponen.sort_values(['Waktu Makan', 'Menu'])
+                st.dataframe(
+                    df_komponen,
+                    column_config={
+                        'Waktu Makan': st.column_config.TextColumn('Waktu Makan', width='medium'),
+                        'Menu': st.column_config.TextColumn('Menu', width='medium'),
+                        'Kategori Bahan': st.column_config.TextColumn('Kategori Bahan', width='medium'),
+                        'Bahan': st.column_config.TextColumn('Bahan', width='medium'),
+                        'Berat (g)': st.column_config.NumberColumn('Berat (g)', format='%d g')
+                    },
+                    hide_index=True
+                )
+            else:
+                st.info("Tidak ada detail bahan untuk ditampilkan")
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
-
-    st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
-    if not df_porsi.empty:
-        columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
-        df_porsi = df_porsi[columns_order]
-        if 'Golongan' in df_porsi.columns:
-            df_porsi = df_porsi.drop(columns=["Golongan"])
-        st.dataframe(df_porsi)
-    else:
-        st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet."))
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
