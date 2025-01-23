@@ -4,7 +4,7 @@ import json
 from sklearn.naive_bayes import GaussianNB
 from pymongo import MongoClient
 import certifi
-from menuclassifier import generate_menu_recommendations, display_recommendations
+from menuclassifier import generate_menu_recommendations
 from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
 
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
