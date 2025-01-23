@@ -404,9 +404,9 @@ def display_recommendations(recommendations):
         
         
         # Display menu suggestions
-        if menu_suggestions:
-            st.subheader("Saran Modifikasi Menu")
-            for suggestion in menu_suggestions:
+    if menu_suggestions:
+        st.subheader("Saran Modifikasi Menu")
+        for suggestion in menu_suggestions:
                 st.write(f"Menu: {suggestion['menu']}")
                 for saran in suggestion['suggestions']:
                     st.write(f"- {saran}")
