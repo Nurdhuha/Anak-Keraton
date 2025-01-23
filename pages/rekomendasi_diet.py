@@ -130,11 +130,25 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     
     if filtered_menu:
         df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal']].fillna("-")
+        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal', 'total_karbohidrat_g', 'total_protein_g', 'total_lemak_g']].fillna("-")
         df_rekomendasi['total_kalori_kkal'] = pd.to_numeric(df_rekomendasi['total_kalori_kkal'], errors='coerce').fillna(0)
+        df_rekomendasi['total_karbohidrat_g'] = pd.to_numeric(df_rekomendasi['total_karbohidrat_g'], errors='coerce').fillna(0)
+        df_rekomendasi['total_protein_g'] = pd.to_numeric(df_rekomendasi['total_protein_g'], errors='coerce').fillna(0)
+        df_rekomendasi['total_lemak_g'] = pd.to_numeric(df_rekomendasi['total_lemak_g'], errors='coerce').fillna(0)
+        
         total_kalori = df_rekomendasi['total_kalori_kkal'].sum()
-        df_rekomendasi.loc['Total'] = ['-','-', total_kalori]
+        total_karbohidrat = df_rekomendasi['total_karbohidrat_g'].sum()
+        total_protein = df_rekomendasi['total_protein_g'].sum()
+        total_lemak = df_rekomendasi['total_lemak_g'].sum()
+        
+        df_rekomendasi.loc['Total'] = ['-', '-', total_kalori, total_karbohidrat, total_protein, total_lemak]
         st.dataframe(df_rekomendasi)
+
+        # Add button to view ingredients
+        for index, row in df_rekomendasi.iterrows():
+            if index != 'Total':
+                if st.button(f"Lihat Detail Bahan - {row['menu']}"):
+                    st.write(rekomendasi_menu[index]['komponen'])
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
