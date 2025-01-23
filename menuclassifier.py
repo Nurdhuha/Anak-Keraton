@@ -269,7 +269,6 @@ def generate_menu_recommendations(user_data):
             continue
     
     return recommended_menus
-
 def display_recommendations(recommendations):
     if not recommendations:
         st.warning("Tidak ada rekomendasi menu yang sesuai")
