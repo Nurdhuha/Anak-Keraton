@@ -379,6 +379,10 @@ def display_recommendations(recommendations):
         st.warning("Tidak ada rekomendasi menu yang sesuai")
         return
         
+    if not isinstance(recommendations[0], dict) or "pantangan" not in recommendations[0] or "preferensi_diet" not in recommendations[0]:
+        st.error("Invalid recommendations format")
+        return
+    
     recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
     st.subheader("Menu Tambahan Berdasarkan Pantangan dan Preferensi Diet")
@@ -440,3 +444,4 @@ def display_recommendations(recommendations):
                 st.write("Saran: Pilih makanan bebas gluten seperti pepaya, buah melon, puding melon, dan singkong goreng isi unti.")
             elif diet == 'Normal':
                 st.write("Saran: Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
+
