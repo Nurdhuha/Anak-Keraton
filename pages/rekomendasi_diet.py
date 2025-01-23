@@ -117,6 +117,7 @@ def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet
     
     return model
 
+# Display diet recommendations
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -143,29 +144,13 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         df_rekomendasi.loc['Total'] = ['-', '-', total_kalori, total_karbohidrat, total_protein, total_lemak]
         st.dataframe(df_rekomendasi)
 
-        # Add a single button to view ingredients
-        if st.button("Lihat Detail Bahan"):
-            st.subheader("Detail Bahan")
-            komponen_list = []
-            for item in filtered_menu:
-                for komponen in item['komponen']:
-                    komponen['menu'] = item['menu']
-                    komponen_list.append(komponen)
-            df_komponen = pd.DataFrame(komponen_list)
-            st.dataframe(df_komponen)
+        # Add button to view ingredients
+        for index, row in df_rekomendasi.iterrows():
+            if index != 'Total':
+                if st.button(f"Lihat Detail Bahan - {row['menu']}"):
+                    st.write(rekomendasi_menu[index]['komponen'])
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
-
-    st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
-    if not df_porsi.empty:
-        columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
-        df_porsi = df_porsi[columns_order]
-        if 'Golongan' in df_porsi.columns:
-            df_porsi = df_porsi.drop(columns=["Golongan"])
-        st.dataframe(df_porsi)
-    else:
-        st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet."))
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
