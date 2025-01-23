@@ -197,16 +197,16 @@ def filter_menu_by_diet_preference(menu, preferensi_diet):
 def calculate_daily_calories_range(diet_group):
     """Calculate calorie range for diet group"""
     ranges = {
-        "I": (0, 1200),
+        "I": (1000, 1200),  # Modified to match diet group ranges
         "II": (1200, 1400),
-        "III": (1401, 1600),
-        "IV": (1601, 1800),
-        "V": (1801, 2000),
-        "VI": (2001, 2200),
-        "VII": (2201, 2400),
-        "VIII": (2401, 3000)  # Upper limit set to reasonable maximum
+        "III": (1400, 1600),
+        "IV": (1600, 1800),
+        "V": (1800, 2000),
+        "VI": (2000, 2200),
+        "VII": (2200, 2400),
+        "VIII": (2400, 2600)
     }
-    return ranges.get(diet_group, (0, 1200))
+    return ranges.get(diet_group, (1000, 1200))
 
 def get_menu_suggestions(menu, pantangan, preferensi_diet):
     """Generate suggestions for restricted ingredients"""
@@ -238,10 +238,62 @@ def generate_menu_recommendations(user_data):
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
     preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
-    user_golongan = user_data.get("golongan", "I")
     
-    # Get calorie range for user's diet group
-    min_calories, max_calories = calculate_daily_calories_range(user_golongan)
+    # Get diet group from kebutuhan kalori
+    berat_badan = user_data["data_antropometri"]["berat_badan"]
+    tinggi_badan = user_data["data_antropometri"]["tinggi_badan"]
+    usia = user_data["demografi"]["usia"]
+    jenis_kelamin = user_data["demografi"]["jenis_kelamin"]
+    tingkat_aktivitas = user_data["data_aktivitas_kesehatan"]["tingkat_aktivitas"]
+    
+    # Calculate BMR
+    if jenis_kelamin == "Laki-laki":
+        bmr = 30 * berat_badan
+    else:
+        bmr = 25 * berat_badan
+        
+    # Calculate activity factor
+    activity_factors = {
+        "Sangat Rendah": 0.1,
+        "Rendah": 0.2,
+        "Sedang": 0.3,
+        "Tinggi": 0.4,
+        "Sangat Tinggi": 0.5
+    }
+    activity_factor = activity_factors.get(tingkat_aktivitas, 0)
+    
+    # Calculate age factor
+    age_factor = 0
+    if 40 <= usia < 60:
+        age_factor = 0.05
+    elif 60 <= usia < 70:
+        age_factor = 0.1
+    elif usia >= 70:
+        age_factor = 0.15
+        
+    # Calculate energy needs
+    kebutuhan_kalori = (bmr * (1 + activity_factor)) - (bmr * age_factor)
+    
+    # Determine diet group
+    if kebutuhan_kalori < 1200:
+        diet_group = "I"
+    elif kebutuhan_kalori <= 1400:
+        diet_group = "II"
+    elif kebutuhan_kalori <= 1600:
+        diet_group = "III"
+    elif kebutuhan_kalori <= 1800:
+        diet_group = "IV"
+    elif kebutuhan_kalori <= 2000:
+        diet_group = "V"
+    elif kebutuhan_kalori <= 2200:
+        diet_group = "VI"
+    elif kebutuhan_kalori <= 2400:
+        diet_group = "VII"
+    else:
+        diet_group = "VIII"
+    
+    # Get calorie range for calculated diet group
+    min_calories, max_calories = calculate_daily_calories_range(diet_group)
     
     recommended_menus = []
     menu_suggestions = []
@@ -327,16 +379,29 @@ def display_recommendations(recommendations):
         
         st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
         
-        # Show calorie status
+        # Show calorie status with more detailed information
+        st.write("### Status Kalori")
         st.write(f"Target Kalori Harian: {min_calories}-{max_calories} kkal")
         st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
         
+        percentage = (total_calories / max_calories) * 100
+        
         if total_calories < min_calories:
-            st.warning(f"Total kalori masih kurang {min_calories - total_calories:.1f} kkal dari kebutuhan minimal")
+            deficit = min_calories - total_calories
+            st.warning(f"""
+            Total kalori masih kurang {deficit:.1f} kkal dari kebutuhan minimal
+            Saran: Tambahkan makanan selingan atau perbesar porsi makanan utama
+            """)
         elif total_calories > max_calories:
-            st.warning(f"Total kalori melebihi {total_calories - max_calories:.1f} kkal dari batas maksimal")
+            excess = total_calories - max_calories
+            st.warning(f"""
+            Total kalori melebihi {excess:.1f} kkal dari batas maksimal
+            Saran: Kurangi porsi makanan atau ganti dengan menu yang lebih rendah kalori
+            """)
         else:
-            st.success("Total kalori sudah sesuai dengan kebutuhan")
+            st.success(f"""
+            Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target maksimal)
+            """)
         
         # Display menu suggestions
         if menu_suggestions:
