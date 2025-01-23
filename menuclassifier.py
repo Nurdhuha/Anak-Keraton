@@ -200,6 +200,7 @@ def generate_menu_recommendations(user_data):
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
     preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
+    user_golongan = user_data.get("golongan", "I")  # Default to golongan I if not specified
     
     recommended_menus = []
     
@@ -213,27 +214,47 @@ def generate_menu_recommendations(user_data):
     
     # Generate recommendations for each meal time
     for waktu, menus in menus_by_time.items():
-        suitable_menus = [
-            menu for menu in menus 
-            if not has_restricted_ingredients(menu, pantangan) and 
-            filter_menu_by_diet_preference(menu, preferensi_diet)
-        ]
-        
-        if suitable_menus:
-            # Use classifier to predict the best menu
-            features = np.array([create_menu_features([menu])[0][0] for menu in suitable_menus])
-            features_imputed = imputer.transform(features)  # Apply same imputation
-            predictions = classifier.predict_proba(features_imputed)
+        try:
+            suitable_menus = [
+                menu for menu in menus 
+                if not has_restricted_ingredients(menu, pantangan) and 
+                filter_menu_by_diet_preference(menu, preferensi_diet)
+            ]
             
-            # Get the menu with highest probability for user's diet group
-            best_menu = suitable_menus[np.argmax(predictions)]
-            recommended_menus.append(best_menu)
-        else:
-            # Find alternative menu
+            if suitable_menus:
+                # Use classifier to predict the best menu
+                features = np.array([create_menu_features([menu])[0][0] for menu in suitable_menus])
+                features_imputed = imputer.transform(features)
+                
+                if len(features_imputed) > 0:
+                    predictions = classifier.predict_proba(features_imputed)
+                    
+                    # Find menu from same golongan or closest match
+                    matching_menus = [
+                        menu for i, menu in enumerate(suitable_menus)
+                        if menu['golongan'] == user_golongan
+                    ]
+                    
+                    if matching_menus:
+                        # If there are menus from the same golongan, choose one randomly
+                        best_menu = np.random.choice(matching_menus)
+                    else:
+                        # Otherwise use the classifier prediction
+                        best_idx = np.argmax(predictions.sum(axis=1))
+                        if best_idx < len(suitable_menus):
+                            best_menu = suitable_menus[best_idx]
+                        else:
+                            best_menu = suitable_menus[0]  # Fallback to first menu
+                            
+                    recommended_menus.append(best_menu)
+                    continue
+            
+            # If no suitable menus found or prediction failed, try alternative
             alternative_menus = [
                 menu for menu in menu_data 
                 if not has_restricted_ingredients(menu, pantangan) and 
-                filter_menu_by_diet_preference(menu, preferensi_diet)
+                filter_menu_by_diet_preference(menu, preferensi_diet) and
+                menu['golongan'] == user_golongan
             ]
             
             if alternative_menus:
@@ -242,6 +263,10 @@ def generate_menu_recommendations(user_data):
                     alt_menu = get_alternative_menu(original_menu, pantangan, alternative_menus)
                     if alt_menu:
                         recommended_menus.append(alt_menu)
+                        
+        except Exception as e:
+            st.error(f"Error generating recommendation for {waktu}: {str(e)}")
+            continue
     
     return recommended_menus
 
