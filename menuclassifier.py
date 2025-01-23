@@ -402,27 +402,6 @@ def display_recommendations(recommendations):
         
         st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
         
-        st.write("### Status Kalori")
-        st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
-        
-        percentage = (total_calories / max_calories) * 100
-        
-        if total_calories < min_calories:
-            deficit = min_calories - total_calories
-            st.warning(f"""
-            Total kalori masih kurang {deficit:.1f} kkal dari kebutuhan minimal
-            Saran: Tambahkan makanan selingan atau perbesar porsi makanan utama
-            """)
-        elif total_calories > max_calories:
-            excess = total_calories - max_calories
-            st.warning(f"""
-            Total kalori melebihi {excess:.1f} kkal dari batas maksimal
-            Saran: Kurangi porsi makanan atau ganti dengan menu yang lebih rendah kalori
-            """)
-        else:
-            st.success(f"""
-            Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target maksimal)
-            """)
         
         # Display menu suggestions
         if menu_suggestions:
