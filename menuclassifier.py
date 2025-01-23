@@ -439,14 +439,5 @@ def display_recommendations(recommendations):
                                 elif diet == 'Normal':
                                     st.write("Saran: Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
                     
-        # Display total nutritional value
-        st.subheader("Total Nilai Gizi:")
-        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
-        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
-        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
-        
-        st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
-        st.write(f"Total Protein: {total_protein:.1f} g")
-        st.write(f"Total Lemak: {total_fat:.1f} g")
     else:
         st.error("Tidak dapat menemukan menu yang sesuai dengan kriteria")
