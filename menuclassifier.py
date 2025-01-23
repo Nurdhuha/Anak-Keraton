@@ -261,6 +261,9 @@ def generate_menu_recommendations(user_data):
     menu_suggestions = []
     total_calories = 0
     
+    # Display menu by diet group
+    display_menu_by_diet_group(menu_data, diet_group)
+    
     # Group menus by waktu_makan
     menus_by_time = {
         "pagi": [],
@@ -325,7 +328,7 @@ def generate_menu_recommendations(user_data):
             continue
     
     # If total calories still don't meet requirement, add supplementary items
-    if total_calories < kebutuhan_kalori:
+    while total_calories < kebutuhan_kalori:
         deficit = kebutuhan_kalori - total_calories
         supplementary_menus = [
             menu for menu in menu_data 
@@ -342,69 +345,7 @@ def generate_menu_recommendations(user_data):
                     total_calories += float(menu.get('total_kalori_kkal', 0) or 0)
                 else:
                     break
+        else:
+            break
     
     return recommended_menus, menu_suggestions, total_calories, (kebutuhan_kalori * 0.9, kebutuhan_kalori * 1.1)
-
-def display_recommendations(recommendations):
-    if not recommendations:
-        st.warning("Tidak ada rekomendasi menu yang sesuai")
-        return
-        
-    recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
-    
-    st.subheader("Rekomendasi Menu")
-    
-    if recommended_menus:
-        df_rekomendasi = pd.DataFrame([{
-            'Waktu Makan': menu['waktu_makan'],
-            'Menu': menu['menu'],
-            'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
-            'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
-            'Protein (g)': float(menu.get('total_protein_g') or 0),
-            'Lemak (g)': float(menu.get('total_lemak_g') or 0)
-        } for menu in recommended_menus])
-        
-        st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
-        
-        # Show calorie status with more detailed information
-        st.write("### Status Kalori")
-        st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
-        
-        percentage = (total_calories / max_calories) * 100
-        
-        if total_calories < min_calories:
-            deficit = min_calories - total_calories
-            st.warning(f"""
-            Total kalori masih kurang {deficit:.1f} kkal dari kebutuhan minimal
-            Saran: Tambahkan makanan selingan atau perbesar porsi makanan utama
-            """)
-        elif total_calories > max_calories:
-            excess = total_calories - max_calories
-            st.warning(f"""
-            Total kalori melebihi {excess:.1f} kkal dari batas maksimal
-            Saran: Kurangi porsi makanan atau ganti dengan menu yang lebih rendah kalori
-            """)
-        else:
-            st.success(f"""
-            Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target maksimal)
-            """)
-        
-        # Display menu suggestions
-        if menu_suggestions:
-            st.subheader("Saran Modifikasi Menu")
-            for suggestion in menu_suggestions:
-                st.write(f"Menu: {suggestion['menu']}")
-                for saran in suggestion['suggestions']:
-                    st.write(f"- {saran}")
-                    
-        # Display total nutritional value
-        st.subheader("Total Nilai Gizi:")
-        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
-        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
-        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
-        
-        st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
-        st.write(f"Total Protein: {total_protein:.1f} g")
-        st.write(f"Total Lemak: {total_fat:.1f} g")
-    else:
-        st.error("Tidak dapat menemukan menu yang sesuai dengan kriteria")
