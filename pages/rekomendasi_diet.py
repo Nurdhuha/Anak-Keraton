@@ -4,6 +4,7 @@ import json
 from sklearn.naive_bayes import GaussianNB
 from pymongo import MongoClient
 import certifi
+from menuclassifier import generate_menu_recommendations, display_recommendations
 
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
 
@@ -85,40 +86,13 @@ def get_diet_group(energy):
     else:
         return "VIII"
 
-def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
-    rekomendasi_menu = load_rekomendasi_menu()
-    st.subheader("Rekomendasi Menu")
+def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data):
+    st.subheader("Rekomendasi Menu Berdasarkan Preferensi Diet")
     
-    # Filter menu berdasarkan pantangan makanan, preferensi diet, dan kondisi kesehatan
-    filtered_menu = [item for item in rekomendasi_menu if item['golongan'] == diet_group and 
-                     item['menu'] not in pantangan_makanan and 
-                     ('diet' not in item or item['diet'] in preferensi_diet) and 
-                     ('kondisi_kesehatan' not in item or item['kondisi_kesehatan'] in kondisi_kesehatan)]
+    # Tampilkan rekomendasi menu menggunakan Naive Bayes
+    recommendations = generate_menu_recommendations(user_data)
+    display_recommendations(recommendations)
     
-    if filtered_menu:
-        df_rekomendasi = pd.DataFrame(filtered_menu)
-        df_rekomendasi = df_rekomendasi[['waktu_makan', 'menu', 'total_kalori_kkal', 'total_karbohidrat_g', 'total_protein_g', 'total_lemak_g']].fillna("-")
-        
-        # Create numeric columns for calculations
-        numeric_columns = ['total_kalori_kkal', 'total_karbohidrat_g', 'total_protein_g', 'total_lemak_g']
-        for col in numeric_columns:
-            df_rekomendasi[col] = pd.to_numeric(df_rekomendasi[col], errors='coerce').fillna(0)
-        
-        # Calculate totals
-        totals = df_rekomendasi[numeric_columns].sum()
-        
-        # Display main dataframe
-        st.dataframe(df_rekomendasi)
-        
-        # Display totals separately
-        st.write("Total Nilai Gizi:")
-        st.write(f"Total Kalori: {totals['total_kalori_kkal']:.1f} kkal")
-        st.write(f"Total Karbohidrat: {totals['total_karbohidrat_g']:.1f} g")
-        st.write(f"Total Protein: {totals['total_protein_g']:.1f} g")
-        st.write(f"Total Lemak: {totals['total_lemak_g']:.1f} g")
-    else:
-        st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
-
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group])
     if not df_porsi.empty:
@@ -177,10 +151,9 @@ def main():
         st.markdown(f"### Kelompok Diet Anda: {diet_group}")
 
         porsi_diet = load_porsi_diet()
-        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan)
+        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data)
     else:
         st.error("Data pengguna tidak ditemukan.")
 
 if __name__ == "__main__":
     main()
-
