@@ -658,23 +658,10 @@
       { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
     ],
     "total_kalori_kkal": 550
+    "total_karbohidrat_g": 87,
+    "total_protein_g": 20,
+    "total_lemak_g": 17
   },
-  {
-  "golongan": "VIII",
-  "waktu_makan": "pagi",
-  "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
-  "komponen": [
-    { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-    { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-    { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-    { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
-    { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-  ],
-  "total_kalori_kkal": 550,
-  "total_karbohidrat_g": 87,
-  "total_protein_g": 20,
-  "total_lemak_g": 17
-},
 {
   "golongan": "VIII",
   "waktu_makan": "selingan I",
