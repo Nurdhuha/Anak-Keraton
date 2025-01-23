@@ -84,7 +84,6 @@ def get_diet_group(energy):
         return "VII"
     else:
         return "VIII"
-
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -110,17 +109,6 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         
         df_rekomendasi.loc['Total'] = ['-', '-', total_kalori, total_karbohidrat, total_protein, total_lemak]
         st.dataframe(df_rekomendasi)
-
-        # Add a multiselect to view ingredients
-        selected_menus = st.multiselect("Pilih menu untuk melihat detail bahan:", df_rekomendasi['menu'].tolist())
-        if selected_menus:
-            st.subheader("Detail Bahan")
-            for menu in selected_menus:
-                st.markdown(f"**{menu}**")
-                for item in filtered_menu:
-                    if item['menu'] == menu:
-                        for component in item['komponen']:
-                            st.markdown(f"- {component['nama']}: {component['bahan']} ({component.get('berat_g', 'N/A')} g)")
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
@@ -134,7 +122,6 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         st.dataframe(df_porsi)
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
-
 # Main function to run the app
 def main():
     st.title("Rekomendasi Pola Diet")
