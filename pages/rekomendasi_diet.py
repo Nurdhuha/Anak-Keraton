@@ -5,7 +5,6 @@ from sklearn.naive_bayes import GaussianNB
 from pymongo import MongoClient
 import certifi
 
-st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
 # Load CSV data
 def load_csv_data(file_path):
     return pd.read_csv(file_path, skiprows=1)
