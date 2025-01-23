@@ -6,14 +6,6 @@ from pymongo import MongoClient
 import certifi
 
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
-# Load CSV data
-def load_csv_data(file_path):
-    return pd.read_csv(file_path, skiprows=1)
-
-# Load JSON data
-def load_json_data(file_path):
-    with open(file_path) as json_file:
-        return json.load(json_file)
 
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
@@ -93,30 +85,6 @@ def get_diet_group(energy):
     else:
         return "VIII"
 
-# Train Naive Bayes model
-def train_naive_bayes(data, food_preferences, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
-    # Tambahkan fitur baru ke dalam data pelatihan
-    X = data[['berat', 'kalori', 'protein', 'karbohidrat', 'pantangan_makanan', 'preferensi_diet', 'kondisi_kesehatan']].values
-    y = data['kategori'].values
-    model = GaussianNB()
-    model.fit(X, y)
-    
-    # Integrate food preferences
-    if food_preferences:
-        for preference in food_preferences:
-            preference_data = [
-                preference['berat'],
-                preference['kalori'],
-                preference['protein'],
-                preference['karbohidrat'],
-                pantangan_makanan,
-                preferensi_diet,
-                kondisi_kesehatan
-            ]
-            model.partial_fit([preference_data], [preference['kategori']])
-    
-    return model
-
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -143,29 +111,18 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         df_rekomendasi.loc['Total'] = ['-', '-', total_kalori, total_karbohidrat, total_protein, total_lemak]
         st.dataframe(df_rekomendasi)
 
-        # Add a single button to view ingredients
-        if st.button("Lihat Detail Bahan"):
+        # Add a multiselect to view ingredients
+        selected_menus = st.multiselect("Pilih menu untuk melihat detail bahan:", df_rekomendasi['menu'].tolist())
+        if selected_menus:
             st.subheader("Detail Bahan")
-            komponen_list = []
-            for item in filtered_menu:
-                for komponen in item['komponen']:
-                    komponen['menu'] = item['menu']
-                    komponen_list.append(komponen)
-            df_komponen = pd.DataFrame(komponen_list)
-            st.dataframe(df_komponen)
+            for menu in selected_menus:
+                st.markdown(f"**{menu}**")
+                for item in filtered_menu:
+                    if item['menu'] == menu:
+                        for component in item['komponen']:
+                            st.markdown(f"- {component['nama']}: {component['bahan']} ({component.get('berat_g', 'N/A')} g)")
     else:
         st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
-
-    st.subheader("Panduan Porsi Diet")
-    df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
-    if not df_porsi.empty:
-        columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
-        df_porsi = df_porsi[columns_order]
-        if 'Golongan' in df_porsi.columns:
-            df_porsi = df_porsi.drop(columns=["Golongan"])
-        st.dataframe(df_porsi)
-    else:
-        st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet."))
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna("-")
