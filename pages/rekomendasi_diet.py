@@ -5,16 +5,6 @@ from sklearn.naive_bayes import GaussianNB
 from pymongo import MongoClient
 import certifi
 
-# Load CSV data
-def load_csv_data(file_path):
-    return pd.read_csv(file_path, skiprows=1)
-import streamlit as st
-import pandas as pd
-import json
-from sklearn.naive_bayes import GaussianNB
-from pymongo import MongoClient
-import certifi
-
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
 
 # Load JSON data for diet recommendations
@@ -135,10 +125,13 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
         df_porsi = df_porsi[columns_order]
         
-        # Convert numeric columns to string to handle '-' values
+        # Fill NA/null values with "-"
+        df_porsi = df_porsi.fillna("-")
+        
+        # Convert numeric columns to string and replace empty strings with "-"
         for col in df_porsi.columns:
             if col != 'Waktu Makan':
-                df_porsi[col] = df_porsi[col].astype(str)
+                df_porsi[col] = df_porsi[col].astype(str).replace({"nan": "-", "": "-"})
         
         if 'Golongan' in df_porsi.columns:
             df_porsi = df_porsi.drop(columns=["Golongan"])
