@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import LabelEncoder
+from sklearn.impute import SimpleImputer
 import json
 from pymongo import MongoClient
 import certifi
@@ -19,6 +20,18 @@ def get_database():
 def load_menu_data():
     with open('data/rekomendasi_menu.json') as f:
         return json.load(f)
+
+def train_menu_classifier():
+    menu_data = load_menu_data()
+    X, y = create_menu_features(menu_data)
+    
+    # Impute missing values
+    imputer = SimpleImputer(strategy='mean')
+    X_imputed = imputer.fit_transform(X)
+    
+    classifier = GaussianNB()
+    classifier.fit(X_imputed, y)
+    return classifier
 
 def create_menu_features(menu_data):
     features = []
