@@ -1,13 +1,13 @@
- st.write(f"Pantangan makananmu: {', '.join(pantangan)}")
-        for p in pantangan:
-            if p == 'Kacang-kacangan':
-                st.write("Saran: Hindari makanan yang mengandung kacang-kacangan seperti tahu, tempe, kacang merah, dan kacang panjang.")
-            elif p == 'Seafood':
-                st.write("Saran: Hindari makanan laut seperti ikan, udang, cumi, dan kepiting.")
-            elif p == 'Daging Merah':
-                st.write("Saran: Hindari daging merah seperti daging sapi dan baso.")
-            elif p == 'Dairy':
-                st.write("Saran: Hindari produk susu seperti susu, keju, dan yogurt.")
+st.write(f"Pantangan makananmu: {', '.join(pantangan)}")
+    for p in pantangan:
+        if p == 'Kacang-kacangan':
+            st.write("Saran: Hindari makanan yang mengandung kacang-kacangan seperti tahu, tempe, kacang merah, dan kacang panjang.")
+        elif p == 'Seafood':
+            st.write("Saran: Hindari makanan laut seperti ikan, udang, cumi, dan kepiting.")
+        elif p == 'Daging Merah':
+            st.write("Saran: Hindari daging merah seperti daging sapi dan baso.")
+        elif p == 'Dairy':
+            st.write("Saran: Hindari produk susu seperti susu, keju, dan yogurt.")
     else:
         st.write("Nikmati makanan kesukaanmu")
     
