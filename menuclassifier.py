@@ -368,7 +368,6 @@ def display_recommendations(recommendations):
         
         # Show calorie status with more detailed information
         st.write("### Status Kalori")
-        st.write(f"Rentang Kalori Diet Group: {min_calories:.0f}-{max_calories:.0f} kkal")
         st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
         
         percentage = (total_calories / max_calories) * 100
