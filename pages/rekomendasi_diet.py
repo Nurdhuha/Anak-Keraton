@@ -147,13 +147,6 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         df_rekomendasi = pd.concat([df_rekomendasi, total_row], ignore_index=True)
         st.dataframe(df_rekomendasi)
 
-        # Add button to view ingredients
-        for index, row in df_rekomendasi.iterrows():
-            if row['menu'] != 'Total':
-                if st.button(f"Lihat Detail Bahan - {row['menu']}"):
-                    st.write(filtered_menu[index]['komponen'])
-    else:
-        st.error("Tidak ada rekomendasi menu yang sesuai dengan kriteria Anda.")
 
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group]).fillna(0)
