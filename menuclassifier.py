@@ -194,15 +194,58 @@ def filter_menu_by_diet_preference(menu, preferensi_diet):
             return True
     return False
 
+def calculate_daily_calories_range(diet_group):
+    """Calculate calorie range for diet group"""
+    ranges = {
+        "I": (0, 1200),
+        "II": (1200, 1400),
+        "III": (1401, 1600),
+        "IV": (1601, 1800),
+        "V": (1801, 2000),
+        "VI": (2001, 2200),
+        "VII": (2201, 2400),
+        "VIII": (2401, 3000)  # Upper limit set to reasonable maximum
+    }
+    return ranges.get(diet_group, (0, 1200))
+
+def get_menu_suggestions(menu, pantangan, preferensi_diet):
+    """Generate suggestions for restricted ingredients"""
+    suggestions = []
+    
+    # Check pantangan
+    for komponen in menu.get('komponen', []):
+        bahan = komponen['bahan'].lower()
+        for restriction, ingredients in {
+            'Seafood': ['ikan', 'udang', 'cumi', 'kepiting'],
+            'Daging Merah': ['daging sapi', 'baso'],
+            'Kacang-kacangan': ['tahu', 'tempe', 'kacang merah', 'kacang panjang'],
+            'Dairy': ['susu', 'keju', 'yogurt']
+        }.items():
+            if any(ing in bahan for ing in ingredients) and restriction in pantangan:
+                alternatives = {
+                    'Seafood': 'ayam atau tahu',
+                    'Daging Merah': 'ayam atau ikan',
+                    'Kacang-kacangan': 'jamur atau sayuran',
+                    'Dairy': 'santan atau susu kedelai'
+                }
+                suggestions.append(f"Ganti {bahan} dengan {alternatives[restriction]}")
+    
+    return suggestions
+
 def generate_menu_recommendations(user_data):
     menu_data = load_menu_data()
     classifier, imputer = train_menu_classifier()
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
     preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
-    user_golongan = user_data.get("golongan", "I")  # Default to golongan I if not specified
+    user_golongan = user_data.get("golongan", "I")
+    
+    # Get calorie range for user's diet group
+    min_calories, max_calories = calculate_daily_calories_range(user_golongan)
     
     recommended_menus = []
+    menu_suggestions = []
+    total_calories = 0
     
     # Group menus by waktu_makan
     menus_by_time = {}
@@ -217,84 +260,100 @@ def generate_menu_recommendations(user_data):
         try:
             suitable_menus = [
                 menu for menu in menus 
-                if not has_restricted_ingredients(menu, pantangan) and 
+                if (not has_restricted_ingredients(menu, pantangan) or 
+                    get_menu_suggestions(menu, pantangan, preferensi_diet)) and 
                 filter_menu_by_diet_preference(menu, preferensi_diet)
             ]
             
             if suitable_menus:
-                # Use classifier to predict the best menu
-                features = np.array([create_menu_features([menu])[0][0] for menu in suitable_menus])
-                features_imputed = imputer.transform(features)
+                # Calculate remaining needed calories
+                remaining_calories = max_calories - total_calories
                 
-                if len(features_imputed) > 0:
+                # Filter menus within calorie range
+                calorie_suitable_menus = [
+                    menu for menu in suitable_menus
+                    if float(menu.get('total_kalori_kkal') or 0) <= remaining_calories
+                ]
+                
+                if calorie_suitable_menus:
+                    # Use classifier to predict best menu
+                    features = np.array([create_menu_features([menu])[0][0] for menu in calorie_suitable_menus])
+                    features_imputed = imputer.transform(features)
                     predictions = classifier.predict_proba(features_imputed)
+                    best_idx = np.argmax(predictions.sum(axis=1))
+                    best_menu = calorie_suitable_menus[best_idx]
                     
-                    # Find menu from same golongan or closest match
-                    matching_menus = [
-                        menu for i, menu in enumerate(suitable_menus)
-                        if menu['golongan'] == user_golongan
-                    ]
+                    # Add suggestions if menu contains restricted ingredients
+                    suggestions = get_menu_suggestions(best_menu, pantangan, preferensi_diet)
+                    if suggestions:
+                        menu_suggestions.append({
+                            'menu': best_menu['menu'],
+                            'suggestions': suggestions
+                        })
                     
-                    if matching_menus:
-                        # If there are menus from the same golongan, choose one randomly
-                        best_menu = np.random.choice(matching_menus)
-                    else:
-                        # Otherwise use the classifier prediction
-                        best_idx = np.argmax(predictions.sum(axis=1))
-                        if best_idx < len(suitable_menus):
-                            best_menu = suitable_menus[best_idx]
-                        else:
-                            best_menu = suitable_menus[0]  # Fallback to first menu
-                            
                     recommended_menus.append(best_menu)
-                    continue
-            
-            # If no suitable menus found or prediction failed, try alternative
-            alternative_menus = [
-                menu for menu in menu_data 
-                if not has_restricted_ingredients(menu, pantangan) and 
-                filter_menu_by_diet_preference(menu, preferensi_diet) and
-                menu['golongan'] == user_golongan
-            ]
-            
-            if alternative_menus:
-                original_menu = next((menu for menu in menus), None)
-                if original_menu:
-                    alt_menu = get_alternative_menu(original_menu, pantangan, alternative_menus)
-                    if alt_menu:
+                    total_calories += float(best_menu.get('total_kalori_kkal') or 0)
+                else:
+                    # Try to find alternative menu
+                    alt_menu = get_alternative_menu(menus[0], pantangan, menu_data)
+                    if alt_menu and float(alt_menu.get('total_kalori_kkal') or 0) <= remaining_calories:
                         recommended_menus.append(alt_menu)
+                        total_calories += float(alt_menu.get('total_kalori_kkal') or 0)
                         
         except Exception as e:
             st.error(f"Error generating recommendation for {waktu}: {str(e)}")
             continue
     
-    return recommended_menus
+    return recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories)
+
 def display_recommendations(recommendations):
     if not recommendations:
         st.warning("Tidak ada rekomendasi menu yang sesuai")
         return
         
+    recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
+    
     st.subheader("Rekomendasi Menu Berdasarkan Preferensi")
     
-    df_rekomendasi = pd.DataFrame([{
-        'Waktu Makan': menu['waktu_makan'],
-        'Menu': menu['menu'],
-        'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
-        'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
-        'Protein (g)': float(menu.get('total_protein_g') or 0),
-        'Lemak (g)': float(menu.get('total_lemak_g') or 0)
-    } for menu in recommendations])
-    
-    st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
-    
-    # Display total nutritional value with safe conversion
-    total_calories = sum(float(menu.get('total_kalori_kkal') or 0) for menu in recommendations)
-    total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommendations)
-    total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommendations)
-    total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommendations)
-    
-    st.write("Total Nilai Gizi:")
-    st.write(f"Total Kalori: {total_calories:.1f} kkal")
-    st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
-    st.write(f"Total Protein: {total_protein:.1f} g")
-    st.write(f"Total Lemak: {total_fat:.1f} g")
+    if recommended_menus:
+        df_rekomendasi = pd.DataFrame([{
+            'Waktu Makan': menu['waktu_makan'],
+            'Menu': menu['menu'],
+            'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
+            'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
+            'Protein (g)': float(menu.get('total_protein_g') or 0),
+            'Lemak (g)': float(menu.get('total_lemak_g') or 0)
+        } for menu in recommended_menus])
+        
+        st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
+        
+        # Show calorie status
+        st.write(f"Target Kalori Harian: {min_calories}-{max_calories} kkal")
+        st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
+        
+        if total_calories < min_calories:
+            st.warning(f"Total kalori masih kurang {min_calories - total_calories:.1f} kkal dari kebutuhan minimal")
+        elif total_calories > max_calories:
+            st.warning(f"Total kalori melebihi {total_calories - max_calories:.1f} kkal dari batas maksimal")
+        else:
+            st.success("Total kalori sudah sesuai dengan kebutuhan")
+        
+        # Display menu suggestions
+        if menu_suggestions:
+            st.subheader("Saran Modifikasi Menu")
+            for suggestion in menu_suggestions:
+                st.write(f"Menu: {suggestion['menu']}")
+                for saran in suggestion['suggestions']:
+                    st.write(f"- {saran}")
+                    
+        # Display total nutritional value
+        st.subheader("Total Nilai Gizi:")
+        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
+        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
+        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
+        
+        st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
+        st.write(f"Total Protein: {total_protein:.1f} g")
+        st.write(f"Total Lemak: {total_fat:.1f} g")
+    else:
+        st.error("Tidak dapat menemukan menu yang sesuai dengan kriteria")
