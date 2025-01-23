@@ -84,6 +84,7 @@ def get_diet_group(energy):
         return "VII"
     else:
         return "VIII"
+
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan):
     rekomendasi_menu = load_rekomendasi_menu()
     st.subheader("Rekomendasi Menu")
@@ -122,6 +123,7 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         st.dataframe(df_porsi)
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
+
 # Main function to run the app
 def main():
     st.title("Rekomendasi Pola Diet")
