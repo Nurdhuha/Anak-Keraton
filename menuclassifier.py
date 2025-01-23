@@ -388,9 +388,7 @@ def display_recommendations(recommendations):
             'Protein (g)': float(menu.get('total_protein_g') or 0),
             'Lemak (g)': float(menu.get('total_lemak_g') or 0)
         } for menu in unique_menus])
-        
-        st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
-        
+
         # Recalculate total calories for unique menus
         total_calories = sum(float(menu.get('total_kalori_kkal') or 0) for menu in unique_menus)
         
