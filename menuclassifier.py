@@ -7,7 +7,7 @@ import json
 from pymongo import MongoClient
 import certifi
 import streamlit as st
-from  rekomendasi_diet import get_diet_group, calculate_bmr, calculate_energy
+from  pages.rekomendasi_diet import get_diet_group, calculate_bmr, calculate_energy
 
 def get_database():
     try:
