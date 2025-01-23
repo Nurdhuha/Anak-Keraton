@@ -23,10 +23,6 @@ def load_menu_data():
         return json.load(f)
 
 def create_menu_features(menu_data):
-    features = []
-    labels = []
-    
-    # Definisi kategori pantangan
     pantangan_categories = {
         'seafood': ['ikan', 'udang', 'cumi', 'kepiting'],
         'daging_merah': ['daging sapi', 'baso'],
@@ -34,8 +30,8 @@ def create_menu_features(menu_data):
         'dairy': ['susu', 'keju', 'yogurt']
     }
     
+    features, labels = [], []
     for menu in menu_data:
-        # Get nutritional values with default 0 for None/null values
         feature = {
             'kalori': float(menu.get('total_kalori_kkal', 0) or 0),
             'karbohidrat': float(menu.get('total_karbohidrat_g', 0) or 0),
@@ -47,7 +43,6 @@ def create_menu_features(menu_data):
             'dairy': 0
         }
         
-        # Check ingredients in komponen
         for komponen in menu.get('komponen', []):
             bahan = komponen['bahan'].lower()
             for category, ingredients in pantangan_categories.items():
@@ -63,7 +58,6 @@ def train_menu_classifier():
     menu_data = load_menu_data()
     X, y = create_menu_features(menu_data)
     
-    # Handle missing values
     imputer = SimpleImputer(strategy='constant', fill_value=0)
     X_imputed = imputer.fit_transform(X)
     
@@ -402,41 +396,34 @@ def display_recommendations(recommendations):
         
         st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
         
-    # Display menu suggestions
-    if menu_suggestions:
-        st.subheader("Saran Modifikasi Menu")
-        for suggestion in menu_suggestions:
-            st.write(f"Menu: {suggestion['menu']}")
-            for saran in suggestion['suggestions']:
-                st.write(f"- {saran}")
-    
-    st.subheader("Saran Menu Diet Berdasarkan Pantangan dan Preferensi Diet")
-    
-    pantangan = recommendations[0]["pantangan"]
-    preferensi_diet = recommendations[0]["preferensi_diet"]
-    
-    if pantangan:
-        st.write(f"Pantangan makananmu: {', '.join(pantangan)}")
-        for p in pantangan:
-            if p == 'Kacang-kacangan':
-                st.write("Saran: Hindari makanan yang mengandung kacang-kacangan seperti tahu, tempe, kacang merah, dan kacang panjang.")
-            elif p == 'Seafood':
-                st.write("Saran: Hindari makanan laut seperti ikan, udang, cumi, dan kepiting.")
-            elif p == 'Daging Merah':
-                st.write("Saran: Hindari daging merah seperti daging sapi dan baso.")
-            elif p == 'Dairy':
-                st.write("Saran: Hindari produk susu seperti susu, keju, dan yogurt.")
-    
-    if preferensi_diet:
-        st.write(f"Preferensi dietmu: {', '.join(preferensi_diet)}")
-        for diet in preferensi_diet:
-            if diet == 'Rendah Karbohidrat':
-                st.write("Saran: Pilih makanan rendah karbohidrat seperti buah melon, puding melon, jus semangka, dan buah pisang.")
-            elif diet == 'Vegetarian':
-                st.write("Saran: Pilih makanan vegetarian seperti pepaya, nagasari ubi ungu isi pisang, buah melon, dan singkong goreng isi unti.")
-            elif diet == 'Vegan':
-                st.write("Saran: Pilih makanan vegan seperti pepaya, nagasari ubi ungu isi pisang, buah melon, dan jus semangka.")
-            elif diet == 'Bebas Gluten':
-                st.write("Saran: Pilih makanan bebas gluten seperti pepaya, buah melon, puding melon, dan singkong goreng isi unti.")
-            elif diet == 'Normal':
-                st.write("Saran: Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
+        st.write("### Status Kalori")
+        st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
+        
+        percentage = (total_calories / max_calories) * 100
+        
+        if total_calories < min_calories:
+            deficit = min_calories - total_calories
+            st.warning(f"Total kalori masih kurang {deficit:.1f} kkal dari kebutuhan minimal. Saran: Tambahkan makanan selingan atau perbesar porsi makanan utama.")
+        elif total_calories > max_calories:
+            excess = total_calories - max_calories
+            st.warning(f"Total kalori melebihi {excess:.1f} kkal dari batas maksimal. Saran: Kurangi porsi makanan atau ganti dengan menu yang lebih rendah kalori.")
+        else:
+            st.success(f"Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target maksimal).")
+        
+        if menu_suggestions:
+            st.subheader("Saran Modifikasi Menu")
+            for suggestion in menu_suggestions:
+                st.write(f"Menu: {suggestion['menu']}")
+                for saran in suggestion['suggestions']:
+                    st.write(f"- {saran}")
+                    
+        st.subheader("Total Nilai Gizi:")
+        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
+        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
+        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
+        
+        st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
+        st.write(f"Total Protein: {total_protein:.1f} g")
+        st.write(f"Total Lemak: {total_fat:.1f} g")
+    else:
+        st.error("Tidak dapat menemukan menu yang sesuai dengan kriteria")
