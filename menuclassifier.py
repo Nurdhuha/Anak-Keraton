@@ -352,7 +352,7 @@ def display_recommendations(recommendations):
         
     recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
-    st.subheader("Rekomendasi Menu Berdasarkan Preferensi")
+    st.subheader("Rekomendasi Menu")
     
     if recommended_menus:
         df_rekomendasi = pd.DataFrame([{
