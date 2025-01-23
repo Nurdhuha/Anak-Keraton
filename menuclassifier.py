@@ -245,6 +245,17 @@ def display_menu_by_diet_group(menu_data, diet_group):
     } for menu in menu_data if menu['golongan'] == diet_group])
     
     st.dataframe(df_menu.set_index('Waktu Makan'))
+    
+    # Display total nutritional values
+    total_calories = df_menu['Kalori (kkal)'].sum()
+    total_carbs = df_menu['Karbohidrat (g)'].sum()
+    total_protein = df_menu['Protein (g)'].sum()
+    total_fat = df_menu['Lemak (g)'].sum()
+    
+    st.write(f"Total Kalori: {total_calories:.1f} kkal")
+    st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
+    st.write(f"Total Protein: {total_protein:.1f} g")
+    st.write(f"Total Lemak: {total_fat:.1f} g")
 
 def generate_menu_recommendations(user_data):
     menu_data = load_menu_data()
@@ -370,10 +381,9 @@ def display_recommendations(recommendations):
         
     recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
-    st.subheader("Rekomendasi Menu Berdasarkan Pantangan dan Preferensi Diet")
+    st.subheader("Menu Tambahan Berdasarkan Pantangan dan Preferensi Diet")
     
     if recommended_menus:
-        # Remove duplicate menus
         unique_menus = []
         seen_menus = set()
         for menu in recommended_menus:
@@ -392,7 +402,6 @@ def display_recommendations(recommendations):
         
         st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
         
-        # Show calorie status with more detailed information
         st.write("### Status Kalori")
         st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
         
