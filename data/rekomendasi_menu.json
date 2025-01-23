@@ -1,509 +1,651 @@
 [
     {
-      "golongan": "I",
-      "waktu_makan": "pagi",
-      "menu": "baso jamur",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "bihun", "berat_g": 10 },
-        { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
-        { "nama": "protein hewani", "bahan": "tepung terigu", "berat_g": 40 },
-        { "nama": "sayuran", "bahan": "jamur kuping", "berat_g": 100 }
-      ],
-      "total_kalori_kkal": 300
-    },
+    "golongan": "I",
+    "waktu_makan": "pagi",
+    "menu": "baso jamur",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "bihun", "berat_g": 10 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "protein hewani", "bahan": "tepung terigu", "berat_g": 40 },
+      { "nama": "sayuran", "bahan": "jamur kuping", "berat_g": 100 }
+    ],
+    "total_kalori_kkal": 300,
+    "total_karbohidrat_g": 40,
+    "total_protein_g": 11,
+    "total_lemak_g": 4.5
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "selingan I",
+    "menu": "pepaya",
+    "komponen": [
+      { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
+    ],
+    "total_kalori_kkal": 25,
+    "total_karbohidrat_g": 5,
+    "total_protein_g": 1,
+    "total_lemak_g": 0
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "siang",
+    "menu": "sup ayam dan tahu goreng",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
+      { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+      { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 10 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 262.5,
+    "total_karbohidrat_g": 32,
+    "total_protein_g": 14,
+    "total_lemak_g": 7.5
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "selingan II",
+    "menu": "nagasari ubi ungu isi pisang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "ubi ungu", "berat_g": 67.5 },
+      { "nama": "buah", "bahan": "pisang", "berat_g": 50 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
+    ],
+    "total_kalori_kkal": 162.5,
+    "total_karbohidrat_g": 35,
+    "total_protein_g": 4,
+    "total_lemak_g": 9
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 425,
+    "total_karbohidrat_g": 57,
+    "total_protein_g": 15,
+    "total_lemak_g": 12
+  },
+  {
+    "golongan": "I",
+    "waktu_makan": "malam",
+    "menu": "buah melon",
+    "komponen": [
+      { "nama": "buah", "bahan": "melon", "berat_g": 190 }
+    ],
+    "total_kalori_kkal": null,
+    "total_karbohidrat_g": null, 
+    "total_protein_g": null,      // Data dari tabel tidak ada
+    "total_lemak_g": null        // Data dari tabel tidak ada
+  },
     {
-      "golongan": "I",
-      "waktu_makan": "selingan I",
-      "menu": "pepaya",
-      "komponen": [
-        { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
-      ],
-      "total_kalori_kkal": 25
-    },
+    "golongan": "II",
+    "waktu_makan": "pagi",
+    "menu": "Nasi putih, daging lapis merah, tumis labu air",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "sayuran", "bahan": "labu air", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 212.5,
+    "total_karbohidrat_g": 20,
+    "total_protein_g": 9,
+    "total_lemak_g": 10
+  },
+  {
+    "golongan": "II",
+    "waktu_makan": "selingan I",
+    "menu": "puding melon",
+    "komponen": [
+      { "nama": "buah", "bahan": "melon", "berat_g": 380 }
+    ],
+    "total_kalori_kkal": 50,
+    "total_karbohidrat_g": 10,
+    "total_protein_g": 2,
+    "total_lemak_g": 0
+  },
+  {
+    "golongan": "II",
+    "waktu_makan": "siang",
+    "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 450,
+    "total_karbohidrat_g": 52,
+    "total_protein_g": 17,
+    "total_lemak_g": 9
+  },
+  {
+    "golongan": "II",
+    "waktu_makan": "selingan II",
+    "menu": "singkong goreng isi unti",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 67.5 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "kelapa", "berat_g": 15 }
+    ],
+    "total_kalori_kkal": 187.5,
+    "total_karbohidrat_g": 25,
+    "total_protein_g": 3,
+    "total_lemak_g": 8
+  },
+  {
+    "golongan": "II",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 400,
+    "total_karbohidrat_g": 53,
+    "total_protein_g": 14,
+    "total_lemak_g": 11
+  },
+  {
+    "golongan": "II",
+    "waktu_makan": "malam",
+    "menu": "buah melon",
+    "komponen": [
+      { "nama": "buah", "bahan": "melon", "berat_g": 190 }
+    ],
+    "total_kalori_kkal": null,
+    "total_karbohidrat_g": null,
+    "total_protein_g": null,
+    "total_lemak_g": null
+  },
     {
-      "golongan": "I",
-      "waktu_makan": "siang",
-      "menu": "sup ayam dan tahu goreng",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
-        { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
-          { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 10 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 262.5
-    },
+    "golongan": "III",
+    "waktu_makan": "pagi",
+    "menu": "Nasi putih, daging lapis merah, tumis tahu dan labu air",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+      { "nama": "sayuran", "bahan": "labu air", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 250,
+    "total_karbohidrat_g": 34,
+    "total_protein_g": 11.5,
+    "total_lemak_g": 10.5
+  },
+  {
+    "golongan": "III",
+    "waktu_makan": "selingan I",
+    "menu": "bakpau talas",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "talas", "berat_g": 31 },
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 13 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 }
+    ],
+    "total_kalori_kkal": 112.5,
+    "total_karbohidrat_g": 25,
+    "total_protein_g": 3,
+    "total_lemak_g": 0
+  },
+  {
+    "golongan": "III",
+    "waktu_makan": "siang",
+    "menu": "Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 20 },
+      { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 475,
+    "total_karbohidrat_g": 52,
+    "total_protein_g": 17,
+    "total_lemak_g": 16
+  },
+  {
+    "golongan": "III",
+    "waktu_makan": "selingan II",
+    "menu": "kue lapis ubi kuning",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung beras", "berat_g": 25 },
+      { "nama": "karbohidrat", "bahan": "ubi", "berat_g": 67.5 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
+    ],
+    "total_kalori_kkal": 275,
+    "total_karbohidrat_g": 25,
+    "total_protein_g": 5,
+    "total_lemak_g": 4.5
+  },
     {
-      "golongan": "I",
-      "waktu_makan": "selingan II",
-      "menu": "nagasari ubi ungu isi pisang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "ubi ungu", "berat_g": 67.5 },
-        { "nama": "buah", "bahan": "pisang", "berat_g": 50 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
-      ],
-      "total_kalori_kkal": 162.5
-    },
+    "golongan": "III",
+    "waktu_makan": "selingan II",
+    "menu": "jus semangka",
+    "komponen": [
+      { "nama": "buah", "bahan": "semangka", "berat_g": 180 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+  {
+    "golongan": "III",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "pare", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 375,
+    "total_karbohidrat_g": 52,
+    "total_protein_g": 17,
+    "total_lemak_g": 9
+  },
+   {
+    "golongan": "IV",
+    "waktu_makan": "pagi",
+    "menu": "Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
+      { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
+      { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 412.5,
+    "total_karbohidrat_g": 73.5,
+    "total_protein_g": 16.5,
+    "total_lemak_g": 7.5
+  },
+  {
+    "golongan": "IV",
+    "waktu_makan": "selingan I",
+    "menu": "buah pisang",
+    "komponen": [
+      { "nama": "buah", "bahan": "pisang", "berat_g": 100 }
+    ],
+    "total_kalori_kkal": 50,
+    "total_karbohidrat_g": 10,
+    "total_protein_g": 2,
+    "total_lemak_g": 0
+  },
+  {
+    "golongan": "IV",
+    "waktu_makan": "siang",
+    "menu": "nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 45 },
+      { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
+      { "nama": "sayuran", "bahan": "gambas", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 349,
+    "total_karbohidrat_g": 48.5,
+    "total_protein_g": 14,
+    "total_lemak_g": 9
+  },
+  {
+    "golongan": "IV",
+    "waktu_makan": "selingan II",
+    "menu": "donat kentang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 100 },
+      { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 21 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "mentega", "berat_g": 2 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 }
+    ],
+    "total_kalori_kkal": 326,
+    "total_karbohidrat_g": 44.5,
+    "total_protein_g": 5,
+    "total_lemak_g": 4.5
+  },
+  {
+    "golongan": "IV",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, beef teriyaki, sayur sop dan tahu goreng",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 210 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
+    ],
+    "total_kalori_kkal": 555,
+    "total_karbohidrat_g": 92,
+    "total_protein_g": 17,
+    "total_lemak_g": 13
+  },
     {
-      "golongan": "I",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 425
-    },
+    "golongan": "V",
+    "waktu_makan": "pagi",
+    "menu": "nasi sambel goreng kentang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
+      { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 105 },
+      { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 425,
+    "total_karbohidrat_g": 68.5,
+    "total_protein_g": 14,
+    "total_lemak_g": 12.5
+  },
+  {
+    "golongan": "V",
+    "waktu_makan": "selingan I",
+    "menu": "milkshake semangka",
+    "komponen": [
+      { "nama": "buah", "bahan": "semangka", "berat_g": 180 },
+      { "nama": "lemak", "bahan": "susu", "berat_g": 200 }
+    ],
+    "total_kalori_kkal": 150,
+    "total_karbohidrat_g": 15,
+    "total_protein_g": 7,
+    "total_lemak_g": 6
+  },
+  {
+    "golongan": "V",
+    "waktu_makan": "siang",
+    "menu": "nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 45 },
+      { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
+      { "nama": "sayuran", "bahan": "gambas", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 436.5,
+    "total_karbohidrat_g": 68.5,
+    "total_protein_g": 14.5,
+    "total_lemak_g": 14.5
+  },
+  {
+    "golongan": "V",
+    "waktu_makan": "selingan II",
+    "menu": "kue lumpur singkong",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 25 },
+      { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 60 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "mentega", "berat_g": 2 }
+    ],
+    "total_kalori_kkal": 255,
+    "total_karbohidrat_g": 50,
+    "total_protein_g": 7,
+    "total_lemak_g": 4
+  },
+  {
+    "golongan": "V",
+    "waktu_makan": "selingan II",
+    "menu": "buah pisang",
+    "komponen": [
+      { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+  {
+    "golongan": "V",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "kecipir", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
+    ],
+    "total_kalori_kkal": 555,
+    "total_karbohidrat_g": 77,
+    "total_protein_g": 23,
+    "total_lemak_g": 15
+  },
     {
-      "golongan": "I",
-      "waktu_makan": "malam",
-      "menu": "buah melon",
-      "komponen": [
-        { "nama": "buah", "bahan": "melon", "berat_g": 190 }
-      ],
-      "total_kalori_kkal": null
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "pagi",
-      "menu": "Nasi putih, daging lapis merah, tumis labu air",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 50 },
-        { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
-        { "nama": "sayuran", "bahan": "labu air", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 212.5
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "selingan I",
-      "menu": "puding melon",
-      "komponen": [
-        { "nama": "buah", "bahan": "melon", "berat_g": 380 }
-      ],
-      "total_kalori_kkal": 50
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "siang",
-      "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 450
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "selingan II",
-      "menu": "singkong goreng isi unti",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 67.5 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "kelapa", "berat_g": 15 }
-      ],
-      "total_kalori_kkal": 187.5
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan kacang panjang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 400
-    },
-    {
-      "golongan": "II",
-      "waktu_makan": "malam",
-      "menu": "buah melon",
-      "komponen": [
-        { "nama": "buah", "bahan": "melon", "berat_g": 190 }
-      ],
-      "total_kalori_kkal": null
-    },
-    {
-      "golongan": "III",
-      "waktu_makan": "selingan I",
-      "menu": "bakpau talas",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "talas", "berat_g": 31 },
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 13 },
+    "golongan": "V",
+    "waktu_makan": "malam",
+    "menu": "pepaya",
+    "komponen": [
+      { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+     {
+    "golongan": "VI",
+    "waktu_makan": "pagi",
+    "menu": "Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 20 },
+      { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 562.5,
+    "total_karbohidrat_g": 72,
+    "total_protein_g": 19,
+    "total_lemak_g": 12
+  },
+  {
+    "golongan": "VI",
+    "waktu_makan": "selingan I",
+    "menu": "bolu kukus lapis talas",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 50 },
+      { "nama": "karbohidrat", "bahan": "talas", "berat_g": 62 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
+      { "nama": "lemak", "bahan": "mentega", "berat_g": 5 },
         { "nama": "gula", "bahan": "gula", "berat_g": 13 }
-      ],
-      "total_kalori_kkal": 112.5
-    },
+    ],
+    "total_kalori_kkal": 285,
+    "total_karbohidrat_g": 55,
+    "total_protein_g": 11,
+    "total_lemak_g": 12
+  },
     {
-      "golongan": "III",
-      "waktu_makan": "siang",
-      "menu": "Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 40 },
-        { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 20 },
-        { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 475
-    },
+    "golongan": "VI",
+    "waktu_makan": "selingan I",
+    "menu": "buah pepaya",
+    "komponen": [
+      { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+  {
+    "golongan": "VI",
+    "waktu_makan": "siang",
+    "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan pare",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "pare", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 512.5,
+    "total_karbohidrat_g": 77,
+    "total_protein_g": 20,
+    "total_lemak_g": 15
+  },
     {
-      "golongan": "III",
-      "waktu_makan": "selingan II",
-      "menu": "kue lapis ubi kuning",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung beras", "berat_g": 25 },
-          { "nama": "karbohidrat", "bahan": "ubi", "berat_g": 67.5 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "santan", "berat_g": 20 }
-      ],
-      "total_kalori_kkal": 275
-    },
+    "golongan": "VI",
+    "waktu_makan": "siang",
+    "menu": "buah melon",
+    "komponen": [
+      { "nama": "buah", "bahan": "melon", "berat_g": 190 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+  {
+    "golongan": "VI",
+    "waktu_makan": "selingan II",
+    "menu": "nagasari ubi ungu isi pisang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "ubi ungu", "berat_g": 135 },
+      { "nama": "buah", "bahan": "pisang", "berat_g": 100 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "santan", "berat_g": 40 }
+    ],
+    "total_kalori_kkal": 300,
+    "total_karbohidrat_g": 55,
+    "total_protein_g": 7,
+    "total_lemak_g": 8
+  },
+  {
+    "golongan": "VI",
+    "waktu_makan": "malam",
+    "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 537.5,
+    "total_karbohidrat_g": 72,
+    "total_protein_g": 19,
+    "total_lemak_g": 10.5
+  },
     {
-      "golongan": "III",
-      "waktu_makan": "selingan II",
-      "menu": "jus semangka",
-      "komponen": [
+    "golongan": "VII",
+    "waktu_makan": "pagi",
+    "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 537.5,
+    "total_karbohidrat_g": 72,
+    "total_protein_g": 19,
+    "total_lemak_g": 12.5
+  },
+  {
+    "golongan": "VII",
+    "waktu_makan": "selingan I",
+    "menu": "kue lapis ubi kuning dan jus semangka",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung beras", "berat_g": 50 },
+      { "nama": "karbohidrat", "bahan": "ubi", "berat_g": 67.5 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "santan", "berat_g": 5 },
         { "nama": "buah", "bahan": "semangka", "berat_g": 180 }
-      ],
-      "total_kalori_kkal": null
-    },
-    {
-      "golongan": "III",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, beef teriyaki, sayur pare, wortel, dan tahu",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
-          { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "pare", "berat_g": 50 },
-          { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 375
-    },
-    {
-      "golongan": "IV",
-      "waktu_makan": "pagi",
-      "menu": "Nasi putih, baso dan tempe kecap, tumis kacang panjang dan wortel",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
-        { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
-        { "nama": "sayuran", "bahan": "kacang panjang", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 412.5
-    },
-    {
-      "golongan": "IV",
-      "waktu_makan": "selingan I",
-      "menu": "buah pisang",
-      "komponen": [
-        { "nama": "buah", "bahan": "pisang", "berat_g": 100 }
-      ],
-      "total_kalori_kkal": 50
-    },
-    {
-      "golongan": "IV",
-      "waktu_makan": "siang",
-      "menu": "nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 45 },
-        { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
-        { "nama": "sayuran", "bahan": "gambas", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 349
-    },
-    {
-      "golongan": "IV",
-      "waktu_makan": "selingan II",
-      "menu": "donat kentang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 100 },
-        { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 21 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "mentega", "berat_g": 2 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 }
-      ],
-      "total_kalori_kkal": 326
-    },
-    {
-      "golongan": "IV",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, beef teriyaki, sayur sop dan tahu goreng",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 210 },
-        { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
+    ],
+    "total_kalori_kkal": 337.5,
+    "total_karbohidrat_g": 70,
+    "total_protein_g": 7,
+    "total_lemak_g": 1
+  },
+  {
+    "golongan": "VII",
+    "waktu_makan": "siang",
+    "menu": "baso jamur",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "bihun", "berat_g": 100 },
+        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 40 },
+      { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
         { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
-      ],
-      "total_kalori_kkal": 555
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "pagi",
-      "menu": "nasi sambel goreng kentang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 100 },
-        { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 105 },
-        { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 425
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "selingan I",
-      "menu": "milkshake semangka",
-      "komponen": [
-        { "nama": "buah", "bahan": "semangka", "berat_g": 180 },
-        { "nama": "lemak", "bahan": "susu", "berat_g": 200 }
-      ],
-      "total_kalori_kkal": 150
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "siang",
-      "menu": "nasi putih, telur gulung bumbu asam manis, tumis tempe, wortel dan gambas",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 45 },
-        { "nama": "protein nabati", "bahan": "tempe", "berat_g": 25 },
-        { "nama": "sayuran", "bahan": "gambas", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 436.5
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "selingan II",
-      "menu": "kue lumpur singkong",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 25 },
-        { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 60 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "mentega", "berat_g": 2 }
-      ],
-      "total_kalori_kkal": 255
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "selingan II",
-      "menu": "buah pisang",
-      "komponen": [
-        { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
-      ],
-      "total_kalori_kkal": null 
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "kecipir", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
-      ],
-      "total_kalori_kkal": 555
-    },
-    {
-      "golongan": "V",
-      "waktu_makan": "malam",
-      "menu": "pepaya",
-      "komponen": [
-        { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
-      ],
-      "total_kalori_kkal": null 
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "pagi",
-      "menu": "Nasi putih, ayam asam manis, sayur sawi hijau dan kacang merah",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 40 },
-        { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 20 },
-        { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 562.5
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "selingan I",
-      "menu": "bolu kukus lapis talas",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 50 },
-        { "nama": "karbohidrat", "bahan": "talas", "berat_g": 62 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
-        { "nama": "lemak", "bahan": "mentega", "berat_g": 5 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 }
-      ],
-      "total_kalori_kkal": 285
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "selingan I",
-      "menu": "buah pepaya",
-      "komponen": [
-        { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
-      ],
-      "total_kalori_kkal": null 
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "siang",
-      "menu": "Nasi putih, telur bumbu kuning, tumis tahu dan pare",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "pare", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 512.5
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "siang",
-      "menu": "buah melon",
-      "komponen": [
-        { "nama": "buah", "bahan": "melon", "berat_g": 190 }
-      ],
-      "total_kalori_kkal": null
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "selingan II",
-      "menu": "nagasari ubi ungu isi pisang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "ubi ungu", "berat_g": 135 },
-        { "nama": "buah", "bahan": "pisang", "berat_g": 100 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "santan", "berat_g": 40 }
-      ],
-      "total_kalori_kkal": 300
-    },
-    {
-      "golongan": "VI",
-      "waktu_makan": "malam",
-      "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 537.5
-    },
-    {
-      "golongan": "VII",
-      "waktu_makan": "pagi",
-      "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
-      ],
-      "total_kalori_kkal": 537.5
-    },
-    {
-      "golongan": "VII",
-      "waktu_makan": "selingan I",
-      "menu": "kue lapis ubi kuning dan jus semangka",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung beras", "berat_g": 50 },
-        { "nama": "karbohidrat", "bahan": "ubi", "berat_g": 67.5 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "santan", "berat_g": 5 },
-        { "nama": "buah", "bahan": "semangka", "berat_g": 180 }
-      ],
-      "total_kalori_kkal": 337.5
-    },
-    {
-      "golongan": "VII",
-      "waktu_makan": "siang",
-      "menu": "baso jamur",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "bihun", "berat_g": 100 },
-          { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 40 },
-        { "nama": "protein hewani", "bahan": "daging sapi", "berat_g": 170 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "jamur kuping", "berat_g": 100 },
-          { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 }
-      ],
-      "total_kalori_kkal": 490
-    },
-    {
-      "golongan": "VII",
-      "waktu_makan": "selingan II",
-      "menu": "donat kentang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 100 },
-        { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 21 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "mentega", "berat_g": 2 },
+      { "nama": "sayuran", "bahan": "jamur kuping", "berat_g": 100 },
+        { "nama": "sayuran", "bahan": "sawi", "berat_g": 100 }
+    ],
+    "total_kalori_kkal": 490,
+    "total_karbohidrat_g": 102,
+    "total_protein_g": 25.2,
+    "total_lemak_g": 8
+  },
+  {
+    "golongan": "VII",
+    "waktu_makan": "selingan II",
+    "menu": "donat kentang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 100 },
+      { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 21 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "mentega", "berat_g": 2 },
         { "nama": "SUSU", "bahan": "SUSU", "berat_g": 200 },
-          { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 }
-      ],
-      "total_kalori_kkal": 451
-    },
+        { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 }
+    ],
+    "total_kalori_kkal": 451,
+    "total_karbohidrat_g": 78,
+    "total_protein_g": 9,
+    "total_lemak_g": 15
+  },
+  {
+    "golongan": "VII",
+    "waktu_makan": "malam",
+    "menu": "Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "kecipir", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
+    ],
+    "total_kalori_kkal": 555,
+    "total_karbohidrat_g": 77,
+    "total_protein_g": 26,
+    "total_lemak_g": 15
+  },
     {
-      "golongan": "VII",
-      "waktu_makan": "malam",
-      "menu": "Nasi putih, capcay (wortel, sawi dengan baso, ayam dan tahu)",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
-        { "nama": "protein hewani", "bahan": "baso", "berat_g": 170 },
-        { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "kecipir", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 3 }
-      ],
-      "total_kalori_kkal": 555
-    },
-    {
-      "golongan": "VII",
-      "waktu_makan": "malam",
-      "menu": "pepaya",
-      "komponen": [
-        { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
-      ],
-      "total_kalori_kkal": null 
-    },
+    "golongan": "VII",
+    "waktu_makan": "malam",
+    "menu": "pepaya",
+    "komponen": [
+      { "nama": "buah", "bahan": "pepaya", "berat_g": 110 }
+    ],
+    "total_kalori_kkal": null,
+    "total_karbohidrat_g": null,
+    "total_protein_g": null,
+    "total_lemak_g": null
+  },
     {
       "golongan": "VIII",
       "waktu_makan": "pagi",
@@ -518,67 +660,98 @@
       "total_kalori_kkal": 550
     },
     {
-      "golongan": "VIII",
-      "waktu_makan": "selingan I",
-      "menu": "kue lumpur singkong",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 25 },
-        { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 60 },
-        { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "mentega", "berat_g": 2 }
-      ],
-      "total_kalori_kkal": 255
-    },
+    "golongan": "VIII",
+    "waktu_makan": "pagi",
+    "menu": "ayam teriyaki dengan bola-bola tahu dan tumis labu siam",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 150 },
+      { "nama": "protein hewani", "bahan": "ayam dengan kulit", "berat_g": 35 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 110 },
+      { "nama": "sayuran", "bahan": "labu siam", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 2.5 }
+    ],
+    "total_kalori_kkal": 550,
+    "total_karbohidrat_g": 87,
+    "total_protein_g": 20,
+    "total_lemak_g": 17
+  },
+  {
+    "golongan": "VIII",
+    "waktu_makan": "selingan I",
+    "menu": "kue lumpur singkong",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "tepung terigu", "berat_g": 25 },
+      { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 60 },
+      { "nama": "protein hewani", "bahan": "telur", "berat_g": 10 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "mentega", "berat_g": 2 }
+    ],
+    "total_kalori_kkal": 255,
+    "total_karbohidrat_g": 50,
+    "total_protein_g": 6,
+    "total_lemak_g": 4.5
+  },
     {
-      "golongan": "VIII",
-      "waktu_makan": "selingan I",
-      "menu": "buah pisang",
-      "komponen": [
-        { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
-      ],
-      "total_kalori_kkal": null
-    },
-    {
-      "golongan": "VIII",
-      "waktu_makan": "siang",
-      "menu": "nasi sambel goreng kentang",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 200 },
-          { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 105 },
-        { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
-          { "nama": "protein nabati", "bahan": "tempe", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 675
-    },
-    {
-      "golongan": "VIII",
-      "waktu_makan": "selingan II",
-      "menu": "singkong goreng isi unti",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 270 },
-        { "nama": "gula", "bahan": "gula", "berat_g": 13 },
-        { "nama": "lemak", "bahan": "kelapa", "berat_g": 30 }
-      ],
-      "total_kalori_kkal": 500
-    },
-    {
-      "golongan": "VIII",
-      "waktu_makan": "malam",
-      "menu": "sup ayam dan tahu dan telur goreng",
-      "komponen": [
-        { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 200 },
-        { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
+    "golongan": "VIII",
+    "waktu_makan": "selingan I",
+    "menu": "buah pisang",
+    "komponen": [
+      { "nama": "buah", "bahan": "pisang", "berat_g": 50 }
+    ],
+    "total_kalori_kkal": null,
+        "total_karbohidrat_g": null,
+        "total_protein_g": null,
+        "total_lemak_g": null
+  },
+  {
+    "golongan": "VIII",
+    "waktu_makan": "siang",
+    "menu": "nasi sambel goreng kentang",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 200 },
+        { "nama": "karbohidrat", "bahan": "kentang", "berat_g": 105 },
+      { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+        { "nama": "protein nabati", "bahan": "tempe", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 100 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 675,
+    "total_karbohidrat_g": 115.5,
+    "total_protein_g": 26,
+    "total_lemak_g": 15.5
+  },
+  {
+    "golongan": "VIII",
+    "waktu_makan": "selingan II",
+    "menu": "singkong goreng isi unti",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "singkong", "berat_g": 270 },
+      { "nama": "gula", "bahan": "gula", "berat_g": 13 },
+      { "nama": "lemak", "bahan": "kelapa", "berat_g": 30 }
+    ],
+    "total_kalori_kkal": 500,
+    "total_karbohidrat_g": 80,
+    "total_protein_g": 9,
+    "total_lemak_g": 18
+  },
+  {
+    "golongan": "VIII",
+    "waktu_makan": "malam",
+    "menu": "sup ayam dan tahu dan telur goreng",
+    "komponen": [
+      { "nama": "karbohidrat", "bahan": "nasi", "berat_g": 200 },
+      { "nama": "protein hewani", "bahan": "ayam tanpa kulit", "berat_g": 40 },
         { "nama": "protein hewani", "bahan": "telur", "berat_g": 55 },
-        { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
-          { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 10 },
-        { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
-        { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
-        { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
-      ],
-      "total_kalori_kkal": 625
-    }
-  ]
+      { "nama": "protein nabati", "bahan": "tahu", "berat_g": 55 },
+        { "nama": "protein nabati", "bahan": "kacang merah", "berat_g": 10 },
+      { "nama": "sayuran", "bahan": "wortel", "berat_g": 50 },
+      { "nama": "sayuran", "bahan": "buncis", "berat_g": 50 },
+      { "nama": "lemak", "bahan": "minyak", "berat_g": 5 }
+    ],
+    "total_kalori_kkal": 625,
+    "total_karbohidrat_g": 92,
+    "total_protein_g": 32,
+    "total_lemak_g": 24
+  }
+]
