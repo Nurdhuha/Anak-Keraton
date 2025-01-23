@@ -21,18 +21,6 @@ def load_menu_data():
     with open('data/rekomendasi_menu.json') as f:
         return json.load(f)
 
-def train_menu_classifier():
-    menu_data = load_menu_data()
-    X, y = create_menu_features(menu_data)
-    
-    # Impute missing values
-    imputer = SimpleImputer(strategy='mean')
-    X_imputed = imputer.fit_transform(X)
-    
-    classifier = GaussianNB()
-    classifier.fit(X_imputed, y)
-    return classifier
-
 def create_menu_features(menu_data):
     features = []
     labels = []
@@ -46,11 +34,12 @@ def create_menu_features(menu_data):
     }
     
     for menu in menu_data:
+        # Get nutritional values with default 0 for None/null values
         feature = {
-            'kalori': menu.get('total_kalori_kkal', 0),
-            'karbohidrat': menu.get('total_karbohidrat_g', 0),
-            'protein': menu.get('total_protein_g', 0),
-            'lemak': menu.get('total_lemak_g', 0),
+            'kalori': float(menu.get('total_kalori_kkal', 0) or 0),
+            'karbohidrat': float(menu.get('total_karbohidrat_g', 0) or 0),
+            'protein': float(menu.get('total_protein_g', 0) or 0),
+            'lemak': float(menu.get('total_lemak_g', 0) or 0),
             'seafood': 0,
             'daging_merah': 0,
             'kacang': 0,
@@ -73,9 +62,13 @@ def train_menu_classifier():
     menu_data = load_menu_data()
     X, y = create_menu_features(menu_data)
     
+    # Handle missing values
+    imputer = SimpleImputer(strategy='constant', fill_value=0)
+    X_imputed = imputer.fit_transform(X)
+    
     classifier = GaussianNB()
-    classifier.fit(X, y)
-    return classifier
+    classifier.fit(X_imputed, y)
+    return classifier, imputer
 
 def get_alternative_menu(original_menu, pantangan, all_menus):
     """
@@ -192,7 +185,7 @@ def filter_menu_by_diet_preference(menu, preferensi_diet):
 
 def generate_menu_recommendations(user_data):
     menu_data = load_menu_data()
-    classifier = train_menu_classifier()
+    classifier, imputer = train_menu_classifier()
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
     preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
@@ -209,7 +202,6 @@ def generate_menu_recommendations(user_data):
     
     # Generate recommendations for each meal time
     for waktu, menus in menus_by_time.items():
-        # Filter menus by both pantangan and diet preferences
         suitable_menus = [
             menu for menu in menus 
             if not has_restricted_ingredients(menu, pantangan) and 
@@ -219,13 +211,14 @@ def generate_menu_recommendations(user_data):
         if suitable_menus:
             # Use classifier to predict the best menu
             features = np.array([create_menu_features([menu])[0][0] for menu in suitable_menus])
-            predictions = classifier.predict_proba(features)
+            features_imputed = imputer.transform(features)  # Apply same imputation
+            predictions = classifier.predict_proba(features_imputed)
             
             # Get the menu with highest probability for user's diet group
             best_menu = suitable_menus[np.argmax(predictions)]
             recommended_menus.append(best_menu)
         else:
-            # Find alternative menu if no suitable menu is found
+            # Find alternative menu
             alternative_menus = [
                 menu for menu in menu_data 
                 if not has_restricted_ingredients(menu, pantangan) and 
@@ -233,7 +226,6 @@ def generate_menu_recommendations(user_data):
             ]
             
             if alternative_menus:
-                # Find menu with similar nutritional value
                 original_menu = next((menu for menu in menus), None)
                 if original_menu:
                     alt_menu = get_alternative_menu(original_menu, pantangan, alternative_menus)
@@ -271,4 +263,3 @@ def display_recommendations(recommendations):
     st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
     st.write(f"Total Protein: {total_protein:.1f} g")
     st.write(f"Total Lemak: {total_fat:.1f} g")
-
