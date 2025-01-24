@@ -375,7 +375,7 @@ def generate_menu_recommendations(user_data):
     recommendations = (recommended_menus, menu_suggestions, total_calories, (kebutuhan_kalori * 0.9, kebutuhan_kalori * 1.1))
     
     # Pass pantangan and preferensi_diet to display_recommendations
-    display_recommendations(recommendations, pantangan, preferensi_diet)
+    return recommendations
 
 def display_recommendations(recommendations, pantangan, preferensi_diet):
     if not pantangan or not preferensi_diet:
@@ -491,6 +491,8 @@ def main():
         
         if user_data:
             recommendations = generate_menu_recommendations(user_data)
+            if recommendations:
+                display_recommendations(recommendations, user_data["preferensi_makanan"]["pantangan"], user_data["preferensi_makanan"]["preferensi_diet"])
             # Function call will now pass required arguments from within generate_menu_recommendations
         else:
             st.error("Data pengguna tidak ditemukan")
