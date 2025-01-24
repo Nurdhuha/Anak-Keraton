@@ -275,7 +275,8 @@ def generate_menu_recommendations(user_data):
         berat_digunakan = 0.9 * (tinggi_badan - 100)
 
     bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
-    kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
+    weight_status = "underweight" if imt < 18.5 else "normal" if imt < 25 else "overweight"
+    kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas, weight_status)
     diet_group = get_diet_group(kebutuhan_kalori)
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
