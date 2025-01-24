@@ -464,8 +464,8 @@ def display_recommendations(recommendations, pantangan, preferensi_diet):
             st.write("Saran: Hindari daging merah seperti daging sapi dan baso.")
         elif p == 'Dairy':
             st.write("Saran: Hindari produk susu seperti susu, keju, dan yogurt.")
-    else:
-        st.write("Nikmati makanan kesukaanmu")
+        elif p== 'Tidak Ada':
+            st.write("Nikmati makanan kesukaanmu")
 
     if preferensi_diet:
         st.write(f"Preferensi dietmu: {', '.join(preferensi_diet)}")
@@ -479,9 +479,8 @@ def display_recommendations(recommendations, pantangan, preferensi_diet):
             elif diet == 'Bebas Gluten':
                 st.write("Saran: Pilih makanan bebas gluten seperti pepaya, buah melon, puding melon, dan singkong goreng isi unti.")
             elif diet == 'Normal':
-                st.write("Saran: Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
-    else:
-        st.write("Nikmati makanan kesukaanmu")
+                st.write("Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
+
 
 def main():
     # Load user data
