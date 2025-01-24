@@ -101,7 +101,7 @@ def main():
             berat_digunakan = 0.9 * (tinggi_badan - 100)
 
         bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
-        kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
+        kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas,weight_status)
         diet_group = get_diet_group(kebutuhan_kalori)
 
         st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
