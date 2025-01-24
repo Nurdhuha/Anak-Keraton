@@ -5,7 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from pymongo import MongoClient
 import certifi
 from menuclassifier import generate_menu_recommendations, display_recommendations
-from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
+from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy, calculate_bmi
 
 st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
 
@@ -93,15 +93,18 @@ def main():
         preferensi_diet = user_data["preferensi_makanan"]["preferensi_diet"]
         kondisi_kesehatan = user_data["data_aktivitas_kesehatan"]["kondisi_kesehatan"]
 
-        imt = berat_badan / ((tinggi_badan / 100) ** 2)
+        weight_status = calculate_bmi(berat_badan, tinggi_badan)
+        if weight_status is None:
+            st.error("Berat badan atau tinggi badan tidak valid")
+            return
 
-        if imt < 18.5:
+        if weight_status == "Kurang":
             berat_digunakan = berat_badan
         else:
             berat_digunakan = 0.9 * (tinggi_badan - 100)
 
         bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
-        kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
+        kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas, weight_status)
         diet_group = get_diet_group(kebutuhan_kalori)
 
         st.markdown(f"### Kebutuhan Kalori Harian Anda: {kebutuhan_kalori:.2f} kkal")
