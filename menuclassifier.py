@@ -7,7 +7,7 @@ import json
 from pymongo import MongoClient
 import certifi
 import streamlit as st
-from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy, calculate_bmi
+from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
 
 def get_database():
     try:
@@ -261,18 +261,21 @@ def generate_menu_recommendations(user_data):
     menu_data = load_menu_data()
     classifier, imputer = train_menu_classifier()
     
+    # Get diet group using imported functions
     berat_badan = user_data["data_antropometri"]["berat_badan"]
     tinggi_badan = user_data["data_antropometri"]["tinggi_badan"]
     usia = user_data["demografi"]["usia"]
     jenis_kelamin = user_data["demografi"]["jenis_kelamin"]
     tingkat_aktivitas = user_data["data_aktivitas_kesehatan"]["tingkat_aktivitas"]
     
-    weight_status = calculate_bmi(berat_badan, tinggi_badan)
-    if weight_status is None:
-        return None
-    
-    bmr = calculate_bmr(berat_badan, tinggi_badan, jenis_kelamin)
-    kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas, weight_status)
+    imt = berat_badan / ((tinggi_badan / 100) ** 2)
+    if imt < 18.5:
+        berat_digunakan = berat_badan
+    else:
+        berat_digunakan = 0.9 * (tinggi_badan - 100)
+
+    bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
+    kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas)
     diet_group = get_diet_group(kebutuhan_kalori)
     
     pantangan = user_data["preferensi_makanan"]["pantangan"]
@@ -282,43 +285,81 @@ def generate_menu_recommendations(user_data):
     menu_suggestions = []
     total_calories = 0
     
+    # Display menu by diet group
     display_menu_by_diet_group(menu_data, diet_group)
     
-    menus_by_time = {waktu: [] for waktu in ["pagi", "selingan I", "siang", "selingan II", "malam"]}
+    # Group menus by waktu_makan
+    menus_by_time = {
+        "pagi": [],
+        "selingan I": [],
+        "siang": [],
+        "selingan II": [],
+        "malam": []
+    }
     
     for menu in menu_data:
         if menu['golongan'] == diet_group:
-            menus_by_time[menu['waktu_makan']].append(menu)
+            waktu = menu['waktu_makan']
+            if waktu in menus_by_time:
+                menus_by_time[waktu].append(menu)
 
-    for waktu, available_menus in menus_by_time.items():
+    # Generate recommendations ensuring total calories meet the requirement
+    for waktu in menus_by_time.keys():
         try:
-            suitable_menus = [menu for menu in available_menus if not has_restricted_ingredients(menu, pantangan) and filter_menu_by_diet_preference(menu, preferensi_diet)]
+            available_menus = menus_by_time[waktu]
+            suitable_menus = [
+                menu for menu in available_menus 
+                if not has_restricted_ingredients(menu, pantangan) and 
+                filter_menu_by_diet_preference(menu, preferensi_diet)
+            ]
             
-            if not suitable_menus:
-                suitable_menus = [menu for menu in menu_data if menu['waktu_makan'] == waktu and not has_restricted_ingredients(menu, pantangan) and filter_menu_by_diet_preference(menu, preferensi_diet)]
+            if not suitable_menus:  # If no suitable menu in current diet group
+                # Look for alternatives in other diet groups
+                other_menus = [
+                    menu for menu in menu_data 
+                    if menu['waktu_makan'] == waktu and
+                    not has_restricted_ingredients(menu, pantangan) and 
+                    filter_menu_by_diet_preference(menu, preferensi_diet)
+                ]
+                if other_menus:
+                    suitable_menus = other_menus
 
             if suitable_menus:
+                # Calculate remaining needed calories
                 remaining_target = kebutuhan_kalori - total_calories
-                suitable_menus.sort(key=lambda x: abs(float(x.get('total_kalori_kkal', 0) or 0) - (remaining_target / (5 - len(recommended_menus)))))
+                
+                # Sort menus by calorie content
+                suitable_menus.sort(
+                    key=lambda x: abs(float(x.get('total_kalori_kkal', 0) or 0) - (remaining_target / (5 - len(recommended_menus))))
+                )
                 
                 best_menu = suitable_menus[0]
                 menu_calories = float(best_menu.get('total_kalori_kkal', 0) or 0)
                 
-                if menu_calories > 0:
+                if menu_calories > 0:  # Only add menu if it has calories
                     recommended_menus.append(best_menu)
                     total_calories += menu_calories
                     
                     suggestions = get_menu_suggestions(best_menu, pantangan, preferensi_diet)
                     if suggestions:
-                        menu_suggestions.append({'menu': best_menu['menu'], 'suggestions': suggestions})
+                        menu_suggestions.append({
+                            'menu': best_menu['menu'],
+                            'suggestions': suggestions
+                        })
                         
         except Exception as e:
             st.error(f"Error generating recommendation for {waktu}: {str(e)}")
             continue
     
+    # If total calories still don't meet requirement, add supplementary items
     while total_calories < kebutuhan_kalori:
         deficit = kebutuhan_kalori - total_calories
-        supplementary_menus = [menu for menu in menu_data if float(menu.get('total_kalori_kkal', 0) or 0) <= deficit and not has_restricted_ingredients(menu, pantangan) and filter_menu_by_diet_preference(menu, preferensi_diet)]
+        supplementary_menus = [
+            menu for menu in menu_data 
+            if float(menu.get('total_kalori_kkal', 0) or 0) <= deficit and
+            not has_restricted_ingredients(menu, pantangan) and 
+            filter_menu_by_diet_preference(menu, preferensi_diet)
+        ]
         
         if supplementary_menus:
             supplementary_menus.sort(key=lambda x: float(x.get('total_kalori_kkal', 0) or 0), reverse=True)
@@ -333,6 +374,7 @@ def generate_menu_recommendations(user_data):
     
     recommendations = (recommended_menus, menu_suggestions, total_calories, (kebutuhan_kalori * 0.9, kebutuhan_kalori * 1.1))
     
+    # Pass pantangan and preferensi_diet to display_recommendations
     return recommendations
 
 def display_recommendations(recommendations, pantangan, preferensi_diet):
