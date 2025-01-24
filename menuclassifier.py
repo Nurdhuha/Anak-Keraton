@@ -372,9 +372,17 @@ def generate_menu_recommendations(user_data):
         else:
             break
     
-    return recommended_menus, menu_suggestions, total_calories, (kebutuhan_kalori * 0.9, kebutuhan_kalori * 1.1)
+    recommendations = (recommended_menus, menu_suggestions, total_calories, (kebutuhan_kalori * 0.9, kebutuhan_kalori * 1.1))
+    
+    # Pass pantangan and preferensi_diet to display_recommendations
+    display_recommendations(recommendations, pantangan, preferensi_diet)
 
 def display_recommendations(recommendations, pantangan, preferensi_diet):
+    # Add error handling for missing arguments
+    if not pantangan or not preferensi_diet:
+        st.error("Data pantangan atau preferensi diet tidak tersedia")
+        return
+        
     if not recommendations:
         st.warning("Tidak ada rekomendasi menu yang sesuai")
         return
@@ -442,3 +450,16 @@ def display_recommendations(recommendations, pantangan, preferensi_diet):
                 st.write("Saran: Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
     else:
         st.write("Nikmati makanan kesukaanmu")
+
+def main():
+    # Load user data
+    db = get_database()
+    if db:
+        user_collection = db['users']
+        user_data = user_collection.find_one()
+        
+        if user_data:
+            recommendations = generate_menu_recommendations(user_data)
+            # Function call will now pass required arguments from within generate_menu_recommendations
+        else:
+            st.error("Data pengguna tidak ditemukan")
