@@ -385,35 +385,6 @@ def display_recommendations(recommendations, pantangan, preferensi_diet):
 
     recommended_menus, menu_suggestions = recommendations[0], recommendations[1]
 
-    # Display dietary profile first
-    st.subheader("Profil Diet Anda")
-    st.write("Pantangan Makanan:")
-    if 'Tidak Ada' not in pantangan:
-        for p in pantangan:
-            if p == 'Kacang-kacangan':
-                st.write("- Kacang-kacangan (tahu, tempe, kacang merah, kacang panjang)")
-            elif p == 'Seafood':
-                st.write("- Makanan laut (ikan, udang, cumi, kepiting)")
-            elif p == 'Daging Merah':
-                st.write("- Daging merah (daging sapi, baso)")
-            elif p == 'Dairy':
-                st.write("- Produk susu (susu, keju, yogurt)")
-    else:
-        st.write("- Tidak ada pantangan makanan")
-
-    st.write("\nPreferensi Diet:")
-    if preferensi_diet:
-        for diet in preferensi_diet:
-            if diet == 'Rendah Karbohidrat':
-                st.write("- Diet rendah karbohidrat")
-            elif diet == 'Vegetarian':
-                st.write("- Diet vegetarian")
-            elif diet == 'Vegan':
-                st.write("- Diet vegan")
-            elif diet == 'Bebas Gluten':
-                st.write("- Diet bebas gluten")
-            elif diet == 'Normal':
-                st.write("- Diet normal")
 
     # Display recommended menus
     st.subheader("Menu yang Direkomendasikan")
