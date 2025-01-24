@@ -378,16 +378,6 @@ def generate_menu_recommendations(user_data):
     display_recommendations(recommendations, pantangan, preferensi_diet)
 
 def display_recommendations(recommendations, pantangan, preferensi_diet):
-    # Add error handling for missing arguments
-    if not pantangan or not preferensi_diet:
-        st.error("Data pantangan atau preferensi diet tidak tersedia")
-        return
-        
-    if not recommendations:
-        st.warning("Tidak ada rekomendasi menu yang sesuai")
-        return
-        
-    recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
     st.subheader("Menu Tambahan Berdasarkan Pantangan dan Preferensi Diet")
     
