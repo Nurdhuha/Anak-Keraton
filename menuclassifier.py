@@ -386,7 +386,15 @@ def display_recommendations(recommendations):
     recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
     st.subheader("Menu yang Direkomendasikan")
-    if recommended_menus:
+   if recommended_menus:
+        # Remove duplicate menus while preserving order
+        seen_menus = set()
+        unique_menus = []
+        for menu in recommended_menus:
+            if menu['menu'] not in seen_menus:
+                seen_menus.add(menu['menu'])
+                unique_menus.append(menu)
+
         df_rekomendasi = pd.DataFrame([{
             'Waktu Makan': menu['waktu_makan'],
             'Menu': menu['menu'],
@@ -394,7 +402,7 @@ def display_recommendations(recommendations):
             'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
             'Protein (g)': float(menu.get('total_protein_g') or 0),
             'Lemak (g)': float(menu.get('total_lemak_g') or 0)
-        } for menu in recommended_menus])
+        } for menu in unique_menus])
         
         st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
         
