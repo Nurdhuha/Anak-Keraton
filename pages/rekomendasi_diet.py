@@ -45,10 +45,9 @@ def get_user_data(name):
         return None
 
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data):
-    
     # Tampilkan rekomendasi menu menggunakan Naive Bayes
     recommendations = generate_menu_recommendations(user_data)
-    display_recommendations(recommendations)
+    display_recommendations(recommendations, pantangan_makanan, preferensi_diet)
     
     st.subheader("Panduan Porsi Diet")
     df_porsi = pd.DataFrame([item for item in porsi_diet if item['Golongan'] == diet_group])
