@@ -386,7 +386,7 @@ def display_recommendations(recommendations):
     recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
     
     st.subheader("Menu yang Direkomendasikan")
-   if recommended_menus:
+    if recommended_menus:
         # Remove duplicate menus while preserving order
         seen_menus = set()
         unique_menus = []
