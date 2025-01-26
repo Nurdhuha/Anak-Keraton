@@ -8,6 +8,9 @@ from pymongo import MongoClient
 import certifi
 import streamlit as st
 from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import classification_report
+import joblib
 
 def get_database():
     try:
@@ -19,57 +22,105 @@ def get_database():
         return None
 
 def load_menu_data():
-    with open('data/rekomendasi_menu.json') as f:
-        return json.load(f)
+    """Load menu data from database or file"""
+    # Assuming menu data structure in MongoDB
+    db = get_database()
+    menu_collection = db['menus']
+    menu_data = pd.DataFrame(list(menu_collection.find()))
+    return menu_data
 
 def create_menu_features(menu_data):
-    features = []
-    labels = []
-    
-    # Definisi kategori pantangan
-    pantangan_categories = {
-        'seafood': ['ikan', 'udang', 'cumi', 'kepiting'],
-        'daging_merah': ['daging sapi', 'baso'],
-        'kacang': ['tahu', 'tempe', 'kacang merah', 'kacang panjang'],
-        'dairy': ['susu', 'keju', 'yogurt']
-    }
-    
-    for menu in menu_data:
-        # Get nutritional values with default 0 for None/null values
-        feature = {
-            'kalori': float(menu.get('total_kalori_kkal', 0) or 0),
-            'karbohidrat': float(menu.get('total_karbohidrat_g', 0) or 0),
-            'protein': float(menu.get('total_protein_g', 0) or 0),
-            'lemak': float(menu.get('total_lemak_g', 0) or 0),
-            'seafood': 0,
-            'daging_merah': 0,
-            'kacang': 0,
-            'dairy': 0
-        }
-        
-        # Check ingredients in komponen
-        for komponen in menu.get('komponen', []):
-            bahan = komponen['bahan'].lower()
-            for category, ingredients in pantangan_categories.items():
-                if any(ing in bahan for ing in ingredients):
-                    feature[category] = 1
-        
-        features.append(list(feature.values()))
-        labels.append(menu['golongan'])
-    
-    return np.array(features), np.array(labels)
+    """Create features from menu attributes"""
+    # Define features based on nutritional content, ingredients, etc
+    feature_cols = ['kalori', 'protein', 'karbohidrat', 'lemak']
+    X = menu_data[feature_cols]
+    y = menu_data['kategori']
+    return X, y
 
 def train_menu_classifier():
+    """Train Naive Bayes classifier for menu recommendations"""
+    # Load and prepare data
     menu_data = load_menu_data()
     X, y = create_menu_features(menu_data)
     
+    # Split data into train and test sets
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+    
     # Handle missing values
     imputer = SimpleImputer(strategy='constant', fill_value=0)
-    X_imputed = imputer.fit_transform(X)
+    X_train_imputed = imputer.fit_transform(X_train)
+    X_test_imputed = imputer.transform(X_test)
     
+    # Initialize and train classifier
     classifier = GaussianNB()
-    classifier.fit(X_imputed, y)
+    
+    # Perform cross-validation
+    cv_scores = cross_val_score(classifier, X_train_imputed, y_train, cv=5)
+    print(f"Cross-validation scores: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")
+    
+    # Train final model
+    classifier.fit(X_train_imputed, y_train)
+    
+    # Evaluate on test set
+    y_pred = classifier.predict(X_test_imputed)
+    print("\nModel Performance:")
+    print(classification_report(y_test, y_pred))
+    
+    # Save model and imputer
+    joblib.dump(classifier, 'menu_classifier.joblib')
+    joblib.dump(imputer, 'menu_imputer.joblib')
+    
     return classifier, imputer
+
+def extract_user_features(user_data):
+    """Extract relevant features from user data for menu classification"""
+    # Extract basic nutritional needs
+    berat_badan = user_data["data_antropometri"]["berat_badan"]
+    tinggi_badan = user_data["data_antropometri"]["tinggi_badan"]
+    usia = user_data["demografi"]["usia"]
+    
+    # Calculate BMI
+    imt = berat_badan / ((tinggi_badan / 100) ** 2)
+    
+    # Convert activity level to numerical value
+    activity_map = {
+        "Sangat Rendah": 1,
+        "Rendah": 2,
+        "Sedang": 3, 
+        "Tinggi": 4,
+        "Sangat Tinggi": 5
+    }
+    activity_level = activity_map[user_data["data_aktivitas_kesehatan"]["tingkat_aktivitas"]]
+    
+    # Convert diet preferences to binary features
+    is_vegetarian = 1 if "Vegetarian" in user_data["preferensi_makanan"]["preferensi_diet"] else 0
+    is_vegan = 1 if "Vegan" in user_data["preferensi_makanan"]["preferensi_diet"] else 0
+    is_gluten_free = 1 if "Bebas Gluten" in user_data["preferensi_makanan"]["preferensi_diet"] else 0
+    is_low_carb = 1 if "Rendah Karbohidrat" in user_data["preferensi_makanan"]["preferensi_diet"] else 0
+    
+    # Create feature vector
+    features = [
+        berat_badan,
+        tinggi_badan,
+        usia,
+        imt,
+        activity_level,
+        is_vegetarian,
+        is_vegan, 
+        is_gluten_free,
+        is_low_carb
+    ]
+    
+    return features
+
+def predict_menu(user_data, classifier, imputer):
+    """Generate menu recommendations using trained classifier"""
+    user_features = extract_user_features(user_data)
+    user_features_imputed = imputer.transform([user_features])
+    prediction = classifier.predict_proba(user_features_imputed)
+    return prediction
 
 def get_alternative_menu(original_menu, pantangan, all_menus):
     """
@@ -461,9 +512,11 @@ def main():
         user_data = user_collection.find_one()
         
         if user_data:
-            recommendations = generate_menu_recommendations(user_data)
-            if recommendations:
-                display_recommendations(recommendations, user_data["preferensi_makanan"]["pantangan"], user_data["preferensi_makanan"]["preferensi_diet"])
-            # Function call will now pass required arguments from within generate_menu_recommendations
+            classifier, imputer = train_menu_classifier()
+            recommendations = predict_menu(user_data, classifier, imputer)
+            if recommendations.any():
+                display_recommendations(recommendations, 
+                                     user_data["preferensi_makanan"]["pantangan"],
+                                     user_data["preferensi_makanan"]["preferensi_diet"])
         else:
             st.error("Data pengguna tidak ditemukan")
