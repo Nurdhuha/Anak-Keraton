@@ -378,113 +378,59 @@ def generate_menu_recommendations(user_data):
     # Pass pantangan and preferensi_diet to display_recommendations
     return recommendations
 
-def display_recommendations(recommendations, pantangan, preferensi_diet):
-    if not pantangan or not preferensi_diet:
-        st.error("Data pantangan atau preferensi diet tidak tersedia")
+def display_recommendations(recommendations):
+    if not recommendations:
+        st.warning("Tidak ada rekomendasi menu yang sesuai")
         return
-
-    recommended_menus, menu_suggestions = recommendations[0], recommendations[1]
-
-    # Display dietary profile first
-    st.subheader("Profil Diet Anda")
-    st.write("Pantangan Makanan:")
-    if 'Tidak Ada' not in pantangan:
-        for p in pantangan:
-            if p == 'Kacang-kacangan':
-                st.write("- Kacang-kacangan (tahu, tempe, kacang merah, kacang panjang)")
-            elif p == 'Seafood':
-                st.write("- Makanan laut (ikan, udang, cumi, kepiting)")
-            elif p == 'Daging Merah':
-                st.write("- Daging merah (daging sapi, baso)")
-            elif p == 'Dairy':
-                st.write("- Produk susu (susu, keju, yogurt)")
-    else:
-        st.write("- Tidak ada pantangan makanan")
-
-    st.write("\nPreferensi Diet:")
-    if preferensi_diet:
-        for diet in preferensi_diet:
-            if diet == 'Rendah Karbohidrat':
-                st.write("- Diet rendah karbohidrat")
-            elif diet == 'Vegetarian':
-                st.write("- Diet vegetarian")
-            elif diet == 'Vegan':
-                st.write("- Diet vegan")
-            elif diet == 'Bebas Gluten':
-                st.write("- Diet bebas gluten")
-            elif diet == 'Normal':
-                st.write("- Diet normal")
-
-    # Display recommended menus
+        
+    recommended_menus, menu_suggestions, total_calories, (min_calories, max_calories) = recommendations
+    
     st.subheader("Menu yang Direkomendasikan")
     if recommended_menus:
-        unique_menus = []
-        seen_menus = set()
-
-        # Filter menus based on restrictions
-        for menu in recommended_menus:
-            if (menu['menu'] not in seen_menus and
-                not has_restricted_ingredients(menu, pantangan) and
-                filter_menu_by_diet_preference(menu, preferensi_diet)):
-                unique_menus.append(menu)
-                seen_menus.add(menu['menu'])
-
-        if unique_menus:
-            df_rekomendasi = pd.DataFrame([{
-                'Waktu Makan': menu['waktu_makan'],
-                'Menu': menu['menu'],
-                'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
-                'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
-                'Protein (g)': float(menu.get('total_protein_g') or 0),
-                'Lemak (g)': float(menu.get('total_lemak_g') or 0)
-            } for menu in unique_menus])
-
-            st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
-
-            # Only show modification suggestions if needed
-            if menu_suggestions and 'Tidak Ada' not in pantangan:
-                st.subheader("Saran Modifikasi Menu")
-                for suggestion in menu_suggestions:
-                    st.write(f"Menu: {suggestion['menu']}")
-                    for saran in suggestion['suggestions']:
-                        st.write(f"- {saran}")
+        df_rekomendasi = pd.DataFrame([{
+            'Waktu Makan': menu['waktu_makan'],
+            'Menu': menu['menu'],
+            'Kalori (kkal)': float(menu.get('total_kalori_kkal') or 0),
+            'Karbohidrat (g)': float(menu.get('total_karbohidrat_g') or 0),
+            'Protein (g)': float(menu.get('total_protein_g') or 0),
+            'Lemak (g)': float(menu.get('total_lemak_g') or 0)
+        } for menu in recommended_menus])
+        
+        st.dataframe(df_rekomendasi.set_index('Waktu Makan'))
+        
+        st.write("### Status Kalori")
+        st.write(f"Total Kalori Menu: {total_calories:.1f} kkal")
+        
+        percentage = (total_calories / max_calories) * 100
+        
+        if total_calories < min_calories:
+            deficit = min_calories - total_calories
+            st.warning(f"Total kalori masih kurang {deficit:.1f} kkal dari kebutuhan minimal")
+        elif total_calories > max_calories:
+            excess = total_calories - max_calories
+            st.warning(f"Total kalori melebihi {excess:.1f} kkal dari batas maksimal")
         else:
-            st.warning("Tidak ada menu yang sesuai dengan pantangan dan preferensi diet Anda")
+            st.success(f"Total kalori sudah sesuai dengan kebutuhan ({percentage:.1f}% dari target)")
+        
+        if menu_suggestions:
+            st.subheader("Saran Modifikasi Menu")
+            for suggestion in menu_suggestions:
+                st.write(f"Menu: {suggestion['menu']}")
+                for saran in suggestion['suggestions']:
+                    st.write(f"- {saran}")
+                    
+        st.subheader("Total Nilai Gizi:")
+        total_carbs = sum(float(menu.get('total_karbohidrat_g') or 0) for menu in recommended_menus)
+        total_protein = sum(float(menu.get('total_protein_g') or 0) for menu in recommended_menus)
+        total_fat = sum(float(menu.get('total_lemak_g') or 0) for menu in recommended_menus)
+        
+        st.write(f"Total Karbohidrat: {total_carbs:.1f} g")
+        st.write(f"Total Protein: {total_protein:.1f} g")
+        st.write(f"Total Lemak: {total_fat:.1f} g")
     else:
         st.error("Tidak dapat menemukan menu yang sesuai dengan kriteria")
 
-    # Display dietary restrictions and preferences suggestions
-    st.subheader("Saran Berdasarkan Pantangan Makanan dan Preferensi Diet")
-    st.write(f"Pantangan makananmu: {', '.join(pantangan)}")
-    for p in pantangan:
-        if p == 'Kacang-kacangan':
-            st.write("Saran: Hindari makanan yang mengandung kacang-kacangan seperti tahu, tempe, kacang merah, dan kacang panjang.")
-        elif p == 'Seafood':
-            st.write("Saran: Hindari makanan laut seperti ikan, udang, cumi, dan kepiting.")
-        elif p == 'Daging Merah':
-            st.write("Saran: Hindari daging merah seperti daging sapi dan baso.")
-        elif p == 'Dairy':
-            st.write("Saran: Hindari produk susu seperti susu, keju, dan yogurt.")
-        elif p== 'Tidak Ada':
-            st.write("Nikmati makanan kesukaanmu")
-
-    if preferensi_diet:
-        st.write(f"Preferensi dietmu: {', '.join(preferensi_diet)}")
-        for diet in preferensi_diet:
-            if diet == 'Rendah Karbohidrat':
-                st.write("Saran: Pilih makanan rendah karbohidrat seperti buah melon, puding melon, jus semangka, dan buah pisang.")
-            elif diet == 'Vegetarian':
-                st.write("Saran: Pilih makanan vegetarian seperti pepaya, nagasari ubi ungu isi pisang, buah melon, dan singkong goreng isi unti.")
-            elif diet == 'Vegan':
-                st.write("Saran: Pilih makanan vegan seperti pepaya, nagasari ubi ungu isi pisang, buah melon, dan jus semangka.")
-            elif diet == 'Bebas Gluten':
-                st.write("Saran: Pilih makanan bebas gluten seperti pepaya, buah melon, puding melon, dan singkong goreng isi unti.")
-            elif diet == 'Normal':
-                st.write("Tidak ada batasan khusus, semua jenis makanan diperbolehkan.")
-
-
 def main():
-    # Load user data
     db = get_database()
     if db:
         user_collection = db['users']
@@ -493,7 +439,6 @@ def main():
         if user_data:
             recommendations = generate_menu_recommendations(user_data)
             if recommendations:
-                display_recommendations(recommendations, user_data["preferensi_makanan"]["pantangan"], user_data["preferensi_makanan"]["preferensi_diet"])
-            # Function call will now pass required arguments from within generate_menu_recommendations
+                display_recommendations(recommendations)  # Changed this line
         else:
             st.error("Data pengguna tidak ditemukan")
