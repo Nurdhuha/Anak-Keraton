@@ -100,7 +100,7 @@ def main():
         else:
             berat_digunakan = 0.9 * (tinggi_badan - 100)
 
-        weight_status = "Kurus" if imt < 18.5 else "Normal" if imt < 25 else "Berat Berlebih" if imt < 30 else "Obesitas"
+        weight_status = "Kurus" if imt < 18.5 else "Normal" if imt < 25 else "Berlebih" if imt < 30 else "Obesitas"
         bmr = calculate_bmr(berat_digunakan, tinggi_badan, jenis_kelamin)
         kebutuhan_kalori = calculate_energy(usia, bmr, tingkat_aktivitas, weight_status)
         diet_group = get_diet_group(kebutuhan_kalori)
