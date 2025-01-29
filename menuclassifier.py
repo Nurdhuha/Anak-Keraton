@@ -22,30 +22,8 @@ def get_database():
         return None
 
 def load_menu_data():
-    """Load and validate menu data"""
-    try:
-        db = get_database()
-        menu_collection = db['menus']
-        menu_data = pd.DataFrame(list(menu_collection.find()))
-        
-        required_columns = [
-            'total_kalori_kkal',
-            'total_protein_g',
-            'total_karbohidrat_g', 
-            'total_lemak_g',
-            'golongan'
-        ]
-        
-        # Validate required columns exist
-        missing_cols = [col for col in required_columns if col not in menu_data.columns]
-        if missing_cols:
-            raise KeyError(f"Missing required columns: {missing_cols}")
-            
-        return menu_data
-        
-    except Exception as e:
-        st.error(f"Error loading menu data: {str(e)}")
-        return None
+    with open('data/rekomendasi_menu.json') as f:
+        return json.load(f)
 
 def create_menu_features(menu_data):
     """Create features from menu attributes"""
