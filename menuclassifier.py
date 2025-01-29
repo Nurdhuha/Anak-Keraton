@@ -22,20 +22,50 @@ def get_database():
         return None
 
 def load_menu_data():
-    """Load menu data from database or file"""
-    # Assuming menu data structure in MongoDB
-    db = get_database()
-    menu_collection = db['menus']
-    menu_data = pd.DataFrame(list(menu_collection.find()))
-    return menu_data
+    """Load and validate menu data"""
+    try:
+        db = get_database()
+        menu_collection = db['menus']
+        menu_data = pd.DataFrame(list(menu_collection.find()))
+        
+        required_columns = [
+            'total_kalori_kkal',
+            'total_protein_g',
+            'total_karbohidrat_g', 
+            'total_lemak_g',
+            'golongan'
+        ]
+        
+        # Validate required columns exist
+        missing_cols = [col for col in required_columns if col not in menu_data.columns]
+        if missing_cols:
+            raise KeyError(f"Missing required columns: {missing_cols}")
+            
+        return menu_data
+        
+    except Exception as e:
+        st.error(f"Error loading menu data: {str(e)}")
+        return None
 
 def create_menu_features(menu_data):
     """Create features from menu attributes"""
-    # Define features based on nutritional content, ingredients, etc
-    feature_cols = ['kalori', 'protein', 'karbohidrat', 'lemak']
-    X = menu_data[feature_cols]
-    y = menu_data['kategori']
-    return X, y
+    # Map nutrition columns from MongoDB to feature columns
+    feature_mapping = {
+        'total_kalori_kkal': 'kalori',
+        'total_protein_g': 'protein', 
+        'total_karbohidrat_g': 'karbohidrat',
+        'total_lemak_g': 'lemak'
+    }
+    
+    # Create feature DataFrame
+    features_df = pd.DataFrame()
+    for mongo_col, feature_col in feature_mapping.items():
+        features_df[feature_col] = menu_data[mongo_col].fillna(0).astype(float)
+    
+    # Extract target variable
+    y = menu_data['golongan']
+    
+    return features_df, y
 
 def train_menu_classifier():
     """Train Naive Bayes classifier for menu recommendations"""
