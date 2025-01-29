@@ -26,25 +26,41 @@ def load_menu_data():
         return json.load(f)
 
 def create_menu_features(menu_data):
-    """Create features from menu attributes"""
-    # Map nutrition columns from MongoDB to feature columns
-    feature_mapping = {
-        'total_kalori_kkal': 'kalori',
-        'total_protein_g': 'protein', 
-        'total_karbohidrat_g': 'karbohidrat',
-        'total_lemak_g': 'lemak'
+    features = []
+    labels = []
+    
+    # Definisi kategori pantangan
+    pantangan_categories = {
+        'seafood': ['ikan', 'udang', 'cumi', 'kepiting'],
+        'daging_merah': ['daging sapi', 'baso'],
+        'kacang': ['tahu', 'tempe', 'kacang merah', 'kacang panjang'],
+        'dairy': ['susu', 'keju', 'yogurt']
     }
     
-    # Create feature DataFrame
-    features_df = pd.DataFrame()
-    for mongo_col, feature_col in feature_mapping.items():
-        features_df[feature_col] = menu_data[mongo_col].fillna(0).astype(float)
+    for menu in menu_data:
+        # Get nutritional values with default 0 for None/null values
+        feature = {
+            'kalori': float(menu.get('total_kalori_kkal', 0) or 0),
+            'karbohidrat': float(menu.get('total_karbohidrat_g', 0) or 0),
+            'protein': float(menu.get('total_protein_g', 0) or 0),
+            'lemak': float(menu.get('total_lemak_g', 0) or 0),
+            'seafood': 0,
+            'daging_merah': 0,
+            'kacang': 0,
+            'dairy': 0
+        }
+        
+        # Check ingredients in komponen
+        for komponen in menu.get('komponen', []):
+            bahan = komponen['bahan'].lower()
+            for category, ingredients in pantangan_categories.items():
+                if any(ing in bahan for ing in ingredients):
+                    feature[category] = 1
+        
+        features.append(list(feature.values()))
+        labels.append(menu['golongan'])
     
-    # Extract target variable
-    y = menu_data['golongan']
-    
-    return features_df, y
-
+    return np.array(features), np.array(labels)
 def train_menu_classifier():
     """Train Naive Bayes classifier for menu recommendations"""
     # Load and prepare data
