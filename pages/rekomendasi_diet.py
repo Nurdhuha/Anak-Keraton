@@ -7,7 +7,7 @@ import certifi
 from menuclassifier import generate_menu_recommendations, display_recommendations
 from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
 
-st.set_page_config(page_title="Rekomendasi- Rekomendasi Diet Diabetes", page_icon="📋")
+st.set_page_config(page_title="Melimeal-Diet Recommendation Website", page_icon="📋")
 
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
