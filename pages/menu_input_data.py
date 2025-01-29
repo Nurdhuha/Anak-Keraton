@@ -4,7 +4,7 @@ from pymongo import MongoClient
 import certifi
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Input Data Pasien - Rekomendasi Diet Diabetes", page_icon="📋")
+st.set_page_config(page_title="Melimeal-Diet Recommendation Website", page_icon="📋")
 
 def get_database():
     try:
