@@ -12,55 +12,6 @@ st.set_page_config(
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
-
-# CSS styles
-css_style = """
-<style>
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-}
-h1, h2, h3 {
-    color: #333;
-    text-align: center;
-}
-.stButton button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-}
-.stButton button:hover {
-    background-color: #45a049;
-}
-.stDataFrame table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-.stDataFrame th, .stDataFrame td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-.stDataFrame th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-"""
-
-st.markdown(css_style, unsafe_allow_html=True)
-
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
@@ -160,4 +111,9 @@ def main():
         st.markdown(f"### Kelompok Diet Anda: {diet_group}")
 
         porsi_diet = load_porsi_diet()
-        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kese ▋
+        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data)
+    else:
+        st.error("Data pengguna tidak ditemukan.")
+
+if __name__ == "__main__":
+    main()
