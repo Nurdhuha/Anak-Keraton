@@ -13,10 +13,7 @@ st.set_page_config(
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
-css_file = Path(__file__).parent / "stylepage.css"
-if css_file.exists():
-    with css_file.open() as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
