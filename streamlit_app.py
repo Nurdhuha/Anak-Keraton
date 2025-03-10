@@ -8,58 +8,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Menambahkan style CSS secara global ke halaman Streamlit
-st.markdown(
-    """
-    <style>
-    /* Background seluruh halaman */
-    .reportview-container {
-        background: #e6f2ff;
-    }
-    
-    /* Customisasi judul */
-    h1, h2, h3, .st-at {
-        color: #333;
-        font-family: "Arial", sans-serif;
-    }
-    
-    /* Customisasi tombol */
-    div.stButton > button {
-        background-color: #007BFF;
-        color: white;
-        border-radius: 5px;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-    div.stButton > button:hover {
-        background-color: #0056b3;
-    }
-    
-    /* Customisasi input text dan number */
-    input {
-        border: 1px solid #007BFF;
-        border-radius: 4px;
-        padding: 8px;
-    }
-    
-    /* Customisasi area pesan error dan success */
-    .st-error {
-        background-color: #f8d7da;
-        color: #721c24;
-        padding: 10px;
-        border-radius: 4px;
-    }
-    .st-success {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 10px;
-        border-radius: 4px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Baca file CSS eksternal dan sisipkan ke Streamlit
+css_file = Path("style.css")  # pastikan path sesuai dengan lokasi file style.css
+if css_file.exists():
+    with css_file.open() as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+else:
+    st.error("File CSS tidak ditemukan.")
 
 DATA_FILE = Path("data/datapasien.json")
 DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
