@@ -10,11 +10,6 @@ st.set_page_config(
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
-# Load CSS
-css_file = Path(__file__).parent / "stylepage.css"
-if css_file.exists():
-    with css_file.open() as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def get_database():
     try:
