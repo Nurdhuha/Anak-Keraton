@@ -12,6 +12,7 @@ st.set_page_config(
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
+
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
@@ -48,7 +49,7 @@ def get_user_data(name):
         return None
 
 def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data):
-    # Tampilkan rekomendasi menu menggunakan Naive Bayes
+    st.subheader("Rekomendasi Diet")
     recommendations = generate_menu_recommendations(user_data)
     display_recommendations(recommendations, pantangan_makanan, preferensi_diet)
     
@@ -58,10 +59,8 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
         columns_order = ['Waktu Makan', 'Karbohidrat', 'Protein Hewani', 'Protein Nabati', 'Sayuran A', 'Sayuran B', 'Buah', 'Susu', 'Minyak']
         df_porsi = df_porsi[columns_order]
         
-        # Fill NA/null values with "-"
         df_porsi = df_porsi.fillna("-")
         
-        # Convert numeric columns to string and replace empty strings with "-"
         for col in df_porsi.columns:
             if col != 'Waktu Makan':
                 df_porsi[col] = df_porsi[col].astype(str).replace({"nan": "-", "": "-"})
@@ -72,7 +71,6 @@ def display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, pref
     else:
         st.error("Kolom 'Golongan' tidak ditemukan di data panduan porsi diet.")
 
-# Main function to run the app
 def main():
     st.title("Rekomendasi Pola Diet")
 
@@ -111,7 +109,9 @@ def main():
         st.markdown(f"### Kelompok Diet Anda: {diet_group}")
 
         porsi_diet = load_porsi_diet()
-        display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data)
+
+        with st.expander("Detail Rekomendasi Diet"):
+            display_diet_recommendations(diet_group, porsi_diet, pantangan_makanan, preferensi_diet, kondisi_kesehatan, user_data)
     else:
         st.error("Data pengguna tidak ditemukan.")
 
