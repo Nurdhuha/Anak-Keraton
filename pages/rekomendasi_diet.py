@@ -6,12 +6,17 @@ from pymongo import MongoClient
 import certifi
 from menuclassifier import generate_menu_recommendations, display_recommendations
 from kelompokdiet import get_diet_group, calculate_bmr, calculate_energy
+from pathlib import Path
 
 st.set_page_config(
     page_title="Melimeal-Diet Recommendation Website", 
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
+css_file = Path(__file__).parent / "stylepage.css"
+if css_file.exists():
+    with css_file.open() as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
