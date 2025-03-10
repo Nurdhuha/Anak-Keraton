@@ -2,12 +2,63 @@ import json
 import streamlit as st
 from pathlib import Path
 
-
-
 st.set_page_config(
     page_title="Melimeal-Diet Recommendation Website", 
     page_icon="🍎",
     initial_sidebar_state="collapsed"
+)
+
+# Menambahkan style CSS secara global ke halaman Streamlit
+st.markdown(
+    """
+    <style>
+    /* Background seluruh halaman */
+    .reportview-container {
+        background: #e6f2ff;
+    }
+    
+    /* Customisasi judul */
+    h1, h2, h3, .st-at {
+        color: #333;
+        font-family: "Arial", sans-serif;
+    }
+    
+    /* Customisasi tombol */
+    div.stButton > button {
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    div.stButton > button:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Customisasi input text dan number */
+    input {
+        border: 1px solid #007BFF;
+        border-radius: 4px;
+        padding: 8px;
+    }
+    
+    /* Customisasi area pesan error dan success */
+    .st-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .st-success {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
 DATA_FILE = Path("data/datapasien.json")
