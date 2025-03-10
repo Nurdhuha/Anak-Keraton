@@ -7,7 +7,6 @@ from pathlib import Path
 st.set_page_config(
     page_title="Melimeal-Diet Recommendation Website", 
     page_icon="🍎",
-    layout="wide",
     initial_sidebar_state="collapsed"
 )
 
