@@ -118,7 +118,7 @@ def main():
     
     # Add "Konsultasi" button at the bottom of the page
     if st.button("Konsultasi"):
-        st.switch_page("chatdokter.py")
+        st.switch_page("pages/chatdokter.py")
         st.rerun()
 
 if __name__ == "__main__":
