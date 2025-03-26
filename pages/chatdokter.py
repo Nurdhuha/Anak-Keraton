@@ -3,8 +3,11 @@ import time
 import random
 import re
 
-# Konfigurasi halaman
-st.set_page_config(page_title="Diabetes Nutrition Chat", page_icon="🩸")
+st.set_page_config(
+    page_title="Melimeal-Diet Recommendation Website", 
+    page_icon="🍎",
+    initial_sidebar_state="collapsed"
+)
 
 # Sidebar informatif
 with st.sidebar:
