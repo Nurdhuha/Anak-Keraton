@@ -95,13 +95,13 @@ def get_diabetes_response(user_input):
 
     # Pola respons
     patterns = {
-        r'porsi|takaran': f"Porsi karbohidrat harian: {food_db['karbohidrat']['daily']}. Contoh sumber: {', '.join(food_db['karbohidrat']['sources'])}",
-        r'nasi|karbo': food_db['nasi']['response'],
-        r'buah|fruit': f"Buah aman: {', '.join(food_db['buah']['safe']}. Hindari: {', '.join(food_db['buah']['avoid']}. {food_db['buah']['portion']}",
-        r'makan malam|dinner': "Contoh makan malam: 100gr nasi merah + 100gr ikan bakar + 1 mangkok sayur rebus + 1 potong pepaya",
-        r'menu|contoh': "Contoh menu harian:\nSarapan: Oatmeal + telur rebus + brokoli\nSelingan: Yoghurt tanpa gula\nMakan Siang: Nasi merah + tempe bacem + tumis kangkung\nSelingan: 1 potong apel\nMakan Malam: Sup ayam + ubi rebus",
-        r'indeks glikemik': "Indeks Glikemik (GI) mengukur kecepatan makanan meningkatkan gula darah. Pilih makanan GI rendah (<55)"
-    }
+    r'porsi|takaran': f"Porsi karbohidrat harian: {food_db['karbohidrat']['daily']}. Contoh sumber: {', '.join(food_db['karbohidrat']['sources'])}",
+    r'nasi|karbo': food_db['nasi']['response'],
+    r'buah|fruit': f"Buah aman: {', '.join(food_db['buah']['safe'])}. Hindari: {', '.join(food_db['buah']['avoid'])}. {food_db['buah']['portion']}",
+    r'makan malam|dinner': "Contoh makan malam: 100gr nasi merah + 100gr ikan bakar + 1 mangkok sayur rebus + 1 potong pepaya",
+    r'menu|contoh': "Contoh menu harian:\nSarapan: Oatmeal + telur rebus + brokoli\nSelingan: Yoghurt tanpa gula\nMakan Siang: Nasi merah + tempe bacem + tumis kangkung\nSelingan: 1 potong apel\nMakan Malam: Nasi merah + ikan bakar + sayur rebus",
+    r'indeks glikemik': "Indeks Glikemik (GI) mengukur kecepatan makanan meningkatkan gula darah. Pilih makanan GI rendah (<55)"
+}
 
     # Cocokkan pertanyaan
     for pattern, response in patterns.items():
