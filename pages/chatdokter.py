@@ -34,5 +34,6 @@ if st.button("Send"):
         # Add doctor's response to session state
         st.session_state.messages.append({"user": "doctor", "text": doctor_response})
         
-        # Clear the input field
-        st.session_state.user_input = ""
+        # Clear the input field by resetting the session state
+        st.session_state["user_input"] = ""
+        st.rerun()
