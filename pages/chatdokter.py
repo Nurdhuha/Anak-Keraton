@@ -16,9 +16,9 @@ with st.sidebar:
     **Prinsip Diet Diabetes:**
     1. Kontrol asupan karbohidrat
     2. Tingkatkan serat makanan
-    3. Hindari makanan bergula tinggi
+    3. Hindari makanan mengandung gula tinggi
     4. Makan teratur 3x utama + 2x selingan
-    5. Monitor indeks glikemik makanan
+  
     
     **Contoh Pertanyaan:**
     - Dok, berapa porsi karbohidrat yang boleh saya makan?
@@ -35,7 +35,7 @@ if "messages" not in st.session_state:
 
 # Header aplikasi
 st.title("🍽️ Konsultasi Diet Diabetes")
-st.caption("dr. Kinanti Rizki Putri, S.Gz.")
+st.caption("dr. Kinanti Rizky Putri")
 
 # Tampilkan riwayat chat
 for message in st.session_state.messages:
