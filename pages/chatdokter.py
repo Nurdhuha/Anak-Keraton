@@ -1,37 +1,10 @@
 import streamlit as st
 import time
 import random
+import re
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Diabetes Nutrition Chat", page_icon="🩸")
-
-# CSS kustom
-st.markdown("""
-<style>
-    .chat-container {
-        max-width: 800px;
-        margin: auto;
-        padding: 20px;
-    }
-    .user-message {
-        background-color: #e3f2fd;
-        padding: 10px;
-        border-radius: 15px;
-        margin: 5px 0;
-    }
-    .doctor-message {
-        background-color: #f5f5f5;
-        padding: 10px;
-        border-radius: 15px;
-        margin: 5px 0;
-    }
-    .typing-indicator {
-        display: flex;
-        align-items: center;
-        color: #666;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 # Sidebar informatif
 with st.sidebar:
@@ -45,85 +18,63 @@ with st.sidebar:
     5. Monitor indeks glikemik makanan
     
     **Contoh Pertanyaan:**
-    - Berapa porsi karbohidrat yang boleh saya makan?
-    - Apakah nasi merah baik untuk diabetes?
-    - Bagaimana pola makan yang tepat untuk diabetes?
-    - Bolehkah makan buah durian?
+    - Dok, berapa porsi karbohidrat yang boleh saya makan?
+    - Dok, apakah nasi merah baik untuk diabetes?
+    - Bagaimana pola makan yang tepat untuk saya?
+    - Apakah saya boleh makan buah durian?
     - Berapa kali saya harus makan dalam sehari?
     """)
     st.divider()
-    st.markdown("**Disclaimer:**\n*Konsultasikan dengan dokter/nutrisionis untuk rencana makan personal*")
-
+   
 # Inisialisasi riwayat chat
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Header aplikasi
 st.title("🍽️ Konsultasi Diet Diabetes")
-st.caption("Chatbot Edukasi Pola Makan untuk Penderita Diabetes Melitus")
+st.caption("Kinanti Rizki Putri, S.Gz.")
 
 # Tampilkan riwayat chat
 for message in st.session_state.messages:
     if message["role"] == "user":
-        st.markdown(f"<div class='user-message'>👤 **Anda:** {message['content']}</div>", unsafe_allow_html=True)
+        st.chat_message("user").write(f"**Anda:** {message['content']}")
     else:
-        st.markdown(f"<div class='doctor-message'>🩺 **Nutrisionis:** {message['content']}</div>", unsafe_allow_html=True)
+        st.chat_message("assistant").write(f"**Dr. Andi:** {message['content']}")
 
-# Fungsi respons spesialis diabetes
-def get_diabetes_response(user_input):
+# Fungsi respons dokter
+
+def get_doctor_response(user_input):
     user_input = user_input.lower()
     
-    # Database pengetahuan
-    food_db = {
-        'nasi': {
-            'response': "Pilih nasi merah (GI 50) daripada nasi putih (GI 73). Porsi maksimal 100gr (1 centong)",
-            'gi': {'putih': 73, 'merah': 50}
-        },
-        'buah': {
-            'safe': ["apel", "jeruk", "pepaya", "buah naga"],
-            'avoid': ["durian", "mangga", "rambutan", "sawo"],
-            'portion': "1 porsi = 1 potong sedang (150gr)"
-        },
-        'karbohidrat': {
-            'daily': "45-60gr per makan utama",
-            'sources': ["beras merah", "quinoa", "ubi", "oatmeal"]
-        },
-        'protein': {
-            'recommendation': "Pilih protein rendah lemak: ikan, tahu, tempe, dada ayam"
-        }
+    responses = {
+        r'porsi|takaran': "Baik, untuk porsi karbohidrat yang aman, saya sarankan sekitar 45-60 gram per makan utama. Ini bisa berupa 100 gram nasi merah atau setara dengan satu ubi ukuran sedang.",
+        r'nasi|karbo': "Saya menyarankan Anda untuk lebih memilih nasi merah dibandingkan nasi putih karena memiliki indeks glikemik yang lebih rendah.",
+        r'buah|fruit': "Untuk buah, Anda bisa mengonsumsi apel, jeruk, pepaya, dan buah naga dalam porsi yang sesuai. Namun, sebaiknya hindari durian, mangga, rambutan, dan sawo karena kandungan gulanya tinggi.",
+        r'makan malam|dinner': "Untuk makan malam, coba konsumsi nasi merah 100gr, ikan bakar, sayur rebus, dan sepotong pepaya. Ini seimbang dan tetap menjaga kadar gula darah Anda.",
+        r'menu|contoh': "Contoh menu harian untuk Anda:\nSarapan: Oatmeal + telur rebus + brokoli\nSelingan: Yoghurt tanpa gula\nMakan Siang: Nasi merah + tempe bacem + tumis kangkung\nSelingan: 1 potong apel\nMakan Malam: Nasi merah + ikan bakar + sayur rebus",
+        r'indeks glikemik': "Indeks Glikemik (GI) mengukur seberapa cepat makanan meningkatkan kadar gula darah. Pilih makanan dengan GI rendah (<55) untuk mengontrol diabetes lebih baik."
     }
-
-    # Pola respons
-    patterns = {
-    r'porsi|takaran': f"Porsi karbohidrat harian: {food_db['karbohidrat']['daily']}. Contoh sumber: {', '.join(food_db['karbohidrat']['sources'])}",
-    r'nasi|karbo': food_db['nasi']['response'],
-    r'buah|fruit': f"Buah aman: {', '.join(food_db['buah']['safe'])}. Hindari: {', '.join(food_db['buah']['avoid'])}. {food_db['buah']['portion']}",
-    r'makan malam|dinner': "Contoh makan malam: 100gr nasi merah + 100gr ikan bakar + 1 mangkok sayur rebus + 1 potong pepaya",
-    r'menu|contoh': "Contoh menu harian:\nSarapan: Oatmeal + telur rebus + brokoli\nSelingan: Yoghurt tanpa gula\nMakan Siang: Nasi merah + tempe bacem + tumis kangkung\nSelingan: 1 potong apel\nMakan Malam: Nasi merah + ikan bakar + sayur rebus",
-    r'indeks glikemik': "Indeks Glikemik (GI) mengukur kecepatan makanan meningkatkan gula darah. Pilih makanan GI rendah (<55)"
-}
-
-    # Cocokkan pertanyaan
-    for pattern, response in patterns.items():
+    
+    for pattern, response in responses.items():
         if re.search(pattern, user_input):
             return response
     
-    # Jika tidak cocok
-    return "Untuk pertanyaan tentang pola makan diabetes:\n1. Sebutkan makanan yang ingin Anda tanyakan\n2. Tanyakan tentang porsi\n3. Tanyakan menu contoh\n4. Tanyakan tentang indeks glikemik"
+    return "Maaf, saya perlu lebih banyak informasi. Bisa Anda jelaskan lebih rinci mengenai pertanyaan Anda?"
 
 # Input pengguna
-if prompt := st.chat_input("Tulis pertanyaan tentang diabetes dan pola makan..."):
+if prompt := st.chat_input("Tulis pertanyaan Anda..."):
     # Tambahkan pesan pengguna
     st.session_state.messages.append({"role": "user", "content": prompt})
     
-    # Tampilkan indikator mengetik
-    with st.empty() as typing_container:
-        typing_container.markdown("<div class='typing-indicator'>🩺 Nutrisionis sedang mengetik...</div>", unsafe_allow_html=True)
-        time.sleep(1)  # Simulasi waktu respons
+    # Simulasi dokter berpikir
+    with st.chat_message("assistant"):
+        typing_message = st.empty()
+        typing_message.write("Dr. Andi sedang mengetik...")
+        time.sleep(1.5)  # Simulasi waktu respons
         
-    # Dapatkan dan tampilkan respons
-    response = get_diabetes_response(prompt)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        # Dapatkan respons dokter
+        response = get_doctor_response(prompt)
+        typing_message.write(f"**Dr. Andi:** {response}")
     
-    # Rerun untuk update chat
-    st.rerun()
+    # Simpan riwayat chat
+    st.session_state.messages.append({"role": "assistant", "content": response})
