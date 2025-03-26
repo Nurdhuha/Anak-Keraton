@@ -66,14 +66,14 @@ if prompt := st.chat_input("Tulis pertanyaan Anda..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     
     # Simulasi dokter berpikir
-    with st.chat_message("assistant"):
+    with st.chat_message("user"):
         typing_message = st.empty()
         typing_message.write("dr. Kinan sedang mengetik...")
         time.sleep(1.5) 
         
         # Dapatkan respons dokter
         response = get_doctor_response(prompt)
-        typing_message.write(f"**Dr. Andi:** {response}")
+        typing_message.write(f"**dr. Kinan:** {response}")
     
     # Simpan riwayat chat
     st.session_state.messages.append({"role": "assistant", "content": response})
