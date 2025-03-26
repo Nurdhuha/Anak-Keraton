@@ -32,16 +32,15 @@ if "messages" not in st.session_state:
 
 # Header aplikasi
 st.title("🍽️ Konsultasi Diet Diabetes")
-st.caption("Kinanti Rizki Putri, S.Gz.")
+st.caption("dr. Kinanti Rizki Putri, S.Gz.")
 
 # Tampilkan riwayat chat
 for message in st.session_state.messages:
     if message["role"] == "user":
         st.chat_message("user").write(f"**Anda:** {message['content']}")
     else:
-        st.chat_message("assistant").write(f"**Dr. Andi:** {message['content']}")
+        st.chat_message("assistant").write(f"**dr. Kinan:** {message['content']}")
 
-# Fungsi respons dokter
 
 def get_doctor_response(user_input):
     user_input = user_input.lower()
@@ -69,8 +68,8 @@ if prompt := st.chat_input("Tulis pertanyaan Anda..."):
     # Simulasi dokter berpikir
     with st.chat_message("assistant"):
         typing_message = st.empty()
-        typing_message.write("Dr. Andi sedang mengetik...")
-        time.sleep(1.5)  # Simulasi waktu respons
+        typing_message.write("dr. Kinan sedang mengetik...")
+        time.sleep(1.5) 
         
         # Dapatkan respons dokter
         response = get_doctor_response(prompt)
