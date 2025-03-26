@@ -12,6 +12,25 @@ st.set_page_config(
     page_icon="🍎",
     initial_sidebar_state="collapsed"
 )
+
+# Add "Konsultasi" button in the top right corner
+st.markdown(
+    """
+    <style>
+    .konsultasi-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+if st.button("Konsultasi", key="konsultasi_button"):
+    st.experimental_set_query_params(page="chatdokter")
+    st.experimental_rerun()
+
 # Load JSON data for diet recommendations
 def load_rekomendasi_menu():
     with open('data/rekomendasi_menu.json') as json_file:
