@@ -39,7 +39,7 @@ for message in st.session_state.messages:
     if message["role"] == "user":
         st.chat_message("user").write(f"**Anda:** {message['content']}")
     else:
-        st.chat_message("assistant").write(f"**dr. Kinan:** {message['content']}")
+        st.chat_message("user").write(f"**dr. Kinan:** {message['content']}")
 
 
 def get_doctor_response(user_input):
